@@ -2,7 +2,7 @@
 <html lang="zh-Hant">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>險中求生城市交通大作戰｜加入遊戲 v6.0</title>
+<title>險中求生城市交通大作戰｜加入遊戲 v6.1</title>
 <style>
 :root{--deep:#10295a;--blue:#2d8cff;--yellow:#ffd84c;--green:#38c65b;--red:#ef4444;--paper:#fffef5}
 *{box-sizing:border-box}body{margin:0;font-family:"Microsoft JhengHei",sans-serif;background:linear-gradient(#76d9ff 0 55%,#55ba74 55%);color:#17315f;min-height:100vh}
@@ -37,8 +37,16 @@ button:not(:disabled){animation:pulse 2s ease-in-out infinite}button:hover:not(:
 <div class="box"><div class="head">你的選擇</div><div class="body summary"><div class="sum"><b>車輛</b><span id="sumV">尚未選擇</span></div><div class="sum"><b>角色</b><span id="sumR">尚未選擇</span></div><div class="sum"><b>情境</b><span id="sumS">尚未抽卡</span></div><div class="sum"><b>時速</b><span id="sumSpeed">尚未設定</span></div></div></div>
 </div>
 <div class="box hidden" id="waitBox"><div class="head">READY</div><div class="wait"><div class="big">🚦</div><h2>等待老師發車</h2><div id="waitInfo"></div></div></div>
-<div class="box hidden" id="liveBox"><div class="head">行車中</div><div class="body"><div class="hud" style="grid-template-columns:1fr 1fr"><div class="h"><small>時速</small><strong id="hSpeed">0 km/h</strong></div><div class="h"><small>積分</small><strong id="hScore">0</strong></div></div><div class="event" id="eventBox">準備出發</div><div class="result hidden" id="resultBox"></div></div></div></div>
-<div class="modal hidden" id="qModal"><div class="modalbox"><h2>💥 全班事故題</h2><div class="acc" id="accInfo"></div><h3 id="qPrompt"></h3><div class="opts" id="qOpts"></div><div id="answerWait" class="notice hidden" style="margin-top:10px">已送出答案，等待老師公布。</div></div></div>
+<div class="box hidden" id="liveBox"><div class="head">行車中</div><div class="body">
+<div class="hud" style="grid-template-columns:1fr 1fr">
+<div class="h"><small>時速</small><strong id="hSpeed">0 km/h</strong></div>
+<div class="h"><small>積分</small><strong id="hScore">0</strong></div>
+</div>
+<div class="event" id="eventBox">準備出發</div>
+<div class="result hidden" id="resultBox"></div>
+</div></div>
+</div>
+<div class="modal hidden" id="qModal"><div class="modal hidden" id="qModal"><div class="modalbox"><h2>💥 全班事故題</h2><div class="acc" id="accInfo"></div><h3 id="qPrompt"></h3><div class="opts" id="qOpts"></div><div id="answerWait" class="notice hidden" style="margin-top:10px">已送出答案，等待老師公布。</div></div></div>
 <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-database-compat.js"></script><script src="firebase-config.js"></script><script src="game-data.js"></script>
 <script>
 let db,auth,uid,room,state={vehicle:null,color:'#3b82f6',role:null,scenario:null,speed:null},playerRef,roomRootRef=null,questionRef=null,hostWatchTimer=null,kicked=false,currentQuestionId='',answeredQuestionId='';const $=id=>document.getElementById(id);
@@ -93,7 +101,22 @@ $('joinBtn').onclick=async()=>{
     $('joinMsg').textContent=err.message||'加入失敗，請重新確認房號';$('joinMsg').classList.add('error');$('joinMsg').classList.remove('hidden');
   }finally{$('joinBtn').disabled=false;$('joinBtn').textContent='加入遊戲'}
 };
-$('readyBtn').onclick=async()=>{if(!state.vehicle||!state.role||!state.scenario||state.speed==null)return;let v=GAME.getVehicle(state.vehicle),r=GAME.getRole(state.role);await playerRef.update({name:$('nameInput').value.trim(),vehicleType:state.vehicle,color:state.color,protection:v.protection,mobility:v.mobility,roleId:r.id,roleName:r.name,scenarioId:state.scenario.id,scenarioTitle:state.scenario.title,scenarioText:state.scenario.text,scenarioTime:state.scenario.time,scenarioAction:state.scenario.action,scenarioPressure:state.scenario.pressure||0,scenarioDistraction:state.scenario.distraction||0,speed:Number(state.speed),score:0,ready:true,status:'ready',currentEvent:'等待出發',updatedAt:firebase.database.ServerValue.TIMESTAMP});$('setup').classList.add('hidden');$('waitBox').classList.remove('hidden');$('waitInfo').textContent=`${GAME.colorName(state.color)}${v.name}｜${r.name}｜${state.speed} km/h`};
+$('readyBtn').onclick=async()=>{
+ if(!state.vehicle||!state.role||!state.scenario||state.speed==null)return;
+ let v=GAME.getVehicle(state.vehicle),r=GAME.getRole(state.role);
+ await playerRef.update({
+  name:$('nameInput').value.trim(),
+  vehicleType:state.vehicle,color:state.color,protection:v.protection,mobility:v.mobility,
+  roleId:r.id,roleName:r.name,
+  scenarioId:state.scenario.id,scenarioTitle:state.scenario.title,scenarioText:state.scenario.text,
+  scenarioTime:state.scenario.time,scenarioAction:state.scenario.action,
+  scenarioPressure:state.scenario.pressure||0,scenarioDistraction:state.scenario.distraction||0,
+  speed:Number(state.speed),score:0,ready:true,status:'ready',
+  currentEvent:'等待出發',updatedAt:firebase.database.ServerValue.TIMESTAMP
+ });
+ $('setup').classList.add('hidden');$('waitBox').classList.remove('hidden');
+ $('waitInfo').textContent=`${GAME.colorName(state.color)}${v.name}｜${r.name}｜${state.speed} km/h`;
+};
 function kickFromRoom(reason){
   if(kicked)return;kicked=true;
   if(hostWatchTimer){clearInterval(hostWatchTimer);hostWatchTimer=null}
@@ -112,7 +135,13 @@ function watchRoom(){
   questionRef=db.ref(`rooms/${room}/globalQuestion`);questionRef.on('value',s=>handleGlobalQuestion(s.val()));
   hostWatchTimer=setInterval(async()=>{if(!roomRootRef||kicked)return;try{let s=await roomRootRef.once('value');let meta=s.val();if(!hostAlive(meta))kickFromRoom('老師已離開，房間已關閉')}catch(e){}},5000)
 }
-function renderLive(p){$('hSpeed').textContent=(p.speed||0)+' km/h';$('hScore').textContent=p.score||0;$('eventBox').textContent=p.currentEvent||'行駛中';if(p.lastFeedback){$('resultBox').classList.remove('hidden');$('resultBox').textContent=p.lastFeedback}else $('resultBox').classList.add('hidden')}
+function renderLive(p){
+ $('hSpeed').textContent=(p.speed||0)+' km/h';
+ $('hScore').textContent=p.score||0;
+ $('eventBox').textContent=p.currentEvent||'行駛中';
+ if(p.lastFeedback){$('resultBox').classList.remove('hidden');$('resultBox').textContent=p.lastFeedback}
+ else $('resultBox').classList.add('hidden')
+}
 function handleGlobalQuestion(q){if(!q){$('qModal').classList.add('hidden');currentQuestionId='';return}currentQuestionId=q.id;if(q.closed){$('qModal').classList.add('hidden');return}$('qModal').classList.remove('hidden');$('accInfo').innerHTML=(q.accidentSummary||'').replace(/\n/g,'<br>');$('qPrompt').textContent=q.prompt||'';$('qOpts').innerHTML=(q.options||[]).map((o,i)=>`<button data-i="${i}" ${(answeredQuestionId===q.id||q.revealed)?'disabled':''}>${String.fromCharCode(65+i)}. ${o}</button>`).join('');$('answerWait').classList.toggle('hidden',answeredQuestionId!==q.id&&!q.revealed);if(answeredQuestionId!==q.id&&!q.revealed){document.querySelectorAll('#qOpts button').forEach(b=>b.onclick=async()=>{answeredQuestionId=q.id;document.querySelectorAll('#qOpts button').forEach(x=>{x.disabled=true;x.classList.toggle('picked',x===b)});$('answerWait').classList.remove('hidden');$('answerWait').textContent='已送出答案，等待老師公布。';await db.ref(`rooms/${room}/globalQuestion/answers/${uid}`).set({option:Number(b.dataset.i),name:$('nameInput').value.trim(),ts:firebase.database.ServerValue.TIMESTAMP})})}if(q.revealed){let ans=q.answers&&q.answers[uid];let msg=!ans?'未作答。':Number(ans.option)===Number(q.correctIndex)?'✅ 答對！':'❌ 答錯。';$('answerWait').classList.remove('hidden');$('answerWait').textContent=msg+' '+(q.explanation||'')}}
 renderColors();init();
 </script></body></html>

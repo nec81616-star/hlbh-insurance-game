@@ -2,4 +2,14 @@ window.GAME={"colors":[{"hex":"#ef4444","name":"紅色"},{"hex":"#3b82f6","name"
 window.GAME.getRole=function(id){return this.roles.find(r=>r.id===id)};
 window.GAME.getVehicle=function(id){return this.vehicles[id]};
 window.GAME.colorName=function(hex){return (this.colors.find(c=>c.hex.toLowerCase()===String(hex).toLowerCase())||{}).name||hex};
-window.GAME.speedComment=function(speed){speed=Number(speed);if(!Number.isFinite(speed))return '請輸入時速';if(speed===0)return '目前沒有前進喔～';if(speed<=20)return '速度較慢，行車時仍要持續注意周遭車流。';if(speed<=40)return '保持穩定行駛，注意前後左右的車況。';if(speed<=60)return '目前速度適中，記得依道路狀況調整。';if(speed<=80)return '速度偏快，請提高警覺並預留煞車距離。';if(speed<100)return '真的很快！請特別注意路口與前方車流。';return '雖然可以快速抵達目的地，但是很危險啦～！'};
+window.GAME.speedComment=function(speed){
+ speed=Number(speed);
+ if(!Number.isFinite(speed))return '請輸入時速';
+ if(speed===0)return '目前沒有前進喔～';
+ if(speed<=20)return '速度較慢，行車時仍要持續注意周遭車流。';
+ if(speed<=40)return '保持穩定行駛，注意前後左右的車況。';
+ if(speed<=60)return '目前速度適中，記得依道路狀況調整。';
+ if(speed<=80)return '速度偏快，請提高警覺並預留煞車距離。';
+ if(speed<100)return '真的很快！請特別注意路口與前方車流。';
+ return '雖然可以快速抵達目的地，但是很危險啦～！';
+};
