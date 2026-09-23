@@ -2,7 +2,7 @@
 <html lang="zh-Hant">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>險中求生城市交通大作戰｜學生端</title>
+<title>險中求生城市交通大作戰｜加入遊戲</title>
 <style>
 :root{--deep:#10295a;--blue:#2d8cff;--yellow:#ffd84c;--green:#38c65b;--red:#ef4444;--paper:#fffef5}
 *{box-sizing:border-box}body{margin:0;font-family:"Microsoft JhengHei",sans-serif;background:linear-gradient(#76d9ff 0 55%,#55ba74 55%);color:#17315f;min-height:100vh}
@@ -22,7 +22,7 @@ button:not(:disabled){animation:pulse 2s ease-in-out infinite}button:hover:not(:
 @media(max-width:600px){.grid2,.speed,.summary{grid-template-columns:1fr}.roles{grid-template-columns:1fr 1fr}.steps{grid-template-columns:1fr 1fr}.hud{grid-template-columns:1fr 1fr}}
 </style></head>
 <body><div class="wrap">
-<div class="box" id="joinBox"><div class="head">🚘 險中求生城市交通大作戰</div><div class="body"><div class="grid2"><input id="roomInput" maxlength="4" inputmode="numeric" placeholder="房號"><input id="nameInput" maxlength="10" placeholder="姓名／座號"></div><button id="joinBtn" style="width:100%;margin-top:10px">加入遊戲</button><div id="joinMsg" class="notice hidden"></div></div></div>
+<div class="box" id="joinBox"><div class="head">🚘 險中求生城市交通大作戰</div><div class="body"><div class="grid2"><input id="roomInput" maxlength="4" inputmode="numeric" placeholder="房號"><input id="seatInput" maxlength="2" inputmode="numeric" placeholder="座號"></div><input id="nameInput" maxlength="10" placeholder="姓名" style="margin-top:10px"><button id="joinBtn" style="width:100%;margin-top:10px">加入遊戲</button><div id="joinMsg" class="notice hidden"></div></div></div>
 <div id="setup" class="hidden">
 <div class="steps"><div class="step" id="s1">① 車輛</div><div class="step" id="s2">② 角色</div><div class="step" id="s3">③ 情境</div><div class="step" id="s4">④ 時速</div></div>
 <div class="box" id="vehicleBox"><div class="head">① 選擇車輛</div><div class="body"><div class="grid2"><div class="vehicle" data-v="car"><div class="title">🚗 汽車</div><div class="stat"><span>防護力</span><span class="stars">★★★★★</span></div><div class="stat"><span>機動性</span><span class="stars">★★<span class="off">★★★</span></span></div><div class="stat"><span>雨天穩定</span><span class="stars">★★★★★</span></div><button data-v="car">選擇汽車</button></div><div class="vehicle" data-v="moto"><div class="title">🛵 機車</div><div class="stat"><span>防護力</span><span class="stars">★★<span class="off">★★★</span></span></div><div class="stat"><span>機動性</span><span class="stars">★★★★★</span></div><div class="stat"><span>雨天穩定</span><span class="stars">★★<span class="off">★★★</span></span></div><button data-v="moto" class="green">選擇機車</button></div></div><div class="colors" id="colors"></div><button id="toRole" disabled style="width:100%">下一步：選角色 →</button></div></div>
@@ -38,7 +38,14 @@ button:not(:disabled){animation:pulse 2s ease-in-out infinite}button:hover:not(:
 <script>
 let db,auth,uid,room,state={vehicle:null,color:'#3b82f6',role:null,scenario:null,speed:null},playerRef,roomRootRef=null,questionRef=null,hostWatchTimer=null,kicked=false,currentQuestionId='',answeredQuestionId='';const $=id=>document.getElementById(id);
 function configOK(){return window.GAME_FIREBASE_CONFIG&&!String(GAME_FIREBASE_CONFIG.apiKey).includes('PASTE_')}function scrollToEl(el){requestAnimationFrame(()=>el.scrollIntoView({behavior:'smooth',block:'start'}))}
-async function init(){if(!configOK()){$('joinMsg').textContent='請先設定 Firebase';$('joinMsg').classList.remove('hidden');$('joinBtn').disabled=true;return}firebase.initializeApp(GAME_FIREBASE_CONFIG);auth=firebase.auth();db=firebase.database();await auth.signInAnonymously();uid=auth.currentUser.uid;let saved=JSON.parse(localStorage.getItem('insuranceGamePlayer')||'null');if(saved){$('roomInput').value=saved.room||'';$('nameInput').value=saved.name||''}}
+async function init(){
+  if(!configOK()){$('joinMsg').textContent='請先設定 Firebase';$('joinMsg').classList.remove('hidden');$('joinBtn').disabled=true;return}
+  firebase.initializeApp(GAME_FIREBASE_CONFIG);auth=firebase.auth();db=firebase.database();await auth.signInAnonymously();uid=auth.currentUser.uid;
+  let saved=JSON.parse(localStorage.getItem('insuranceGamePlayer')||'null');
+  if(saved){$('roomInput').value=saved.room||'';$('nameInput').value=saved.name||'';$('seatInput').value=saved.seat||''}
+  let qrRoom=new URLSearchParams(location.search).get('room');
+  if(qrRoom&&/^\d{4}$/.test(qrRoom)){$('roomInput').value=qrRoom;$('roomInput').readOnly=true;$('roomInput').style.background='#eaf2ff';}
+}
 function renderColors(){$('colors').innerHTML=GAME.colors.map(c=>`<button class="swatch ${c.hex===state.color?'sel':''}" data-c="${c.hex}" style="background:${c.hex}"></button>`).join('');document.querySelectorAll('.swatch').forEach(b=>b.onclick=()=>{state.color=b.dataset.c;renderColors();updateSummary()})}
 function renderRoles(){$('roles').innerHTML=GAME.roles.map(r=>`<div class="role ${state.role===r.id?'selected':''}" data-r="${r.id}"><div class="icon">${r.icon}</div><div class="title">${r.name}</div><button data-r="${r.id}">選擇</button></div>`).join('');document.querySelectorAll('.role button').forEach(b=>b.onclick=()=>{state.role=b.dataset.r;renderRoles();$('toScenario').disabled=false;$('s2').classList.add('done');updateSummary()})}
 function updateSummary(){let v=state.vehicle?GAME.getVehicle(state.vehicle):null,r=state.role?GAME.getRole(state.role):null;$('sumV').textContent=v?GAME.colorName(state.color)+v.name:'尚未選擇';$('sumR').textContent=r?r.name:'尚未選擇';$('sumS').textContent=state.scenario?state.scenario.title:'尚未抽卡';$('sumSpeed').textContent=state.speed!=null?state.speed+' km/h':'尚未設定'}
@@ -46,10 +53,11 @@ document.querySelectorAll('.vehicle button').forEach(b=>b.onclick=()=>{state.veh
 $('drawBtn').onclick=()=>{if(state.scenario||!state.role)return;let r=GAME.getRole(state.role);state.scenario=r.scenarios[Math.floor(Math.random()*r.scenarios.length)];$('scenarioCard').innerHTML=`<h3>${state.scenario.title}</h3><div>${state.scenario.text}</div><div class="chips"><span class="chip">⏱ ${state.scenario.time}</span><span class="chip">⚠ ${state.scenario.stakes}</span></div>`;$('drawBtn').disabled=true;$('drawBtn').textContent='已抽取情境卡';document.querySelectorAll('.role button').forEach(b=>b.disabled=true);$('toScenario').disabled=true;$('speedArea').classList.remove('hidden');$('s3').classList.add('done');updateSummary()};
 $('speedInput').oninput=e=>{let raw=e.target.value;if(raw===''){state.speed=null;$('speedComment').textContent='請輸入時速';$('speedComment').className='comment';$('readyBtn').disabled=true;updateSummary();return}let v=Math.max(0,Math.min(160,Number(raw)));e.target.value=v;state.speed=v;$('speedComment').textContent=GAME.speedComment(v);$('speedComment').className='comment '+(v<=30?'safe':v<=60?'':v<100?'warn':'bad');$('readyBtn').disabled=false;$('s4').classList.add('done');updateSummary()};
 $('joinBtn').onclick=async()=>{
-  room=$('roomInput').value.trim();let name=$('nameInput').value.trim();
+  room=$('roomInput').value.trim();let name=$('nameInput').value.trim();let seat=$('seatInput').value.trim();
   $('joinMsg').classList.add('hidden');$('joinMsg').classList.remove('error');
   if(!/^\d{4}$/.test(room)){ $('joinMsg').textContent='房號必須是4位數字';$('joinMsg').classList.add('error');$('joinMsg').classList.remove('hidden');return }
-  if(!name){ $('joinMsg').textContent='請先輸入姓名或座號';$('joinMsg').classList.add('error');$('joinMsg').classList.remove('hidden');return }
+  if(!/^\d{1,2}$/.test(seat)||Number(seat)<1){ $('joinMsg').textContent='請輸入正確座號';$('joinMsg').classList.add('error');$('joinMsg').classList.remove('hidden');return }
+  if(!name){ $('joinMsg').textContent='請輸入姓名';$('joinMsg').classList.add('error');$('joinMsg').classList.remove('hidden');return }
   $('joinBtn').disabled=true;$('joinBtn').textContent='檢查房間中…';
   try{
     let roomSnap=await db.ref(`rooms/${room}`).once('value');
@@ -58,22 +66,25 @@ $('joinBtn').onclick=async()=>{
     let hostOnline=roomSnap.child('hostOnline').val();
     let heartbeat=Number(roomSnap.child('hostHeartbeat').val()||0);
     if(hostOnline!==true || !heartbeat || Date.now()-heartbeat>20000) throw new Error('老師目前沒有開啟這個房間，請確認老師投影畫面');
+    let existingPlayers=roomSnap.child('players').val()||{};
+    let duplicateSeat=Object.entries(existingPlayers).some(([pid,p])=>pid!==uid&&String(p.seat||'')===String(Number(seat)));
+    if(duplicateSeat) throw new Error('這個座號已經有人使用，請確認座號');
     if(status!=='waiting'){
       if(status==='running'||status==='question') throw new Error('這個房間已經開始遊戲，請找老師確認');
       if(status==='finished') throw new Error('這個房間已經結束，請使用老師新建立的房號');
       throw new Error('這個房間目前無法加入');
     }
-    localStorage.setItem('insuranceGamePlayer',JSON.stringify({room,name}));
+    localStorage.setItem('insuranceGamePlayer',JSON.stringify({room,name,seat:Number(seat)}));
     kicked=false;
     playerRef=db.ref(`rooms/${room}/players/${uid}`);
-    await playerRef.update({name,connected:true,ready:false,lastSeen:firebase.database.ServerValue.TIMESTAMP});
+    await playerRef.update({name,seat:Number(seat),connected:true,ready:false,lastSeen:firebase.database.ServerValue.TIMESTAMP});
     playerRef.onDisconnect().update({connected:false});
     $('joinBox').classList.add('hidden');$('setup').classList.remove('hidden');renderColors();watchRoom();
   }catch(err){
     $('joinMsg').textContent=err.message||'加入失敗，請重新確認房號';$('joinMsg').classList.add('error');$('joinMsg').classList.remove('hidden');
   }finally{$('joinBtn').disabled=false;$('joinBtn').textContent='加入遊戲'}
 };
-$('readyBtn').onclick=async()=>{if(!state.vehicle||!state.role||!state.scenario||state.speed==null)return;let v=GAME.getVehicle(state.vehicle),r=GAME.getRole(state.role);await playerRef.update({name:$('nameInput').value.trim(),vehicleType:state.vehicle,color:state.color,protection:v.protection,mobility:v.mobility,rainStability:v.rainStability,economy:v.economy,roleId:r.id,roleName:r.name,scenarioTitle:state.scenario.title,scenarioText:state.scenario.text,scenarioTime:state.scenario.time,scenarioStakes:state.scenario.stakes,scenarioPressure:state.scenario.pressure||0,scenarioDistraction:state.scenario.distraction||0,speed:Number(state.speed),ready:true,status:'ready',score:0,health:100,pressure:0,accidentCount:0,insuranceCorrect:0,currentEvent:'等待出發',updatedAt:firebase.database.ServerValue.TIMESTAMP});$('setup').classList.add('hidden');$('waitBox').classList.remove('hidden');$('waitInfo').textContent=`${GAME.colorName(state.color)}${v.name}｜${r.name}｜${state.speed} km/h`};
+$('readyBtn').onclick=async()=>{if(!state.vehicle||!state.role||!state.scenario||state.speed==null)return;let v=GAME.getVehicle(state.vehicle),r=GAME.getRole(state.role);await playerRef.update({name:$('nameInput').value.trim(),seat:Number($('seatInput').value),vehicleType:state.vehicle,color:state.color,protection:v.protection,mobility:v.mobility,rainStability:v.rainStability,economy:v.economy,roleId:r.id,roleName:r.name,scenarioTitle:state.scenario.title,scenarioText:state.scenario.text,scenarioTime:state.scenario.time,scenarioStakes:state.scenario.stakes,scenarioPressure:state.scenario.pressure||0,scenarioDistraction:state.scenario.distraction||0,speed:Number(state.speed),ready:true,status:'ready',score:0,health:100,pressure:0,accidentCount:0,insuranceCorrect:0,currentEvent:'等待出發',updatedAt:firebase.database.ServerValue.TIMESTAMP});$('setup').classList.add('hidden');$('waitBox').classList.remove('hidden');$('waitInfo').textContent=`${GAME.colorName(state.color)}${v.name}｜${r.name}｜${state.speed} km/h`};
 function kickFromRoom(reason){
   if(kicked)return;kicked=true;
   if(hostWatchTimer){clearInterval(hostWatchTimer);hostWatchTimer=null}
@@ -82,7 +93,7 @@ function kickFromRoom(reason){
   try{if(playerRef)playerRef.off()}catch(e){}
   $('qModal').classList.add('hidden');$('setup').classList.add('hidden');$('waitBox').classList.add('hidden');$('liveBox').classList.add('hidden');$('joinBox').classList.remove('hidden');
   $('roomInput').value='';$('joinMsg').textContent=reason||'老師已離開，房間已關閉';$('joinMsg').classList.add('error');$('joinMsg').classList.remove('hidden');$('joinBtn').disabled=false;$('joinBtn').textContent='加入遊戲';
-  let saved=JSON.parse(localStorage.getItem('insuranceGamePlayer')||'{}');localStorage.setItem('insuranceGamePlayer',JSON.stringify({name:saved.name||$('nameInput').value||''}));room='';playerRef=null;roomRootRef=null;questionRef=null;
+  let saved=JSON.parse(localStorage.getItem('insuranceGamePlayer')||'{}');localStorage.setItem('insuranceGamePlayer',JSON.stringify({name:saved.name||$('nameInput').value||'',seat:saved.seat||$('seatInput').value||''}));room='';playerRef=null;roomRootRef=null;questionRef=null;
 }
 function hostAlive(meta){if(!meta||meta.hostOnline!==true)return false;let beat=Number(meta.hostHeartbeat||0);return beat>0&&Date.now()-beat<20000}
 function watchRoom(){
@@ -93,6 +104,6 @@ function watchRoom(){
   hostWatchTimer=setInterval(async()=>{if(!roomRootRef||kicked)return;try{let s=await roomRootRef.once('value');let meta=s.val();if(!hostAlive(meta))kickFromRoom('老師已離開，房間已關閉')}catch(e){}},5000)
 }
 function renderLive(p){$('hSpeed').textContent=(p.speed||0)+' km/h';$('hScore').textContent=p.score||0;$('hHealth').textContent=p.health??100;$('hPressure').textContent=p.pressure??0;$('hAcc').textContent=p.accidentCount||0;$('hCorrect').textContent=p.insuranceCorrect||0;$('eventBox').textContent=p.currentEvent||'行駛中';if(p.lastFeedback){$('resultBox').classList.remove('hidden');$('resultBox').textContent=p.lastFeedback}else $('resultBox').classList.add('hidden')}
-function handleGlobalQuestion(q){if(!q){$('qModal').classList.add('hidden');currentQuestionId='';return}currentQuestionId=q.id;if(q.closed){$('qModal').classList.add('hidden');return}$('qModal').classList.remove('hidden');$('accInfo').innerHTML=(q.accidentSummary||'').replace(/\n/g,'<br>');$('qPrompt').textContent=q.prompt||'';$('qOpts').innerHTML=(q.options||[]).map((o,i)=>`<button data-i="${i}" ${(answeredQuestionId===q.id||q.revealed)?'disabled':''}>${String.fromCharCode(65+i)}. ${o}</button>`).join('');$('answerWait').classList.toggle('hidden',answeredQuestionId!==q.id&&!q.revealed);if(answeredQuestionId!==q.id&&!q.revealed){document.querySelectorAll('#qOpts button').forEach(b=>b.onclick=async()=>{answeredQuestionId=q.id;document.querySelectorAll('#qOpts button').forEach(x=>{x.disabled=true;x.classList.toggle('picked',x===b)});$('answerWait').classList.remove('hidden');$('answerWait').textContent='已送出答案，等待老師公布。';await db.ref(`rooms/${room}/globalQuestion/answers/${uid}`).set({option:Number(b.dataset.i),name:$('nameInput').value.trim(),ts:firebase.database.ServerValue.TIMESTAMP})})}if(q.revealed){let ans=q.answers&&q.answers[uid];let msg=!ans?'未作答。':Number(ans.option)===Number(q.correctIndex)?'✅ 答對！':'❌ 答錯。';$('answerWait').classList.remove('hidden');$('answerWait').textContent=msg+' '+(q.explanation||'')}}
+function handleGlobalQuestion(q){if(!q){$('qModal').classList.add('hidden');currentQuestionId='';return}currentQuestionId=q.id;if(q.closed){$('qModal').classList.add('hidden');return}$('qModal').classList.remove('hidden');$('accInfo').innerHTML=(q.accidentSummary||'').replace(/\n/g,'<br>');$('qPrompt').textContent=q.prompt||'';$('qOpts').innerHTML=(q.options||[]).map((o,i)=>`<button data-i="${i}" ${(answeredQuestionId===q.id||q.revealed)?'disabled':''}>${String.fromCharCode(65+i)}. ${o}</button>`).join('');$('answerWait').classList.toggle('hidden',answeredQuestionId!==q.id&&!q.revealed);if(answeredQuestionId!==q.id&&!q.revealed){document.querySelectorAll('#qOpts button').forEach(b=>b.onclick=async()=>{answeredQuestionId=q.id;document.querySelectorAll('#qOpts button').forEach(x=>{x.disabled=true;x.classList.toggle('picked',x===b)});$('answerWait').classList.remove('hidden');$('answerWait').textContent='已送出答案，等待老師公布。';await db.ref(`rooms/${room}/globalQuestion/answers/${uid}`).set({option:Number(b.dataset.i),name:$('nameInput').value.trim(),seat:Number($('seatInput').value||0),ts:firebase.database.ServerValue.TIMESTAMP})})}if(q.revealed){let ans=q.answers&&q.answers[uid];let msg=!ans?'未作答。':Number(ans.option)===Number(q.correctIndex)?'✅ 答對！':'❌ 答錯。';$('answerWait').classList.remove('hidden');$('answerWait').textContent=msg+' '+(q.explanation||'')}}
 renderColors();init();
 </script></body></html>
