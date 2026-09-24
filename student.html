@@ -20,6 +20,11 @@ button:not(:disabled){animation:pulse 2s ease-in-out infinite}button:hover:not(:
 .wait{text-align:center;padding:26px}.wait .big{font-size:50px;margin-bottom:9px}.hud{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.hud .h{border:3px solid var(--deep);border-radius:13px;padding:9px;text-align:center;background:#fff}.hud .h small{display:block;font-weight:900;color:#678}.hud .h strong{font-size:18px}.event{border:3px solid #8b6c17;background:#fff4b0;border-radius:13px;padding:11px;font-weight:1000;margin-top:10px}.result{border:3px solid #4b9a5b;background:#e7f8e9;border-radius:13px;padding:11px;font-weight:900;margin-top:10px}
 .modal{position:fixed;inset:0;background:rgba(8,18,42,.82);display:flex;align-items:center;justify-content:center;padding:16px;z-index:99}.modalbox{width:min(660px,100%);background:#fffef5;border:5px solid var(--deep);border-radius:22px;padding:18px;box-shadow:0 15px 40px rgba(0,0,0,.35)}.modal h2{margin:0 0 8px}.acc{background:#ffe1e1;border:3px solid #d04b4b;border-radius:12px;padding:10px;margin:10px 0;font-weight:900;line-height:1.6}.opts{display:grid;gap:8px}.opts button{text-align:left;background:linear-gradient(#7eafff,#3978db)}.opts button.picked{outline:5px solid #ffd84c}.notice{padding:10px;border-radius:10px;background:#fff0b6;border:2px solid #c88e17;font-weight:900;margin-bottom:10px}
 @media(max-width:600px){.grid2,.speed,.summary{grid-template-columns:1fr}.roles{grid-template-columns:1fr 1fr}.steps{grid-template-columns:1fr 1fr}.hud{grid-template-columns:1fr 1fr}}
+
+.scenarioChoices{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
+.scenarioChoice{border:3px solid #315ea5;border-radius:15px;background:linear-gradient(#fffdf2,#fff2bd);padding:12px;color:#17315f;box-shadow:0 4px 0 rgba(16,41,90,.18);cursor:pointer;text-align:left;min-height:145px}
+.scenarioChoice h3{font-size:18px;margin:0 0 7px;color:#17315f}.scenarioChoice p{font-size:13px;line-height:1.5;margin:0;font-weight:800}.scenarioChoice.selected{outline:5px solid var(--yellow);background:#fff8cf}
+@media(max-width:600px){.scenarioChoices{grid-template-columns:1fr}}
 </style></head>
 <body><div class="wrap">
 <div class="box" id="joinBox"><div class="head">🚘 險中求生城市交通大作戰</div><div class="body">
@@ -33,8 +38,8 @@ button:not(:disabled){animation:pulse 2s ease-in-out infinite}button:hover:not(:
 <div class="steps"><div class="step" id="s1">① 車輛</div><div class="step" id="s2">② 角色</div><div class="step" id="s3">③ 情境</div><div class="step" id="s4">④ 時速</div></div>
 <div class="box" id="vehicleBox"><div class="head">① 選擇車輛</div><div class="body"><div class="grid2"><div class="vehicle" data-v="car"><div class="title">🚗 汽車</div><div class="stat"><span>防護力</span><span class="stars">★★★★★</span></div><div class="stat"><span>機動性</span><span class="stars">★★<span class="off">★★★</span></span></div><div class="stat"><span>雨天穩定</span><span class="stars">★★★★★</span></div><button data-v="car">選擇汽車</button></div><div class="vehicle" data-v="moto"><div class="title">🛵 機車</div><div class="stat"><span>防護力</span><span class="stars">★★<span class="off">★★★</span></span></div><div class="stat"><span>機動性</span><span class="stars">★★★★★</span></div><div class="stat"><span>雨天穩定</span><span class="stars">★★<span class="off">★★★</span></span></div><button data-v="moto" class="green">選擇機車</button></div></div><div class="colors" id="colors"></div><button id="toRole" disabled style="width:100%">下一步：選角色 →</button></div></div>
 <div class="box hidden" id="roleBox"><div class="head">② 選擇角色</div><div class="body"><div class="roles" id="roles"></div><button id="toScenario" disabled style="width:100%;margin-top:10px">下一步：抽情境卡 →</button></div></div>
-<div class="box hidden" id="scenarioBox"><div class="head">③ 抽情境卡</div><div class="body"><div class="card" id="scenarioCard"><h3>?</h3><div>尚未抽卡</div></div><button id="drawBtn" class="orange" style="width:100%;margin-top:10px">🎴 抽一張情境卡</button><div id="speedArea" class="hidden"><div class="speed" style="margin-top:12px"><input id="speedInput" type="number" min="0" max="160" placeholder="時速 km/h"><div id="speedComment" class="comment">請輸入時速</div></div><button id="readyBtn" class="green" disabled style="width:100%;margin-top:10px">✅ 準備完成</button></div></div></div>
-<div class="box"><div class="head">你的選擇</div><div class="body summary"><div class="sum"><b>車輛</b><span id="sumV">尚未選擇</span></div><div class="sum"><b>角色</b><span id="sumR">尚未選擇</span></div><div class="sum"><b>情境</b><span id="sumS">尚未抽卡</span></div><div class="sum"><b>時速</b><span id="sumSpeed">尚未設定</span></div></div></div>
+<div class="box hidden" id="scenarioBox"><div class="head">③ 選擇任務情境</div><div class="body"><div class="scenarioChoices" id="scenarioChoices"></div><div id="speedArea" class="hidden"><div class="speed" style="margin-top:12px"><input id="speedInput" type="number" min="0" max="160" placeholder="設定你的時速 km/h"><div id="speedComment" class="comment">請自行設定行車時速</div></div><button id="readyBtn" class="green" disabled style="width:100%;margin-top:10px">✅ 準備完成</button></div></div></div>
+<div class="box"><div class="head">你的選擇</div><div class="body summary"><div class="sum"><b>車輛</b><span id="sumV">尚未選擇</span></div><div class="sum"><b>角色</b><span id="sumR">尚未選擇</span></div><div class="sum"><b>任務</b><span id="sumS">尚未選擇</span></div><div class="sum"><b>時速</b><span id="sumSpeed">尚未設定</span></div></div></div>
 </div>
 <div class="box hidden" id="waitBox"><div class="head">READY</div><div class="wait"><div class="big">🚦</div><h2>等待老師發車</h2><div id="waitInfo"></div></div></div>
 <div class="box hidden" id="liveBox"><div class="head">行車中</div><div class="body">
@@ -71,9 +76,19 @@ async function init(){
 function renderColors(){$('colors').innerHTML=GAME.colors.map(c=>`<button class="swatch ${c.hex===state.color?'sel':''}" data-c="${c.hex}" style="background:${c.hex}"></button>`).join('');document.querySelectorAll('.swatch').forEach(b=>b.onclick=()=>{state.color=b.dataset.c;renderColors();updateSummary()})}
 function renderRoles(){$('roles').innerHTML=GAME.roles.map(r=>`<div class="role ${state.role===r.id?'selected':''}" data-r="${r.id}"><div class="icon">${r.icon}</div><div class="title">${r.name}</div><button data-r="${r.id}">選擇</button></div>`).join('');document.querySelectorAll('.role button').forEach(b=>b.onclick=()=>{state.role=b.dataset.r;renderRoles();$('toScenario').disabled=false;$('s2').classList.add('done');updateSummary()})}
 function updateSummary(){let v=state.vehicle?GAME.getVehicle(state.vehicle):null,r=state.role?GAME.getRole(state.role):null;$('sumV').textContent=v?GAME.colorName(state.color)+v.name:'尚未選擇';$('sumR').textContent=r?r.name:'尚未選擇';$('sumS').textContent=state.scenario?state.scenario.title:'尚未抽卡';$('sumSpeed').textContent=state.speed!=null?state.speed+' km/h':'尚未設定'}
-document.querySelectorAll('.vehicle button').forEach(b=>b.onclick=()=>{state.vehicle=b.dataset.v;document.querySelectorAll('.vehicle').forEach(x=>x.classList.toggle('selected',x.dataset.v===state.vehicle));$('toRole').disabled=false;$('s1').classList.add('done');updateSummary()});$('toRole').onclick=()=>{$('roleBox').classList.remove('hidden');renderRoles();scrollToEl($('roleBox'))};$('toScenario').onclick=()=>{$('scenarioBox').classList.remove('hidden');scrollToEl($('scenarioBox'))};
-$('drawBtn').onclick=()=>{if(state.scenario||!state.role)return;let r=GAME.getRole(state.role);state.scenario=r.scenarios[Math.floor(Math.random()*r.scenarios.length)];$('scenarioCard').innerHTML=`<h3>${state.scenario.title}</h3><div>${state.scenario.text}</div><div class="chips"><span class="chip">⏱ ${state.scenario.time}</span></div>`;$('drawBtn').disabled=true;$('drawBtn').textContent='已抽取情境卡';document.querySelectorAll('.role button').forEach(b=>b.disabled=true);$('toScenario').disabled=true;$('speedArea').classList.remove('hidden');$('s3').classList.add('done');updateSummary()};
-$('speedInput').oninput=e=>{let raw=e.target.value;if(raw===''){state.speed=null;$('speedComment').textContent='請輸入時速';$('speedComment').className='comment';$('readyBtn').disabled=true;updateSummary();return}let v=Math.max(0,Math.min(160,Number(raw)));e.target.value=v;state.speed=v;$('speedComment').textContent=GAME.speedComment(v);$('speedComment').className='comment '+(v<=30?'safe':v<=60?'':v<100?'warn':'bad');$('readyBtn').disabled=false;$('s4').classList.add('done');updateSummary()};
+document.querySelectorAll('.vehicle button').forEach(b=>b.onclick=()=>{state.vehicle=b.dataset.v;document.querySelectorAll('.vehicle').forEach(x=>x.classList.toggle('selected',x.dataset.v===state.vehicle));$('toRole').disabled=false;$('s1').classList.add('done');updateSummary()});$('toRole').onclick=()=>{$('roleBox').classList.remove('hidden');renderRoles();scrollToEl($('roleBox'))};function renderScenarioChoices(){
+ let r=GAME.getRole(state.role);if(!r)return;
+ $('scenarioChoices').innerHTML=r.scenarios.map(sc=>`<button type="button" class="scenarioChoice ${state.scenario?.id===sc.id?'selected':''}" data-s="${sc.id}"><h3>${sc.title}</h3><p>${sc.text}</p></button>`).join('');
+ document.querySelectorAll('.scenarioChoice').forEach(b=>b.onclick=()=>{
+  state.scenario=r.scenarios.find(sc=>sc.id===b.dataset.s);
+  renderScenarioChoices();
+  $('speedArea').classList.remove('hidden');
+  $('s3').classList.add('done');
+  updateSummary();
+ });
+}
+$('toScenario').onclick=()=>{$('scenarioBox').classList.remove('hidden');renderScenarioChoices();scrollToEl($('scenarioBox'))};
+$('speedInput').oninput=e=>{let raw=e.target.value;if(raw===''){state.speed=null;$('speedComment').textContent='請自行設定行車時速';$('speedComment').className='comment';$('readyBtn').disabled=true;updateSummary();return}let v=Math.max(0,Math.min(160,Number(raw)));e.target.value=v;state.speed=v;$('speedComment').textContent='已設定 '+v+' km/h';$('speedComment').className='comment';$('readyBtn').disabled=false;$('s4').classList.add('done');updateSummary()};
 $('joinBtn').onclick=async()=>{
   room=$('roomInput').value.trim();let name=$('nameInput').value.trim();
   $('joinMsg').classList.add('hidden');$('joinMsg').classList.remove('error');
@@ -109,7 +124,8 @@ $('readyBtn').onclick=async()=>{
   vehicleType:state.vehicle,color:state.color,protection:v.protection,mobility:v.mobility,
   roleId:r.id,roleName:r.name,
   scenarioId:state.scenario.id,scenarioTitle:state.scenario.title,scenarioText:state.scenario.text,
-  scenarioTime:state.scenario.time,scenarioAction:state.scenario.action,
+  scenarioAction:state.scenario.action,
+  taskPace:state.scenario.pace,taskMin:Number(state.scenario.targetMin),taskMax:Number(state.scenario.targetMax),
   scenarioPressure:state.scenario.pressure||0,scenarioDistraction:state.scenario.distraction||0,
   speed:Number(state.speed),score:0,ready:true,status:'ready',
   currentEvent:'等待出發',updatedAt:firebase.database.ServerValue.TIMESTAMP
