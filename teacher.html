@@ -49,7 +49,7 @@ button{position:relative;overflow:hidden;border:4px solid var(--deep);border-rad
 </style></head>
 <body>
 <div class="top">
-  <div><h1>🚦 險中求生城市交通大作戰 <span class="versionBadge">v6.14</span></h1></div>
+  <div><h1>🚦 險中求生城市交通大作戰 <span class="versionBadge">v6.15</span></h1></div>
   <div class="room">房號 <span id="roomShow">----</span></div>
 </div>
 <div class="hostControlBar">
@@ -69,7 +69,7 @@ button{position:relative;overflow:hidden;border:4px solid var(--deep);border-rad
 <div class="cross xA"><span class="zebra top"></span><span class="zebra bottom"></span><span class="zebra left"></span><span class="zebra right"></span></div><div class="cross xB"><span class="zebra top"></span><span class="zebra bottom"></span><span class="zebra left"></span><span class="zebra right"></span></div><div class="cross xC"><span class="zebra top"></span><span class="zebra bottom"></span><span class="zebra left"></span><span class="zebra right"></span></div><div class="cross xD"><span class="zebra top"></span><span class="zebra bottom"></span><span class="zebra left"></span><span class="zebra right"></span></div>
 <div class="building school b1">🏫</div><div class="building cafe b2">☕</div><div class="building office b3">🏢</div><div class="building hospital b4">✚</div><div class="building park b5">🌳</div><div class="building shop b6">🏪</div><div class="building gas b7">⛽</div><div class="building apt b8">🏠</div><div class="building office b9">🏬</div><div class="building shop b10">🛒</div><div class="building miniHouse b11">🏡</div><div class="building library b12">📚</div><div class="building station b13">🚉</div><div class="building miniShop b14">🥐</div><div class="building bank b15">🏦</div><div class="building post b16">📮</div><div class="building bookstore b17">📖</div><div class="building restaurant b18">🍜</div>
 <div class="lightPod lA" data-node="A"><span class="ns">NS</span><span class="ew">EW</span></div><div class="lightPod lB" data-node="B"><span class="ns">NS</span><span class="ew">EW</span></div><div class="lightPod lC" data-node="C"><span class="ns">NS</span><span class="ew">EW</span></div><div class="lightPod lD" data-node="D"><span class="ns">NS</span><span class="ew">EW</span></div>
-<div class="statusbar" id="mapStatus">建立房間後等待學生加入</div><div class="hostbadge" id="hostBadge">老師端 v6.14｜尚未建立房間</div><div id="cars"></div>
+<div class="statusbar" id="mapStatus">建立房間後等待學生加入</div><div class="hostbadge" id="hostBadge">老師端 v6.15｜尚未建立房間</div><div id="cars"></div>
 </div></div>
 <div><div class="panel"><div class="phead">積分排行</div><div class="pbody"><div id="setupMsg">請先建立房間；建立後即可邀請學生</div><div class="metrics"><div class="metric"><small>玩家</small><strong id="mPlayers">0</strong></div><div class="metric"><small>READY</small><strong id="mReady">0</strong></div><div class="metric"><small>事故人數</small><strong id="mAcc">0</strong></div></div><div class="ranking" id="ranking"></div></div></div></div>
 </div>
@@ -112,7 +112,7 @@ function renderCars(){let now=Date.now();for(const [id,p] of Object.entries(play
 function makeActor(id,p,index,isAmbient=false){let starts=[['W1','A'],['E1','B'],['N1','A'],['S1','C'],['W2','C'],['E2','D'],['N2','B'],['S2','D'],['A','M1'],['C','M2'],['H','I'],['J','I']];let [from,to]=starts[index%starts.length];return{id,from,to,t:.05+(index%3)*.22,status:'driving',speed:isAmbient?rand(32,64):Math.max(5,Number(p.speed||40)),vehicleType:p.vehicleType||'car',color:p.color||'#b8c2cf',forcePos:null,hiddenUntil:0,boundaryWait:0,isAmbient}}
 function setupAmbient(){ambient=[];for(let i=0;i<10;i++){let v=i%4===0?'moto':'car',a=makeActor('amb'+i,{vehicleType:v,color:['#b8c2cf','#f5a623','#7f8cff','#ef7373','#56c596','#d88ce8'][i%6],speed:rand(30,62)},i+3,true);ambient.push(a);createCar(a.id,a,true)}}
 function allActors(){let out=[];for(const [id,p] of Object.entries(players)){let a=sim[id];if(a&&p.ready)out.push(a)}return out.concat(ambient)}
-function speedUnits(actor){return 3.6+Math.min(160,Math.max(0,Number(actor.speed||40)))*.11}
+function speedUnits(actor){let live=actor.isAmbient?Number(actor.speed||40):Number(players[actor.id]?.speed??actor.speed??40);actor.speed=live;return 3.6+Math.min(160,Math.max(0,live))*.11}
 function edgeKey(a){return a.from+'>'+a.to}
 function minGapUnits(a,b){return(a.vehicleType==='moto'&&b.vehicleType==='moto')?4.0:(a.vehicleType==='moto'||b.vehicleType==='moto')?5.0:6.2}
 function nodeBusy(nodeId,selfId){return allActors().some(a=>a.id!==selfId&&a.status==='driving'&&a.from===nodeId&&a.t<.16)}
@@ -313,7 +313,7 @@ function setupRoomLifecycle(ref){
   window.onbeforeunload=()=>{try{ref.child('hostOnline').set(false)}catch(e){}};
   $('hostBadge').textContent='🟢 老師在線｜Firebase 已連線';
 }
-function watchRoom(){roomRef.child('players').on('value',snap=>{players=snap.val()||{};renderSide();renderCars()});roomRef.child('globalQuestion').on('value',s=>{currentQuestion=s.val();renderQuestion()});roomRef.child('status').on('value',s=>{let st=s.val();if(st==='finished'){running=false;paused=false;$('mapStatus').textContent='⏹️ 本局已結束'}})}
+function watchRoom(){roomRef.child('players').on('value',snap=>{players=snap.val()||{};for(const [id,p] of Object.entries(players)){if(sim[id])sim[id].speed=Number(p.speed??sim[id].speed??40)}renderSide();renderCars()});roomRef.child('globalQuestion').on('value',s=>{currentQuestion=s.val();renderQuestion()});roomRef.child('status').on('value',s=>{let st=s.val();if(st==='finished'){running=false;paused=false;$('mapStatus').textContent='⏹️ 本局已結束'}})}
 
 function renderMemberList(){
   if(!$('memberList')) return;
@@ -322,7 +322,7 @@ function renderMemberList(){
   $('memberList').innerHTML=arr.length?arr.map((p,i)=>`<div class="memberRow"><div class="memberNo">${i+1}</div><div><b>${p.name||'未命名'}</b><small>${p.connected===false?'連線中斷':'已加入房間'}</small></div><div class="memberState ${p.ready?'ready':''}">${p.ready?'READY':'準備中'}</div></div>`).join(''):'<div style="padding:24px;text-align:center;font-weight:900;color:#789">目前尚無學生加入</div>';
 }
 function studentInviteUrl(){
-  return new URL(`student.html?room=${encodeURIComponent(room)}`, window.location.href).href;
+  return new URL(`student.html?v=615&room=${encodeURIComponent(room)}`, window.location.href).href;
 }
 function showInvite(){
   if(!room) return;
@@ -382,7 +382,7 @@ $('startBtn').onclick=async()=>{
  let updates={status:'running',globalQuestion:null,startedAt:firebase.database.ServerValue.TIMESTAMP};
  arr.forEach(([id])=>{
   updates[`players/${id}/status`]='driving';updates[`players/${id}/score`]=0;
-  updates[`players/${id}/currentEvent`]='🚦 行駛中';updates[`players/${id}/lastFeedback`]=null
+  updates[`players/${id}/currentEvent`]='🚦 行駛中';updates[`players/${id}/lastFeedback`]=null;updates[`players/${id}/lastMissionBonusAt`]=null
  });
  await roomRef.update(updates);running=true;paused=false;lastTs=performance.now();lastMissionAward=Date.now();
  $('stopBtn').disabled=false;$('startBtn').disabled=true;startAccidentCycle();requestAnimationFrame(tick)
@@ -392,26 +392,23 @@ function isTaskSpeedOnTarget(p){
  return Number.isFinite(s)&&Number.isFinite(min)&&Number.isFinite(max)&&s>=min&&s<=max
 }
 async function awardMissionProgress(){
- let updates={};
+ let jobs=[];
  for(const [id,p] of Object.entries(players)){
-  if(!p.ready||p.status!=='driving')continue;
-  if(isTaskSpeedOnTarget(p))updates[`players/${id}/score`]=Number(p.score||0)+3
+  if(!p.ready||p.status!=='driving'||!isTaskSpeedOnTarget(p))continue;
+  let pref=roomRef.child(`players/${id}`);
+  jobs.push(pref.child('score').transaction(cur=>Number(cur||0)+3).then(()=>pref.child('lastMissionBonusAt').set(firebase.database.ServerValue.TIMESTAMP)))
  }
- if(Object.keys(updates).length)await roomRef.update(updates)
+ if(jobs.length)await Promise.allSettled(jobs)
 }
 $('revealBtn').onclick=async()=>{
  let q=currentQuestion;if(!q||q.revealed)return;
- let answers=q.answers||{},updates={'globalQuestion/revealed':true};
+ let answers=q.answers||{};await roomRef.child('globalQuestion/revealed').set(true);let jobs=[];
  for(const [id,p] of Object.entries(players)){
-  let a=answers[id],correct=a&&Number(a.option)===Number(q.correctIndex);
-  if(correct){
-   updates[`players/${id}/score`]=Number(p.score||0)+100;
-   updates[`players/${id}/lastFeedback`]='✅ 強制險題答對，+100 分';
-  }else if(a){
-   updates[`players/${id}/lastFeedback`]='❌ 本題未答對'
-  }
+  let a=answers[id],correct=a&&Number(a.option)===Number(q.correctIndex),pref=roomRef.child(`players/${id}`);
+  if(correct){jobs.push(pref.child('score').transaction(cur=>Number(cur||0)+30));jobs.push(pref.child('lastFeedback').set('✅ 強制險題答對，+30 分'))}
+  else if(a){jobs.push(pref.child('lastFeedback').set('❌ 本題未答對'))}
  }
- await roomRef.update(updates)
+ if(jobs.length)await Promise.allSettled(jobs)
 };
 $('continueBtn').onclick=async()=>{let updates={status:'running','globalQuestion/closed':true},node=collisionNode;for(const id of collisionIds){if(id==='__NPC__')continue;let a=sim[id];if(!a)continue;a.forcePos=null;a.status='driving';a.from=node;a.to=pick((ADJ[node]||[]));a.t=.08;updates[`players/${id}/status`]='driving';updates[`players/${id}/currentEvent`]='🚗 事故處理完成，重新上路'}if(collisionAmbientId){let a=ambient.find(x=>x.id===collisionAmbientId);if(a){a.forcePos=null;a.status='driving';a.from=node;a.to=pick(ADJ[node]||[]);a.t=.12}}await roomRef.update(updates);setTimeout(()=>roomRef.child('globalQuestion').remove(),500);paused=false;lastMissionAward=Date.now();startAccidentCycle();log('事故題結束，事故車從事故路口繼續行駛','good')};
 async function tick(ts){

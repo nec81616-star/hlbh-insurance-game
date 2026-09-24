@@ -2,7 +2,7 @@
 <html lang="zh-Hant">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>險中求生城市交通大作戰｜加入遊戲 v6.2</title>
+<title>險中求生城市交通大作戰｜加入遊戲 v6.15</title>
 <style>
 :root{--deep:#10295a;--blue:#2d8cff;--yellow:#ffd84c;--green:#38c65b;--red:#ef4444;--paper:#fffef5}
 *{box-sizing:border-box}body{margin:0;font-family:"Microsoft JhengHei",sans-serif;background:linear-gradient(#76d9ff 0 55%,#55ba74 55%);color:#17315f;min-height:100vh}
@@ -25,6 +25,13 @@ button:not(:disabled){animation:pulse 2s ease-in-out infinite}button:hover:not(:
 .scenarioChoice{border:3px solid #315ea5;border-radius:15px;background:linear-gradient(#fffdf2,#fff2bd);padding:12px;color:#17315f;box-shadow:0 4px 0 rgba(16,41,90,.18);cursor:pointer;text-align:left;min-height:145px}
 .scenarioChoice h3{font-size:18px;margin:0 0 7px;color:#17315f}.scenarioChoice p{font-size:13px;line-height:1.5;margin:0;font-weight:800}.scenarioChoice.selected{outline:5px solid var(--yellow);background:#fff8cf}
 @media(max-width:600px){.scenarioChoices{grid-template-columns:1fr}}
+
+.speedAdjust{display:grid;grid-template-columns:82px minmax(0,1fr) 82px;gap:9px;align-items:stretch;margin-top:12px}
+.speedAdjust button{font-size:22px;padding:10px 6px}.speedAdjust .speedReadout{border:4px solid var(--deep);border-radius:15px;background:#fff;text-align:center;padding:8px 6px;display:grid;place-items:center;box-shadow:0 4px 0 rgba(16,41,90,.14)}
+.speedAdjust .speedReadout small{display:block;font-size:11px;font-weight:900;color:#6d7e98}.speedAdjust .speedReadout strong{display:block;font-size:25px;line-height:1.05}.speedMinus{background:linear-gradient(#ff9c9c,#e64f57)}.speedPlus{background:linear-gradient(#84e893,#36bb55)}
+.bonusToast{position:fixed;left:50%;top:18px;transform:translate(-50%,-18px) scale(.96);opacity:0;z-index:180;pointer-events:none;background:#e7f9e9;border:4px solid #2f9d4b;border-radius:999px;padding:9px 15px;font-size:14px;font-weight:1000;color:#17652b;box-shadow:0 7px 18px rgba(0,0,0,.2);white-space:nowrap}.bonusToast.show{animation:bonusFlash 1.45s ease forwards}
+@keyframes bonusFlash{0%{opacity:0;transform:translate(-50%,-18px) scale(.96)}14%{opacity:1;transform:translate(-50%,0) scale(1)}74%{opacity:1;transform:translate(-50%,0) scale(1)}100%{opacity:0;transform:translate(-50%,-10px) scale(.98)}}
+@media(max-width:460px){.speedAdjust{grid-template-columns:68px minmax(0,1fr) 68px}.bonusToast{font-size:12px;padding:8px 11px}}
 </style></head>
 <body><div class="wrap">
 <div class="box" id="joinBox"><div class="head">🚘 險中求生城市交通大作戰</div><div class="body">
@@ -37,24 +44,22 @@ button:not(:disabled){animation:pulse 2s ease-in-out infinite}button:hover:not(:
 <div id="setup" class="hidden">
 <div class="steps"><div class="step" id="s1">① 車輛</div><div class="step" id="s2">② 角色</div><div class="step" id="s3">③ 情境</div><div class="step" id="s4">④ 時速</div></div>
 <div class="box" id="vehicleBox"><div class="head">① 選擇車輛</div><div class="body"><div class="grid2"><div class="vehicle" data-v="car"><div class="title">🚗 汽車</div><div class="stat"><span>防護力</span><span class="stars">★★★★★</span></div><div class="stat"><span>機動性</span><span class="stars">★★<span class="off">★★★</span></span></div><div class="stat"><span>雨天穩定</span><span class="stars">★★★★★</span></div><button data-v="car">選擇汽車</button></div><div class="vehicle" data-v="moto"><div class="title">🛵 機車</div><div class="stat"><span>防護力</span><span class="stars">★★<span class="off">★★★</span></span></div><div class="stat"><span>機動性</span><span class="stars">★★★★★</span></div><div class="stat"><span>雨天穩定</span><span class="stars">★★<span class="off">★★★</span></span></div><button data-v="moto" class="green">選擇機車</button></div></div><div class="colors" id="colors"></div><button id="toRole" disabled style="width:100%">下一步：選角色 →</button></div></div>
-<div class="box hidden" id="roleBox"><div class="head">② 選擇角色</div><div class="body"><div class="roles" id="roles"></div><button id="toScenario" disabled style="width:100%;margin-top:10px">下一步：抽情境卡 →</button></div></div>
+<div class="box hidden" id="roleBox"><div class="head">② 選擇角色</div><div class="body"><div class="roles" id="roles"></div><button id="toScenario" disabled style="width:100%;margin-top:10px">下一步：選任務 →</button></div></div>
 <div class="box hidden" id="scenarioBox"><div class="head">③ 選擇任務情境</div><div class="body"><div class="scenarioChoices" id="scenarioChoices"></div><div id="speedArea" class="hidden"><div class="speed" style="margin-top:12px"><input id="speedInput" type="number" min="0" max="160" placeholder="設定你的時速 km/h"><div id="speedComment" class="comment">請自行設定行車時速</div></div><button id="readyBtn" class="green" disabled style="width:100%;margin-top:10px">✅ 準備完成</button></div></div></div>
 <div class="box"><div class="head">你的選擇</div><div class="body summary"><div class="sum"><b>車輛</b><span id="sumV">尚未選擇</span></div><div class="sum"><b>角色</b><span id="sumR">尚未選擇</span></div><div class="sum"><b>任務</b><span id="sumS">尚未選擇</span></div><div class="sum"><b>時速</b><span id="sumSpeed">尚未設定</span></div></div></div>
 </div>
-<div class="box hidden" id="waitBox"><div class="head">READY</div><div class="wait"><div class="big">🚦</div><h2>等待老師發車</h2><div id="waitInfo"></div></div></div>
+<div class="box hidden" id="waitBox"><div class="head">READY</div><div class="wait"><div class="big">🚦</div><h2>等待老師發車</h2><div id="waitInfo"></div><div class="speedAdjust"><button class="speedMinus" data-speed-delta="-1">−1</button><div class="speedReadout"><small>可隨時調整時速</small><strong id="waitSpeed">0 km/h</strong></div><button class="speedPlus" data-speed-delta="1">＋1</button></div></div></div>
 <div class="box hidden" id="liveBox"><div class="head">行車中</div><div class="body">
-<div class="hud" style="grid-template-columns:1fr 1fr">
-<div class="h"><small>時速</small><strong id="hSpeed">0 km/h</strong></div>
-<div class="h"><small>積分</small><strong id="hScore">0</strong></div>
-</div>
+<div class="speedAdjust" style="margin-top:0"><button class="speedMinus" data-speed-delta="-1">−1</button><div class="speedReadout"><small>目前時速</small><strong id="hSpeed">0 km/h</strong></div><button class="speedPlus" data-speed-delta="1">＋1</button></div><div class="hud" style="grid-template-columns:1fr;margin-top:9px"><div class="h"><small>積分</small><strong id="hScore">0</strong></div></div>
 <div class="event" id="eventBox">準備出發</div>
 <div class="result hidden" id="resultBox"></div>
 </div></div>
 </div>
+<div class="bonusToast" id="bonusToast">✅ 安全駕駛並順利完成任務＋3</div>
 <div class="modal hidden" id="qModal"><div class="modalbox"><h2>💥 全班事故題</h2><div class="acc" id="accInfo"></div><h3 id="qPrompt"></h3><div class="opts" id="qOpts"></div><div id="answerWait" class="notice hidden" style="margin-top:10px">已送出答案，等待老師公布。</div></div></div>
 <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-database-compat.js"></script><script src="firebase-config.js"></script><script src="game-data.js"></script>
 <script>
-let db,auth,uid,room,state={vehicle:null,color:'#3b82f6',role:null,scenario:null,speed:null},playerRef,roomRootRef=null,questionRef=null,hostWatchTimer=null,kicked=false,currentQuestionId='',answeredQuestionId='';const $=id=>document.getElementById(id);
+let db,auth,uid,room,state={vehicle:null,color:'#3b82f6',role:null,scenario:null,speed:null},playerRef,roomRootRef=null,questionRef=null,hostWatchTimer=null,kicked=false,currentQuestionId='',answeredQuestionId='',lastMissionBonusSeen=0,bonusToastTimer=null;const $=id=>document.getElementById(id);
 function configOK(){return window.GAME_FIREBASE_CONFIG&&!String(GAME_FIREBASE_CONFIG.apiKey).includes('PASTE_')}function scrollToEl(el){requestAnimationFrame(()=>el.scrollIntoView({behavior:'smooth',block:'start'}))}
 async function init(){
   if(!configOK()){$('joinMsg').textContent='請先設定 Firebase';$('joinMsg').classList.remove('hidden');$('joinBtn').disabled=true;return}
@@ -131,7 +136,7 @@ $('readyBtn').onclick=async()=>{
   currentEvent:'等待出發',updatedAt:firebase.database.ServerValue.TIMESTAMP
  });
  $('setup').classList.add('hidden');$('waitBox').classList.remove('hidden');
- $('waitInfo').textContent=`${GAME.colorName(state.color)}${v.name}｜${r.name}｜${state.speed} km/h`;
+ $('waitInfo').textContent=`${GAME.colorName(state.color)}${v.name}｜${r.name}`;$('waitSpeed').textContent=state.speed+' km/h';
 };
 function kickFromRoom(reason){
   if(kicked)return;kicked=true;
@@ -144,6 +149,9 @@ function kickFromRoom(reason){
   let saved=JSON.parse(localStorage.getItem('insuranceGamePlayer')||'{}');localStorage.setItem('insuranceGamePlayer',JSON.stringify({name:saved.name||$('nameInput').value||''}));room='';playerRef=null;roomRootRef=null;questionRef=null;
 }
 function hostAlive(meta){return !!(meta&&meta.hostOnline===true)}
+function showMissionBonusToast(){let el=$('bonusToast');if(!el)return;if(bonusToastTimer)clearTimeout(bonusToastTimer);el.classList.remove('show');void el.offsetWidth;el.classList.add('show');bonusToastTimer=setTimeout(()=>el.classList.remove('show'),1500)}
+async function changeLiveSpeed(delta){if(!playerRef||kicked)return;try{await playerRef.child('speed').transaction(cur=>{let n=Number(cur);if(!Number.isFinite(n))n=Number(state.speed||0);return Math.max(0,Math.min(160,Math.round(n+delta)))});await playerRef.child('updatedAt').set(firebase.database.ServerValue.TIMESTAMP)}catch(e){}}
+document.querySelectorAll('[data-speed-delta]').forEach(b=>b.onclick=()=>changeLiveSpeed(Number(b.dataset.speedDelta||0)));
 function watchRoom(){
   roomRootRef=db.ref(`rooms/${room}`);
   roomRootRef.on('value',s=>{let meta=s.val();if(!meta){kickFromRoom('老師已關閉投影畫面，房間已自動關閉');return}if(!hostAlive(meta)){kickFromRoom('老師目前不在線，請等待老師重新建立房間');return}let st=meta.status;if(st==='running'||st==='question'){$('waitBox').classList.add('hidden');$('setup').classList.add('hidden');$('liveBox').classList.remove('hidden')}if(st==='finished'){$('qModal').classList.add('hidden');$('eventBox').textContent='🏁 本局已結束，請看老師投影公布前三名！'}});
@@ -152,11 +160,10 @@ function watchRoom(){
   hostWatchTimer=setInterval(async()=>{if(!roomRootRef||kicked)return;try{let s=await roomRootRef.once('value');let meta=s.val();if(!hostAlive(meta))kickFromRoom('老師已離開，房間已關閉')}catch(e){}},5000)
 }
 function renderLive(p){
- $('hSpeed').textContent=(p.speed||0)+' km/h';
- $('hScore').textContent=p.score||0;
- $('eventBox').textContent=p.currentEvent||'行駛中';
- if(p.lastFeedback){$('resultBox').classList.remove('hidden');$('resultBox').textContent=p.lastFeedback}
- else $('resultBox').classList.add('hidden')
+ let spd=Number(p.speed||0);state.speed=spd;$('hSpeed').textContent=spd+' km/h';if($('waitSpeed'))$('waitSpeed').textContent=spd+' km/h';
+ $('hScore').textContent=p.score||0;$('eventBox').textContent=p.currentEvent||'行駛中';
+ let bonusAt=Number(p.lastMissionBonusAt||0);if(bonusAt&&bonusAt!==lastMissionBonusSeen){lastMissionBonusSeen=bonusAt;showMissionBonusToast()}
+ if(p.lastFeedback){$('resultBox').classList.remove('hidden');$('resultBox').textContent=p.lastFeedback}else $('resultBox').classList.add('hidden')
 }
 function handleGlobalQuestion(q){if(!q){$('qModal').classList.add('hidden');currentQuestionId='';return}currentQuestionId=q.id;if(q.closed){$('qModal').classList.add('hidden');return}$('qModal').classList.remove('hidden');$('accInfo').innerHTML=(q.accidentSummary||'').replace(/\n/g,'<br>');$('qPrompt').textContent=q.prompt||'';$('qOpts').innerHTML=(q.options||[]).map((o,i)=>`<button data-i="${i}" ${(answeredQuestionId===q.id||q.revealed)?'disabled':''}>${String.fromCharCode(65+i)}. ${o}</button>`).join('');$('answerWait').classList.toggle('hidden',answeredQuestionId!==q.id&&!q.revealed);if(answeredQuestionId!==q.id&&!q.revealed){document.querySelectorAll('#qOpts button').forEach(b=>b.onclick=async()=>{answeredQuestionId=q.id;document.querySelectorAll('#qOpts button').forEach(x=>{x.disabled=true;x.classList.toggle('picked',x===b)});$('answerWait').classList.remove('hidden');$('answerWait').textContent='已送出答案，等待老師公布。';await db.ref(`rooms/${room}/globalQuestion/answers/${uid}`).set({option:Number(b.dataset.i),name:$('nameInput').value.trim(),ts:firebase.database.ServerValue.TIMESTAMP})})}if(q.revealed){let ans=q.answers&&q.answers[uid];let msg=!ans?'未作答。':Number(ans.option)===Number(q.correctIndex)?'✅ 答對！':'❌ 答錯。';$('answerWait').classList.remove('hidden');$('answerWait').textContent=msg+' '+(q.explanation||'')}}
 renderColors();init();
