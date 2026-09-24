@@ -130,7 +130,7 @@ function kickFromRoom(reason){
 function hostAlive(meta){return !!(meta&&meta.hostOnline===true)}
 function watchRoom(){
   roomRootRef=db.ref(`rooms/${room}`);
-  roomRootRef.on('value',s=>{let meta=s.val();if(!meta){kickFromRoom('老師已關閉投影畫面，房間已自動關閉');return}if(!hostAlive(meta)){kickFromRoom('老師目前不在線，請等待老師重新建立房間');return}let st=meta.status;if(st==='running'||st==='question'){$('waitBox').classList.add('hidden');$('setup').classList.add('hidden');$('liveBox').classList.remove('hidden')}if(st==='finished')$('eventBox').textContent='⏹️ 老師已結束本局'});
+  roomRootRef.on('value',s=>{let meta=s.val();if(!meta){kickFromRoom('老師已關閉投影畫面，房間已自動關閉');return}if(!hostAlive(meta)){kickFromRoom('老師目前不在線，請等待老師重新建立房間');return}let st=meta.status;if(st==='running'||st==='question'){$('waitBox').classList.add('hidden');$('setup').classList.add('hidden');$('liveBox').classList.remove('hidden')}if(st==='finished'){$('qModal').classList.add('hidden');$('eventBox').textContent='🏁 本局已結束，請看老師投影公布前三名！'}});
   playerRef.on('value',s=>{let p=s.val();if(p)renderLive(p)});
   questionRef=db.ref(`rooms/${room}/globalQuestion`);questionRef.on('value',s=>handleGlobalQuestion(s.val()));
   hostWatchTimer=setInterval(async()=>{if(!roomRootRef||kicked)return;try{let s=await roomRootRef.once('value');let meta=s.val();if(!hostAlive(meta))kickFromRoom('老師已離開，房間已關閉')}catch(e){}},5000)
