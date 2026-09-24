@@ -9,8 +9,11 @@
 .top{background:linear-gradient(#ffe976,#ffb61d);border-bottom:5px solid var(--deep);padding:10px 16px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}.top h1{margin:0;font-size:25px}.room{font-size:25px;font-weight:1000;background:white;border:4px solid var(--deep);border-radius:14px;padding:6px 12px}.controls{display:flex;gap:7px;flex-wrap:wrap}.controls input{width:94px;padding:9px;border:3px solid var(--deep);border-radius:10px;font-size:17px;font-weight:900}
 button{position:relative;overflow:hidden;border:4px solid var(--deep);border-radius:13px;padding:9px 12px;font-weight:1000;color:white;background:linear-gradient(#6fd6ff,#268dff);box-shadow:0 5px 0 rgba(16,41,90,.25);cursor:pointer;transition:.15s}button:not(:disabled){animation:pulse 2s ease-in-out infinite}button:disabled{opacity:.45;filter:grayscale(.6);cursor:not-allowed;animation:none}button:hover:not(:disabled){transform:translateY(-2px)}button:active:not(:disabled){transform:translateY(3px)}@keyframes pulse{50%{filter:brightness(1.09)}}.green{background:linear-gradient(#80ef84,#2ebf4f)}.red{background:linear-gradient(#ff8585,#e33c3c)}.orange{background:linear-gradient(#ffc363,#ee8517)}
 
-.environmentStrip{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;padding:8px 12px;background:#eaf4ff;border-bottom:4px solid var(--deep)}
-.environmentBadge{min-width:180px;background:#fff;border:3px solid var(--deep);border-radius:13px;padding:7px 12px;text-align:center;font-weight:1000;box-shadow:0 3px 0 rgba(16,41,90,.13)}.environmentBadge small{display:block;color:#6b7d98;font-size:11px}.environmentBadge strong{font-size:19px}
+.roadHead{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.roadHeadTitle{white-space:nowrap}
+.environmentInline{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-left:auto}
+.environmentBadge{min-width:112px;background:#fff;border:2px solid var(--deep);border-radius:10px;padding:4px 8px;text-align:center;font-weight:1000;box-shadow:0 2px 0 rgba(16,41,90,.12);line-height:1.12}.environmentBadge small{display:inline;color:#60718d;font-size:10px;margin-right:5px}.environmentBadge strong{font-size:15px}
+@media(max-width:760px){.environmentBadge{min-width:100px}.environmentInline{gap:5px}.environmentBadge strong{font-size:13px}}
 
 .layout{display:grid;grid-template-columns:minmax(0,1fr) 350px;gap:12px;padding:12px;min-height:calc(100vh - 84px)}.panel{background:#fffef6;border:4px solid var(--deep);border-radius:19px;box-shadow:0 7px 0 rgba(16,41,90,.2);overflow:hidden}.phead{background:linear-gradient(#8bef82,#35c657);border-bottom:4px solid var(--deep);padding:9px 12px;font-size:18px;font-weight:1000}.pbody{padding:9px}
 .map{position:relative;min-height:760px;background:#72ca69;overflow:hidden;isolation:isolate}.grass{position:absolute;inset:0;background:radial-gradient(circle at 10% 15%,rgba(255,255,255,.14) 0 2px,transparent 3px),linear-gradient(#8bdc73,#67bd5d);background-size:28px 28px,auto;z-index:0}
@@ -53,7 +56,7 @@ button{position:relative;overflow:hidden;border:4px solid var(--deep);border-rad
 </style></head>
 <body>
 <div class="top">
-  <div><h1>🚦 險中求生城市交通大作戰 <span class="versionBadge">v6.17</span></h1></div>
+  <div><h1>🚦 險中求生城市交通大作戰 <span class="versionBadge">v6.19</span></h1></div>
   <div class="room">房號 <span id="roomShow">----</span></div>
 </div>
 <div class="hostControlBar">
@@ -66,15 +69,14 @@ button{position:relative;overflow:hidden;border:4px solid var(--deep);border-rad
   <button id="stopBtn" class="orange" disabled>⏹ 結束本局</button>
   <button id="resetBtn" class="red" disabled>↻ 重設</button>
 </div>
-<div class="environmentStrip"><div class="environmentBadge"><small>目前路況</small><strong id="roadDisplay">尚未開始</strong></div><div class="environmentBadge"><small>目前天氣</small><strong id="weatherDisplay">尚未開始</strong></div></div>
 <div class="layout">
-<div class="panel"><div class="phead">城市道路</div><div class="map" id="map">
+<div class="panel"><div class="phead roadHead"><span class="roadHeadTitle">城市道路</span><div class="environmentInline"><div class="environmentBadge"><small>路況</small><strong id="roadDisplay">尚未開始</strong></div><div class="environmentBadge"><small>天氣</small><strong id="weatherDisplay">尚未開始</strong></div></div></div><div class="map" id="map">
 <div class="grass"></div>
 <div class="road h top"></div><div class="road h bottom"></div><div class="road v left"></div><div class="road v right"></div><div class="road alleyH"></div><div class="road alleyV"></div>
 <div class="cross xA"><span class="zebra top"></span><span class="zebra bottom"></span><span class="zebra left"></span><span class="zebra right"></span></div><div class="cross xB"><span class="zebra top"></span><span class="zebra bottom"></span><span class="zebra left"></span><span class="zebra right"></span></div><div class="cross xC"><span class="zebra top"></span><span class="zebra bottom"></span><span class="zebra left"></span><span class="zebra right"></span></div><div class="cross xD"><span class="zebra top"></span><span class="zebra bottom"></span><span class="zebra left"></span><span class="zebra right"></span></div>
 <div class="building school b1">🏫</div><div class="building cafe b2">☕</div><div class="building office b3">🏢</div><div class="building hospital b4">✚</div><div class="building park b5">🌳</div><div class="building shop b6">🏪</div><div class="building gas b7">⛽</div><div class="building apt b8">🏠</div><div class="building office b9">🏬</div><div class="building shop b10">🛒</div><div class="building miniHouse b11">🏡</div><div class="building library b12">📚</div><div class="building station b13">🚉</div><div class="building miniShop b14">🥐</div><div class="building bank b15">🏦</div><div class="building post b16">📮</div><div class="building bookstore b17">📖</div><div class="building restaurant b18">🍜</div>
 <div class="lightPod lA" data-node="A"><span class="ns">NS</span><span class="ew">EW</span></div><div class="lightPod lB" data-node="B"><span class="ns">NS</span><span class="ew">EW</span></div><div class="lightPod lC" data-node="C"><span class="ns">NS</span><span class="ew">EW</span></div><div class="lightPod lD" data-node="D"><span class="ns">NS</span><span class="ew">EW</span></div>
-<div class="statusbar" id="mapStatus">建立房間後等待學生加入</div><div class="hostbadge" id="hostBadge">老師端 v6.17｜尚未建立房間</div><div id="cars"></div>
+<div class="statusbar" id="mapStatus">建立房間後等待學生加入</div><div class="hostbadge" id="hostBadge">老師端 v6.19｜尚未建立房間</div><div id="cars"></div>
 </div></div>
 <div><div class="panel"><div class="phead">積分排行</div><div class="pbody"><div id="setupMsg">請先建立房間；建立後即可邀請學生</div><div class="metrics"><div class="metric"><small>玩家</small><strong id="mPlayers">0</strong></div><div class="metric"><small>READY</small><strong id="mReady">0</strong></div><div class="metric"><small>事故人數</small><strong id="mAcc">0</strong></div></div><div class="ranking" id="ranking"></div></div></div></div>
 </div>
@@ -327,7 +329,7 @@ function buildQuestion(caseInfo){
  return{id:'q_'+Date.now()+'_'+questionSerial,templateId:chosen.id,accidentSummary:accidentSummaryFor(caseInfo),prompt:chosen.prompt,options:chosen.options,correctIndex:chosen.correctIndex,explanation:chosen.explanation,revealed:false,closed:false,answers:{},createdAt:Date.now()}
 }
 async function triggerCollision(){
- if(collisionDone||paused)return;collisionDone=true;paused=true;
+ if(collisionDone||paused)return;collisionDone=true;paused=true;stopEnvironmentCycle();
  let node=NODES[collisionNode],updates={status:'question'},victims=[];collisionAmbientId=null;
  let coords=[{x:node.x-1.8,y:node.y,rot:90},{x:node.x+1.8,y:node.y,rot:-90},{x:node.x,y:node.y+1.8,rot:0}];
  for(let i=0;i<collisionIds.length;i++){
@@ -355,7 +357,7 @@ function setupRoomLifecycle(ref){
   window.onbeforeunload=()=>{try{ref.child('hostOnline').set(false)}catch(e){}};
   $('hostBadge').textContent='🟢 老師在線｜Firebase 已連線';
 }
-function watchRoom(){roomRef.child('players').on('value',snap=>{players=snap.val()||{};for(const [id,p] of Object.entries(players)){if(sim[id])sim[id].speed=Number(p.speed??sim[id].speed??40)}renderSide();renderCars()});roomRef.child('environment').on('value',s=>{currentEnvironment=s.val()||null;renderEnvironment()});roomRef.child('usedQuestions').on('value',s=>{usedQuestionIds=new Set(Object.keys(s.val()||{}))});roomRef.child('globalQuestion').on('value',s=>{currentQuestion=s.val();renderQuestion()});roomRef.child('status').on('value',s=>{let st=s.val();if(st==='finished'){running=false;paused=false;$('mapStatus').textContent='⏹️ 本局已結束'}})}
+function watchRoom(){roomRef.child('players').on('value',snap=>{players=snap.val()||{};for(const [id,p] of Object.entries(players)){if(sim[id])sim[id].speed=Number(p.speed??sim[id].speed??40)}renderSide();renderCars()});roomRef.child('environment').on('value',s=>{currentEnvironment=s.val()||null;renderEnvironment()});roomRef.child('usedQuestions').on('value',s=>{usedQuestionIds=new Set(Object.keys(s.val()||{}))});roomRef.child('globalQuestion').on('value',s=>{currentQuestion=s.val();renderQuestion()});roomRef.child('status').on('value',s=>{let st=s.val();if(st==='question'){stopEnvironmentCycle()}if(st==='finished'){running=false;paused=false;stopEnvironmentCycle();$('mapStatus').textContent='⏹️ 本局已結束'}})}
 
 function renderMemberList(){
   if(!$('memberList')) return;
@@ -364,7 +366,7 @@ function renderMemberList(){
   $('memberList').innerHTML=arr.length?arr.map((p,i)=>`<div class="memberRow"><div class="memberNo">${i+1}</div><div><b>${p.name||'未命名'}</b><small>${p.connected===false?'連線中斷':'已加入房間'}</small></div><div class="memberState ${p.ready?'ready':''}">${p.ready?'READY':'準備中'}</div></div>`).join(''):'<div style="padding:24px;text-align:center;font-weight:900;color:#789">目前尚無學生加入</div>';
 }
 function studentInviteUrl(){
-  return new URL(`student.html?v=617&room=${encodeURIComponent(room)}`, window.location.href).href;
+  return new URL(`student.html?v=618&room=${encodeURIComponent(room)}`, window.location.href).href;
 }
 function showInvite(){
   if(!room) return;
@@ -458,7 +460,7 @@ $('revealBtn').onclick=async()=>{
  }
  if(jobs.length)await Promise.allSettled(jobs)
 };
-$('continueBtn').onclick=async()=>{let updates={status:'running','globalQuestion/closed':true},node=collisionNode;for(const id of collisionIds){if(id==='__NPC__')continue;let a=sim[id];if(!a)continue;a.forcePos=null;a.status='driving';a.from=node;a.to=pick((ADJ[node]||[]));a.t=.08;updates[`players/${id}/status`]='driving';updates[`players/${id}/currentEvent`]='🚗 事故處理完成，重新上路'}if(collisionAmbientId){let a=ambient.find(x=>x.id===collisionAmbientId);if(a){a.forcePos=null;a.status='driving';a.from=node;a.to=pick(ADJ[node]||[]);a.t=.12}}await roomRef.update(updates);setTimeout(()=>roomRef.child('globalQuestion').remove(),500);paused=false;lastMissionAward=Date.now();startAccidentCycle();log('事故題結束，事故車從事故路口繼續行駛','good')};
+$('continueBtn').onclick=async()=>{let updates={status:'running','globalQuestion/closed':true},node=collisionNode;for(const id of collisionIds){if(id==='__NPC__')continue;let a=sim[id];if(!a)continue;a.forcePos=null;a.status='driving';a.from=node;a.to=pick((ADJ[node]||[]));a.t=.08;updates[`players/${id}/status`]='driving';updates[`players/${id}/currentEvent`]='🚗 事故處理完成，重新上路'}if(collisionAmbientId){let a=ambient.find(x=>x.id===collisionAmbientId);if(a){a.forcePos=null;a.status='driving';a.from=node;a.to=pick(ADJ[node]||[]);a.t=.12}}await roomRef.update(updates);setTimeout(()=>roomRef.child('globalQuestion').remove(),500);paused=false;lastMissionAward=Date.now();startEnvironmentCycle();startAccidentCycle();log('事故題結束，事故車從事故路口繼續行駛','good')};
 async function tick(ts){
  if(!running)return;
  let dt=Math.min(90,Math.max(0,ts-(lastTs||ts)));lastTs=ts;renderSignals();
