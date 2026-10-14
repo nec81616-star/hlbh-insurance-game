@@ -59,10 +59,101 @@ button{position:relative;overflow:hidden;border:4px solid var(--deep);border-rad
 .gameTicker{font-size:12px;font-weight:900;line-height:1.5;color:#27577c;background:#ebf8ff;border:2px solid #9bc4eb;padding:7px;border-radius:9px;margin-bottom:8px}
 .v7Note{display:block;color:#5c7293;font-size:11px;font-weight:900;margin-top:4px}.missionMeta{display:block;font-size:11px;color:#3f7c55;font-weight:1000}.specialAwards{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:8px 0 16px}.specialAward{border:3px solid #20487c;border-radius:13px;padding:10px 6px;background:#f1f8ff;font-weight:1000;font-size:14px}.specialAward strong{display:block;margin:6px 0 0;color:#b96315;font-size:17px}.specialAward small{display:block;color:#6983a2;font-size:11px;margin-top:4px}
 @media(max-width:650px){.specialAwards{grid-template-columns:1fr}}
+
+/* ==== v7.3 cartoon reskin overrides ==== */
+:root{--deep:#18315e;--green:#37c978;--yellow:#ffd24d;--red:#ff6666;--blue:#4aa8ff;--road:#616779;--curb:#40485c;--paper:#fff8eb}
+body{background:
+ radial-gradient(circle at 10% 15%,rgba(255,255,255,.35) 0 12px,transparent 13px),
+ radial-gradient(circle at 85% 12%,rgba(255,255,255,.22) 0 10px,transparent 11px),
+ linear-gradient(180deg,#8fe7ff 0%,#7fd7ff 35%,#5fc0ff 65%,#58bb7a 65.1%,#4fb768 100%);
+ background-size:140px 140px,180px 180px,auto;color:#183562}
+.top{background:linear-gradient(180deg,#6a8dff 0%,#4868dd 54%,#3349ba 100%);border-bottom:6px solid #16284e;box-shadow:0 6px 0 rgba(22,40,78,.22);padding:12px 18px}
+.top h1{color:#fff;text-shadow:0 3px 0 rgba(12,24,56,.35);font-size:30px;letter-spacing:.5px}
+.room{background:linear-gradient(180deg,#fffaf1,#ffe392);border-color:#16305a;box-shadow:0 5px 0 rgba(22,40,78,.18)}
+.versionBadge{background:linear-gradient(180deg,#fff4b6,#ffd85b);color:#17315f;border-color:#17315f;box-shadow:0 3px 0 rgba(0,0,0,.14)}
+.hostControlBar{background:linear-gradient(180deg,#fff6d7,#ffe694 55%,#ffd769 100%);border-bottom:5px solid var(--deep);box-shadow:0 5px 0 rgba(16,41,90,.1)}
+.hostControlBar #inviteBtn,.hostControlBar #membersBtn{background:linear-gradient(180deg,#a98cff,#8064ef)}
+button{border-radius:18px;padding:10px 14px;box-shadow:0 6px 0 rgba(16,41,90,.22),0 12px 22px rgba(28,53,102,.12)}
+button:hover:not(:disabled){transform:translateY(-2px) scale(1.02)}
+.layout{gap:14px;padding:14px;grid-template-columns:minmax(0,1fr) 380px}
+.panel{background:linear-gradient(180deg,#fffefb,#fff7df);border:5px solid var(--deep);border-radius:26px;box-shadow:0 12px 0 rgba(16,41,90,.16),0 22px 34px rgba(0,0,0,.08)}
+.phead{background:linear-gradient(180deg,#8ef790,#44d86f 52%,#27ba56 100%);border-bottom:5px solid var(--deep);padding:12px 15px;font-size:20px;text-shadow:0 1px 0 rgba(255,255,255,.45)}
+.pbody{padding:12px}
+.roadHead{padding-right:10px}
+.environmentBadge{background:linear-gradient(180deg,#ffffff,#eaf5ff);border-width:3px;border-radius:14px;padding:5px 10px;box-shadow:0 4px 0 rgba(16,41,90,.1)}
+.environmentBadge strong{font-size:16px}
+.map{min-height:780px;background:#64cb73;border-radius:0 0 20px 20px}
+.grass{background:
+ radial-gradient(circle at 14% 18%,rgba(255,255,255,.14) 0 2px,transparent 3px),
+ radial-gradient(circle at 78% 66%,rgba(255,255,255,.1) 0 1px,transparent 2px),
+ linear-gradient(180deg,#8fe37e,#60c85c);
+ background-size:30px 30px,24px 24px,auto}
+.road,.cross{background:linear-gradient(180deg,#6b7184,#565d70);box-shadow:inset 0 0 0 4px #3e4559,0 4px 10px rgba(32,38,52,.22)}
+.road.h:before,.road.v:before{content:"";position:absolute;inset:0;box-shadow:inset 0 0 0 3px rgba(255,255,255,.08)}
+.road.h:after{border-top:4px dashed rgba(255,255,255,.82)}
+.road.v:after{border-left:4px dashed rgba(255,255,255,.82)}
+.road.alleyH,.road.alleyV{background:linear-gradient(180deg,#6d7487,#5b6377)}
+.zebra{filter:drop-shadow(0 1px 0 rgba(0,0,0,.08))}
+.zebra.top,.zebra.bottom{background:repeating-linear-gradient(90deg,#fff 0 11px,transparent 11px 20px)}
+.zebra.left,.zebra.right{background:repeating-linear-gradient(180deg,#fff 0 11px,transparent 11px 20px)}
+.building{border-width:5px;border-color:#274878;border-radius:18px;box-shadow:0 9px 0 rgba(31,52,96,.24),0 12px 20px rgba(0,0,0,.12)}
+.building:before{inset:10px;border-radius:10px}
+.apt{background:linear-gradient(180deg,#93afd9,#6e8fc0)}
+.shop{background:linear-gradient(180deg,#f7a383,#db7c61)}
+.office{background:linear-gradient(180deg,#7491b9,#54759f)}
+.school{background:linear-gradient(180deg,#f2c069,#cfa04b)}
+.hospital{background:linear-gradient(180deg,#f9fdff,#deebfb)}
+.park{background:linear-gradient(180deg,#52cc6e,#2d9f50)}
+.gas{background:linear-gradient(180deg,#939bb0,#727b91)}
+.cafe{background:linear-gradient(180deg,#cf9974,#a46e4d)}
+.bank{background:linear-gradient(180deg,#90a6d5,#7188b8)}
+.post{background:linear-gradient(180deg,#e69494,#d16f73)}
+.bookstore{background:linear-gradient(180deg,#ab93d1,#8a72b4)}
+.restaurant{background:linear-gradient(180deg,#cd9b76,#ad764f)}
+.library{background:linear-gradient(180deg,#a68fca,#876faf)}
+.station{background:linear-gradient(180deg,#8db296,#6d9478)}
+.statusbar,.hostbadge{border-width:4px;border-radius:16px;box-shadow:0 6px 0 rgba(16,41,90,.16),0 10px 18px rgba(0,0,0,.08)}
+.statusbar{background:linear-gradient(180deg,#fff5b9,#ffe37f)}
+.hostbadge{background:linear-gradient(180deg,#f0fbf3,#d8f4df)}
+.lightPod{width:58px;height:58px;border-radius:16px;background:linear-gradient(180deg,#1e2940,#131c2e);box-shadow:0 7px 0 rgba(0,0,0,.18)}
+.lightPod span{border-radius:9px;font-size:10px}
+.car{filter:drop-shadow(0 6px 6px rgba(0,0,0,.2))}
+.sprite{border-width:5px;border-color:#18315e;border-radius:18px;box-shadow:0 9px 12px rgba(0,0,0,.24), inset 0 -8px 0 rgba(0,0,0,.12)}
+.car.moto .sprite{border-radius:18px}
+.sprite:before{top:11%;height:24%;background:linear-gradient(180deg,#fbfeff,#c6e9ff);border-width:3px;border-radius:9px}
+.sprite:after{background:linear-gradient(180deg,#354a73,#1d2f50);border-radius:7px}
+.name{top:-26px;background:linear-gradient(180deg,#fff7c4,#ffe58a);border:3px solid #9a7420;border-radius:10px;padding:3px 7px;box-shadow:0 4px 0 rgba(0,0,0,.12)}
+.boom{font-size:48px;text-shadow:0 5px 0 rgba(0,0,0,.18)}
+.ranking{gap:10px;max-height:520px;padding-right:2px}
+.rank{grid-template-columns:42px 1fr auto;gap:10px;border:3px solid #a7b6e1;background:linear-gradient(180deg,#fdfefe,#eef5ff);border-radius:16px;padding:10px 12px;box-shadow:0 4px 0 rgba(16,41,90,.08)}
+.rank .no{font-size:24px;background:linear-gradient(180deg,#fff7ce,#ffe07c);border:2px solid #d8b041;border-radius:12px;padding:4px 0;color:#7c5a00}
+.rank:nth-child(1){background:linear-gradient(180deg,#fff9dc,#ffedaa);border-color:#e6c55b}
+.rank:nth-child(2){background:linear-gradient(180deg,#f7fbff,#e5eef9);border-color:#c4d2e4}
+.rank:nth-child(3){background:linear-gradient(180deg,#fff0e4,#f6ddc7);border-color:#dba87a}
+.rank .score{background:linear-gradient(180deg,#fff,#fff2c8);border:2px solid #efc85a;border-radius:12px;padding:5px 10px;color:#c26b00;min-width:76px;text-align:center}
+.metric{background:linear-gradient(180deg,#f7fbff,#e8f0ff);border:3px solid #a8b8de;border-radius:14px;padding:8px;box-shadow:0 4px 0 rgba(16,41,90,.08)}
+#setupMsg,.gameTicker{border-radius:14px;padding:10px 12px;font-weight:1000;box-shadow:0 4px 0 rgba(16,41,90,.06)}
+#setupMsg{background:linear-gradient(180deg,#fff4bf,#ffe08b);border:3px solid #d5a53a}
+.gameTicker{background:linear-gradient(180deg,#ebf8ff,#dbeeff);border:3px solid #8cb4df;color:#284c82}
+.qoverlay,.hostModal,.finalOverlay{backdrop-filter:blur(3px)}
+.qbox,.hostModalBox,.finalBox{background:linear-gradient(180deg,#fffefb,#fff5d9);border-color:#17315f;border-radius:28px;box-shadow:0 20px 44px rgba(0,0,0,.32)}
+.qtop h2,.hostModalHead h2,.finalTitle{color:#17315f;text-shadow:0 2px 0 rgba(255,255,255,.5)}
+.accdetail{background:linear-gradient(180deg,#ffe8e8,#ffd9d9);border-width:4px}
+.question{font-size:26px;line-height:1.45;color:#183562}
+.answerbar{grid-template-columns:50px minmax(0,1fr) 70px}
+.letter{font-size:24px;background:linear-gradient(180deg,#fff8d5,#ffecac);border:3px solid #d8ba58;border-radius:12px;padding:7px 0;color:#7a5900}
+.track{height:52px;border-width:4px;border-radius:16px;background:linear-gradient(180deg,#eef5ff,#dae8ff)}
+.fill{background:linear-gradient(90deg,#74d2ff,#4488ff)}
+.track.correct .fill{background:linear-gradient(90deg,#93ef9d,#2fc865)}
+.explain{background:linear-gradient(180deg,#ebfbef,#dbf4e0);border-width:4px}
+.memberRow{border-width:3px;border-radius:16px;background:linear-gradient(180deg,#fbfdff,#edf3ff)}
+.memberState{box-shadow:inset 0 -2px 0 rgba(0,0,0,.08)}
+@media(max-width:1020px){.layout{grid-template-columns:1fr}.map{min-height:680px}}
+
 </style></head>
 <body>
 <div class="top">
-  <div><h1>🚦 險中求生城市交通大作戰 <span class="versionBadge">v7.2</span></h1></div>
+  <div><h1>🚦 險中求生城市交通大作戰 <span class="versionBadge">v7.3</span></h1></div>
   <div class="room">房號 <span id="roomShow">----</span></div>
 </div>
 <div class="hostControlBar">
@@ -82,9 +173,9 @@ button{position:relative;overflow:hidden;border:4px solid var(--deep);border-rad
 <div class="cross xA"><span class="zebra top"></span><span class="zebra bottom"></span><span class="zebra left"></span><span class="zebra right"></span></div><div class="cross xB"><span class="zebra top"></span><span class="zebra bottom"></span><span class="zebra left"></span><span class="zebra right"></span></div><div class="cross xC"><span class="zebra top"></span><span class="zebra bottom"></span><span class="zebra left"></span><span class="zebra right"></span></div><div class="cross xD"><span class="zebra top"></span><span class="zebra bottom"></span><span class="zebra left"></span><span class="zebra right"></span></div>
 <div class="building school b1">🏫</div><div class="building cafe b2">☕</div><div class="building office b3">🏢</div><div class="building hospital b4">✚</div><div class="building park b5">🌳</div><div class="building shop b6">🏪</div><div class="building gas b7">⛽</div><div class="building apt b8">🏠</div><div class="building office b9">🏬</div><div class="building shop b10">🛒</div><div class="building miniHouse b11">🏡</div><div class="building library b12">📚</div><div class="building station b13">🚉</div><div class="building miniShop b14">🥐</div><div class="building bank b15">🏦</div><div class="building post b16">📮</div><div class="building bookstore b17">📖</div><div class="building restaurant b18">🍜</div>
 <div class="lightPod lA" data-node="A"><span class="ns">NS</span><span class="ew">EW</span></div><div class="lightPod lB" data-node="B"><span class="ns">NS</span><span class="ew">EW</span></div><div class="lightPod lC" data-node="C"><span class="ns">NS</span><span class="ew">EW</span></div><div class="lightPod lD" data-node="D"><span class="ns">NS</span><span class="ew">EW</span></div>
-<div id="destinationPins"></div><div class="statusbar" id="mapStatus">建立房間後等待學生加入</div><div class="hostbadge" id="hostBadge">老師端 v7.2｜尚未建立房間</div><div id="cars"></div>
+<div id="destinationPins"></div><div class="statusbar" id="mapStatus">建立房間後等待學生加入</div><div class="hostbadge" id="hostBadge">老師端 v7.3｜尚未建立房間</div><div id="cars"></div>
 </div></div>
-<div><div class="panel"><div class="phead">積分排行</div><div class="pbody"><div id="setupMsg">請先建立房間；建立後即可邀請學生</div><div class="gameTicker" id="gameTicker">🧭 v7.2：連續拜訪・路線決策・即時突發事件</div><div class="metrics"><div class="metric"><small>玩家</small><strong id="mPlayers">0</strong></div><div class="metric"><small>READY</small><strong id="mReady">0</strong></div><div class="metric"><small>事故人數</small><strong id="mAcc">0</strong></div></div><div class="ranking" id="ranking"></div></div></div></div>
+<div><div class="panel"><div class="phead">積分排行</div><div class="pbody"><div id="setupMsg">請先建立房間；建立後即可邀請學生</div><div class="gameTicker" id="gameTicker">🧭 v7.3：連續拜訪・路線決策・即時突發事件</div><div class="metrics"><div class="metric"><small>玩家</small><strong id="mPlayers">0</strong></div><div class="metric"><small>READY</small><strong id="mReady">0</strong></div><div class="metric"><small>事故人數</small><strong id="mAcc">0</strong></div></div><div class="ranking" id="ranking"></div></div></div></div>
 </div>
 <div class="qoverlay hidden" id="qOverlay"><div class="qbox"><div class="qtop"><h2>💥 城市交通事故</h2><div class="answered" id="qCount">0 / 0 已作答</div></div><div class="accdetail" id="accDetail"></div><div class="question" id="qPrompt"></div><div id="bars"></div><div class="qfoot"><div class="answered" id="answeredText"></div><div><button id="revealBtn" class="orange">公布答案</button><button id="continueBtn" class="green hidden">繼續行車</button></div></div><div class="explain hidden" id="explain"></div></div></div>
 
@@ -94,7 +185,7 @@ button{position:relative;overflow:hidden;border:4px solid var(--deep);border-rad
 <div class="hostModal hidden" id="membersModal"><div class="hostModalBox"><div class="hostModalHead"><h2>👥 成員名單 <span id="memberCount">0</span></h2><button class="closeBtn" id="closeMembers">✕</button></div><div class="memberList" id="memberList"></div></div></div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-database-compat.js"></script><script src="firebase-config.js?v=720"></script><script src="game-data.js?v=720"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-database-compat.js"></script><script src="firebase-config.js?v=730"></script><script src="game-data.js?v=730"></script>
 <script>
 let db,auth,room='',roomRef=null,heartbeatTimer=null,environmentTimer=null,players={},sim={},ambient=[],running=false,paused=false,lastTs=0,lastSideRender=0,lastMissionAward=0,accidentEligibleAt=0,accidentDeadlineAt=0,collisionDone=false,collisionIds=[],collisionNode='A',collisionAmbientId=null,collisionMeta=null,currentQuestion=null,affectedCount=0,currentEnvironment=null,usedQuestionIds=new Set(),questionSerial=0,accidentsThisRound=0,lastPersonalScan=0,roundSerial=0,environmentChangedAt=0,overspeedPending=new Set();
 const $=id=>document.getElementById(id);
@@ -468,7 +559,7 @@ function renderMemberList(){
   $('memberList').innerHTML=arr.length?arr.map((p,i)=>`<div class="memberRow"><div class="memberNo">${i+1}</div><div><b>${safeText(p.name||'未命名')}</b><small>${p.connected===false?'連線中斷':'已加入房間'}</small></div><div class="memberState ${p.ready?'ready':''}">${p.ready?'READY':'準備中'}</div></div>`).join(''):'<div style="padding:24px;text-align:center;font-weight:900;color:#789">目前尚無學生加入</div>';
 }
 function studentInviteUrl(){
-  return new URL(`student.html?v=720&room=${encodeURIComponent(room)}`, window.location.href).href;
+  return new URL(`student.html?v=730&room=${encodeURIComponent(room)}`, window.location.href).href;
 }
 function showInvite(){
   if(!room) return;
