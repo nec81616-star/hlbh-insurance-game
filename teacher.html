@@ -60,7 +60,7 @@ button{position:relative;overflow:hidden;border:4px solid var(--deep);border-rad
 .v7Note{display:block;color:#5c7293;font-size:11px;font-weight:900;margin-top:4px}.missionMeta{display:block;font-size:11px;color:#3f7c55;font-weight:1000}.specialAwards{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:8px 0 16px}.specialAward{border:3px solid #20487c;border-radius:13px;padding:10px 6px;background:#f1f8ff;font-weight:1000;font-size:14px}.specialAward strong{display:block;margin:6px 0 0;color:#b96315;font-size:17px}.specialAward small{display:block;color:#6983a2;font-size:11px;margin-top:4px}
 @media(max-width:650px){.specialAwards{grid-template-columns:1fr}}
 
-/* ==== v7.32 cartoon reskin overrides ==== */
+/* ==== v7.34 cartoon reskin overrides ==== */
 :root{--deep:#18315e;--green:#37c978;--yellow:#ffd24d;--red:#ff6666;--blue:#4aa8ff;--road:#616779;--curb:#40485c;--paper:#fff8eb}
 body{background:
  radial-gradient(circle at 10% 15%,rgba(255,255,255,.35) 0 12px,transparent 13px),
@@ -151,7 +151,7 @@ button:hover:not(:disabled){transform:translateY(-2px) scale(1.02)}
 @media(max-width:1020px){.layout{grid-template-columns:1fr}.map{min-height:680px}}
 
 
-/* v7.32 traffic light refinement */
+/* v7.34 traffic light refinement */
 .lightPod{width:66px;height:86px;display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:8px 7px;border-radius:18px;background:linear-gradient(180deg,#253049,#121a2b);border:4px solid #0d1630;box-shadow:0 8px 0 rgba(0,0,0,.2),0 12px 18px rgba(0,0,0,.16)}
 .lightPod .signalCol{display:flex;flex-direction:column;justify-content:space-between;align-items:center;background:rgba(255,255,255,.03);border-radius:10px;padding:2px 0}
 .lightPod .lamp{display:block;width:18px;height:18px;border-radius:50%;border:2px solid rgba(255,255,255,.14);box-shadow:inset 0 -2px 3px rgba(0,0,0,.45);transition:.18s}
@@ -163,7 +163,7 @@ button:hover:not(:disabled){transform:translateY(-2px) scale(1.02)}
 .lightPod .greenLamp.active{background:#39dd68;box-shadow:0 0 12px rgba(57,221,104,.9), inset 0 0 5px rgba(255,255,255,.35)}
 
 
-/* v7.32 four-side horizontal traffic lights */
+/* v7.34 four-side horizontal traffic lights */
 .signalGroup{position:absolute;z-index:22;transform:translate(-50%,-50%);pointer-events:none;width:78px;height:78px}
 .sgA{left:25%;top:26%}.sgB{left:75%;top:26%}.sgC{left:25%;top:74%}.sgD{left:75%;top:74%}
 .signalSide{position:absolute;display:flex;gap:4px;align-items:center;justify-content:center;width:62px;height:22px;padding:2px 5px;border-radius:999px;background:linear-gradient(180deg,#28324b,#141d2d);border:3px solid #0d1630;box-shadow:0 5px 0 rgba(0,0,0,.18),0 8px 14px rgba(0,0,0,.14)}
@@ -180,7 +180,7 @@ button:hover:not(:disabled){transform:translateY(-2px) scale(1.02)}
 </style></head>
 <body>
 <div class="top">
-  <div><h1>🚦 險中求生城市交通大作戰 <span class="versionBadge">v7.32</span></h1></div>
+  <div><h1>🚦 險中求生城市交通大作戰 <span class="versionBadge">v7.34</span></h1></div>
   <div class="room">房號 <span id="roomShow">----</span></div>
 </div>
 <div class="hostControlBar">
@@ -194,15 +194,15 @@ button:hover:not(:disabled){transform:translateY(-2px) scale(1.02)}
   <button id="resetBtn" class="red" disabled>↻ 重設</button>
 </div>
 <div class="layout">
-<div class="panel"><div class="phead roadHead"><span class="roadHeadTitle">城市道路</span><div class="environmentInline"><div class="environmentBadge"><small>路況</small><strong id="roadDisplay">尚未開始</strong></div><div class="environmentBadge"><small>天氣</small><strong id="weatherDisplay">尚未開始</strong></div><div class="environmentBadge"><small>遊戲得分速域</small><strong id="targetDisplay">—</strong></div></div></div><div class="map" id="map">
+<div class="panel"><div class="phead roadHead"><span class="roadHeadTitle">城市道路</span><div class="environmentInline"><div class="environmentBadge"><small>下題</small><strong id="nextQuestionDisplay">—</strong></div><div class="environmentBadge"><small>路況</small><strong id="roadDisplay">尚未開始</strong></div><div class="environmentBadge"><small>天氣</small><strong id="weatherDisplay">尚未開始</strong></div><div class="environmentBadge"><small>遊戲得分速域</small><strong id="targetDisplay">—</strong></div></div></div><div class="map" id="map">
 <div class="grass"></div>
 <div class="road h top"></div><div class="road h bottom"></div><div class="road v left"></div><div class="road v right"></div><div class="road alleyH"></div><div class="road alleyV"></div>
 <div class="cross xA"><span class="zebra top"></span><span class="zebra bottom"></span><span class="zebra left"></span><span class="zebra right"></span></div><div class="cross xB"><span class="zebra top"></span><span class="zebra bottom"></span><span class="zebra left"></span><span class="zebra right"></span></div><div class="cross xC"><span class="zebra top"></span><span class="zebra bottom"></span><span class="zebra left"></span><span class="zebra right"></span></div><div class="cross xD"><span class="zebra top"></span><span class="zebra bottom"></span><span class="zebra left"></span><span class="zebra right"></span></div>
 <div class="building school b1">🏫</div><div class="building cafe b2">☕</div><div class="building office b3">🏢</div><div class="building hospital b4">✚</div><div class="building park b5">🌳</div><div class="building shop b6">🏪</div><div class="building gas b7">⛽</div><div class="building apt b8">🏠</div><div class="building office b9">🏬</div><div class="building shop b10">🛒</div><div class="building miniHouse b11">🏡</div><div class="building library b12">📚</div><div class="building station b13">🚉</div><div class="building miniShop b14">🥐</div><div class="building bank b15">🏦</div><div class="building post b16">📮</div><div class="building bookstore b17">📖</div><div class="building restaurant b18">🍜</div>
 <div class="signalGroup sgA" data-node="A"><div class="signalSide ns side-top"><span class="lamp redLamp"></span><span class="lamp yellowLamp"></span><span class="lamp greenLamp"></span></div><div class="signalSide ew side-right"><span class="lamp redLamp"></span><span class="lamp yellowLamp"></span><span class="lamp greenLamp"></span></div><div class="signalSide ns side-bottom"><span class="lamp redLamp"></span><span class="lamp yellowLamp"></span><span class="lamp greenLamp"></span></div><div class="signalSide ew side-left"><span class="lamp redLamp"></span><span class="lamp yellowLamp"></span><span class="lamp greenLamp"></span></div></div><div class="signalGroup sgB" data-node="B"><div class="signalSide ns side-top"><span class="lamp redLamp"></span><span class="lamp yellowLamp"></span><span class="lamp greenLamp"></span></div><div class="signalSide ew side-right"><span class="lamp redLamp"></span><span class="lamp yellowLamp"></span><span class="lamp greenLamp"></span></div><div class="signalSide ns side-bottom"><span class="lamp redLamp"></span><span class="lamp yellowLamp"></span><span class="lamp greenLamp"></span></div><div class="signalSide ew side-left"><span class="lamp redLamp"></span><span class="lamp yellowLamp"></span><span class="lamp greenLamp"></span></div></div><div class="signalGroup sgC" data-node="C"><div class="signalSide ns side-top"><span class="lamp redLamp"></span><span class="lamp yellowLamp"></span><span class="lamp greenLamp"></span></div><div class="signalSide ew side-right"><span class="lamp redLamp"></span><span class="lamp yellowLamp"></span><span class="lamp greenLamp"></span></div><div class="signalSide ns side-bottom"><span class="lamp redLamp"></span><span class="lamp yellowLamp"></span><span class="lamp greenLamp"></span></div><div class="signalSide ew side-left"><span class="lamp redLamp"></span><span class="lamp yellowLamp"></span><span class="lamp greenLamp"></span></div></div><div class="signalGroup sgD" data-node="D"><div class="signalSide ns side-top"><span class="lamp redLamp"></span><span class="lamp yellowLamp"></span><span class="lamp greenLamp"></span></div><div class="signalSide ew side-right"><span class="lamp redLamp"></span><span class="lamp yellowLamp"></span><span class="lamp greenLamp"></span></div><div class="signalSide ns side-bottom"><span class="lamp redLamp"></span><span class="lamp yellowLamp"></span><span class="lamp greenLamp"></span></div><div class="signalSide ew side-left"><span class="lamp redLamp"></span><span class="lamp yellowLamp"></span><span class="lamp greenLamp"></span></div></div>
-<div id="destinationPins"></div><div class="statusbar" id="mapStatus">建立房間後等待學生加入</div><div class="hostbadge" id="hostBadge">老師端 v7.32｜尚未建立房間</div><div id="cars"></div>
+<div id="destinationPins"></div><div class="statusbar" id="mapStatus">建立房間後等待學生加入</div><div class="hostbadge" id="hostBadge">老師端 v7.34｜尚未建立房間</div><div id="cars"></div>
 </div></div>
-<div><div class="panel"><div class="phead">積分排行</div><div class="pbody"><div id="setupMsg">請先建立房間；建立後即可邀請學生</div><div class="gameTicker" id="gameTicker">🧭 v7.32：連續拜訪・路線決策・即時突發事件</div><div class="metrics"><div class="metric"><small>玩家</small><strong id="mPlayers">0</strong></div><div class="metric"><small>READY</small><strong id="mReady">0</strong></div><div class="metric"><small>事故人數</small><strong id="mAcc">0</strong></div></div><div class="ranking" id="ranking"></div></div></div></div>
+<div><div class="panel"><div class="phead">積分排行</div><div class="pbody"><div id="setupMsg">請先建立房間；建立後即可邀請學生</div><div class="gameTicker" id="gameTicker">🧭 v7.34：連續拜訪・路線決策・即時突發事件</div><div class="metrics"><div class="metric"><small>玩家</small><strong id="mPlayers">0</strong></div><div class="metric"><small>READY</small><strong id="mReady">0</strong></div><div class="metric"><small>事故人數</small><strong id="mAcc">0</strong></div></div><div class="ranking" id="ranking"></div></div></div></div>
 </div>
 <div class="qoverlay hidden" id="qOverlay"><div class="qbox"><div class="qtop"><h2>💥 城市交通事故</h2><div class="answered" id="qCount">0 / 0 已作答</div></div><div class="accdetail" id="accDetail"></div><div class="question" id="qPrompt"></div><div id="bars"></div><div class="qfoot"><div class="answered" id="answeredText"></div><div><button id="revealBtn" class="orange">公布答案</button><button id="continueBtn" class="green hidden">繼續行車</button></div></div><div class="explain hidden" id="explain"></div></div></div>
 
@@ -212,9 +212,10 @@ button:hover:not(:disabled){transform:translateY(-2px) scale(1.02)}
 <div class="hostModal hidden" id="membersModal"><div class="hostModalBox"><div class="hostModalHead"><h2>👥 成員名單 <span id="memberCount">0</span></h2><button class="closeBtn" id="closeMembers">✕</button></div><div class="memberList" id="memberList"></div></div></div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-database-compat.js"></script><script src="firebase-config.js?v=732"></script><script src="game-data.js?v=732"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-database-compat.js"></script><script src="firebase-config.js?v=734"></script><script src="game-data.js?v=734"></script>
 <script>
-let db,auth,room='',roomRef=null,heartbeatTimer=null,environmentTimer=null,players={},sim={},ambient=[],running=false,paused=false,lastTs=0,lastSideRender=0,lastMissionAward=0,accidentEligibleAt=0,accidentDeadlineAt=0,collisionDone=false,collisionIds=[],collisionNode='A',collisionAmbientId=null,collisionMeta=null,currentQuestion=null,affectedCount=0,currentEnvironment=null,usedQuestionIds=new Set(),questionSerial=0,accidentsThisRound=0,lastPersonalScan=0,roundSerial=0,environmentChangedAt=0,overspeedPending=new Set();
+let db,auth,room='',roomRef=null,heartbeatTimer=null,environmentTimer=null,players={},sim={},ambient=[],running=false,paused=false,lastTs=0,lastSideRender=0,lastMissionAward=0,accidentEligibleAt=0,accidentDeadlineAt=0,collisionDone=false,collisionIds=[],collisionNode='A',collisionAmbientId=null,collisionMeta=null,currentQuestion=null,affectedCount=0,currentEnvironment=null,usedQuestionIds=new Set(),questionSerial=0,accidentsThisRound=0,lastPersonalScan=0,roundSerial=0,environmentChangedAt=0,overspeedPending=new Set(),nextQuestionAt=0;
+const QUESTION_INTERVAL_MS=30000;
 const $=id=>document.getElementById(id);
 const NODES={
  W1:{x:-7,y:26,boundary:true},A:{x:25,y:26,signal:true},M1:{x:50,y:26},B:{x:75,y:26,signal:true},E1:{x:107,y:26,boundary:true},
@@ -254,18 +255,22 @@ function missionArrival(a,node){
  roomRef.child(`players/${a.id}`).update(updates).then(()=>roomRef.child(`players/${a.id}/score`).transaction(s=>Number(s||0)+15+(wasFinal?25:0))).catch(e=>console.warn('拜訪獎勵失敗',e)).finally(()=>{a.arrivalBusy=false});
 }
 function handleAccident(){
+ // Ordinary collisions may occur during driving, but do not affect the fixed 30s quiz clock.
  accidentsThisRound++;
- if(accidentsThisRound%TOTAL_QUESTIONS_PER_BRIEF===0){
-  announce(`📚 第 ${accidentsThisRound} 起事故｜全班強制險挑戰`);
-  triggerCollision();return;
- }
- // Small incidents are shown on the teacher map but never interrupt students.
  let victims=[...new Set(collisionIds.filter(id=>id!=='__NPC__'))];
- announce(`💥 第 ${accidentsThisRound} 起交通事件｜持續行車；每三起才進行一次全班保險題`);
- for(let id of victims){let actor=sim[id];if(actor)actor.pauseUntil=Date.now()+1200;
+ announce(`💥 第 ${accidentsThisRound} 起交通事件｜繼續行車；全班保險題每30秒出現一次`);
+ for(const id of victims){
+  let actor=sim[id];if(actor)actor.pauseUntil=Date.now()+1200;
   if(roomRef)roomRef.child(`players/${id}/currentEvent`).set('💥 發現交通事故，交通已恢復，分數保留').catch(()=>{});
  }
  startAccidentCycle();
+}
+function startQuestionClock(){nextQuestionAt=Date.now()+QUESTION_INTERVAL_MS}
+function stopQuestionClock(){nextQuestionAt=0}
+function renderQuestionCountdown(){
+ const el=$('nextQuestionDisplay');if(!el)return;
+ const label=!running?'—':paused?'講解中':nextQuestionAt?Math.max(0,Math.ceil((nextQuestionAt-Date.now())/1000))+'秒':'準備中';
+ if(el.textContent!==label)el.textContent=label;
 }
 
 const MAIN_SIGNALS=new Set(['A','B','C','D']);
@@ -444,18 +449,41 @@ function tryPlayerCollision(){
  handleAccident();
  return true
 }
-function forceNpcCollision(){
+function forcePlayerQuestion(){
  if(collisionDone||paused)return false;
- let entries=Object.entries(players).filter(([id,p])=>p.ready&&sim[id]?.status==='driving');
+ const entries=Object.entries(players).filter(([id,p])=>p.ready&&sim[id]?.status==='driving');
+ if(entries.length<2)return false;
+ const first=pick(entries),second=pick(entries.filter(([id])=>id!==first[0]));
+ if(!first||!second)return false;
+ const w1=causeWeight(first[1])*victimWeight(second[1]);
+ const w2=causeWeight(second[1])*victimWeight(first[1]);
+ const firstCauses=Math.random()<w1/(w1+w2);
+ const causer=firstCauses?first:second,victim=firstCauses?second:first;
+ const pos=actorPos(sim[causer[0]]);
+ collisionNode=nearestSignalForPos(pos);
+ collisionIds=[causer[0],victim[0]];
+ collisionMeta={kind:'player',causerId:causer[0],victimId:victim[0],pattern:chooseCrashPattern(causer[1],victim[1]),timed:true};
+ affectedCount=2;stopQuestionClock();accidentsThisRound++;
+ announce('📚 30秒已到｜同學互撞・全班保險挑戰');
+ triggerCollision();return true;
+}
+function forceNpcCollision(asQuestion=false){
+ if(collisionDone||paused)return false;
+ let entries=Object.entries(players).filter(([id,p])=>p.ready&&sim[id]&&(asQuestion||sim[id].status==='driving'));
  if(!entries.length)return false;
  let target=weightedPick(entries,p=>causeWeight(p)+victimWeight(p)),id=target[0],p=target[1],a=sim[id];
  let cw=causeWeight(p),vw=victimWeight(p),playerCauses=Math.random()<(cw/(cw+vw));
  let hitRun=!playerCauses&&Math.random()<.55;
  collisionNode=nearestSignalForPos(actorPos(a));
  collisionIds=[id,'__NPC__'];
- collisionMeta={kind:'npc',playerId:id,playerCauses,hitRun,pattern:playerCauses?'cross':'rear',forcedFallback:true};
+ collisionMeta={kind:'npc',playerId:id,playerCauses,hitRun,pattern:pick(['rear','cross','leftTurn','merge']),forcedFallback:true};
  affectedCount=1;
- handleAccident();
+ if(asQuestion){
+  // Timed case is always a class-wide question; it is not gated by incident count.
+  stopQuestionClock();accidentsThisRound++;
+  announce('📚 30秒已到｜全班強制險挑戰');
+  triggerCollision();
+ }else handleAccident();
  return true
 }
 function medicalFor(p){
@@ -481,9 +509,23 @@ function playerCrashLine(a,b,meta){
  return `${a.name}玩家與${b.name}玩家分別由不同方向進入十字路口，雙方在路口中央發生側向碰撞。`
 }
 function npcCrashLine(v,meta){
- if(meta.hitRun)return `${v.name}玩家行經十字路口時，遭一輛 NPC 汽車碰撞；該車隨即駛離現場，事後仍無法查明肇事車輛。`;
- if(meta.playerCauses)return `${v.name}玩家行經十字路口時，與一輛 NPC 汽車發生碰撞。`;
- return `${v.name}玩家在路口減速通行時，遭後方一輛 NPC 汽車碰撞。`
+ const pattern=meta.pattern||'cross';
+ if(meta.hitRun){
+  if(pattern==='rear')return `${v.name}玩家行經路口減速時，遭後方NPC汽車追撞，對方隨即逃離，事後仍無法查明事故車輛。`;
+  if(pattern==='leftTurn')return `${v.name}玩家正直行通過路口，與突然轉彎的NPC汽車相撞，對方離開現場後仍無法查明車輛。`;
+  if(pattern==='merge')return `${v.name}玩家經過巷口，遭匯入道路的NPC汽車擦撞；對方駛離，事後查無肇事車輛。`;
+  return `${v.name}玩家穿越路口時遭NPC汽車側向碰撞；對方逃逸後仍無法查明事故車輛。`;
+ }
+ if(meta.playerCauses){
+  if(pattern==='rear')return `${v.name}玩家未保持適當距離，追撞前方減速的NPC汽車。`;
+  if(pattern==='leftTurn')return `${v.name}玩家轉彎進入路口時，與一輛直行NPC汽車碰撞。`;
+  if(pattern==='merge')return `${v.name}玩家由巷口駛入主要道路時，與NPC汽車發生擦撞。`;
+  return `${v.name}玩家與NPC汽車分別由不同方向駛入路口，發生側向碰撞。`;
+ }
+ if(pattern==='leftTurn')return `${v.name}玩家沿路直行，一輛轉彎中的NPC汽車與其碰撞。`;
+ if(pattern==='merge')return `${v.name}玩家通過巷口，遭匯入主要道路的NPC汽車擦撞。`;
+ if(pattern==='cross')return `${v.name}玩家經過路口時，遭不同方向駛入的NPC汽車側撞。`;
+ return `${v.name}玩家在路口前減速，遭後方NPC汽車追撞。`;
 }
 function selfCrashLine(v,meta){
  if(meta.pattern==='barrier')return `${v.name}玩家行經路口後未能順利控制車輛，擦撞路旁護欄，形成單一車輛事故。`;
@@ -504,51 +546,163 @@ function accidentSummaryFor(caseInfo){
  }
  return summary
 }
+/* v7.34 教師手冊情境題庫：題目為本案延伸教學判斷，實際給付依事故事實與法定條件認定。 */
 function questionCandidates(caseInfo){
- let general=[
-  {id:'g01_medical',prompt:'下列哪一項屬於強制汽車責任保險法定人身給付的核心範圍？',options:['傷害醫療給付','車體維修費','手機損壞費','道路設施修復費'],correctIndex:0,explanation:'強制險的法定保障核心是交通事故造成的人身損害；財物損失不屬於法定人身給付。'},
-  {id:'g02_property',prompt:'事故造成車輛鈑金與烤漆費用時，關於強制險的敘述何者正確？',options:['車損不屬於強制險法定人身給付','只要有人受傷車損就全賠','汽車車損屬於、機車不屬於','投保強制險後所有財損都會給付'],correctIndex:0,explanation:'強制險是人身保障制度，不是車體財物保險。'},
-  {id:'g03_disability',prompt:'若交通事故傷勢後續符合失能程度，下列何者屬於強制險的重要法定給付項目？',options:['失能給付','車輛折舊','手機維修','營業損失'],correctIndex:0,explanation:'強制險法定人身給付包括傷害醫療、失能與死亡等項目。'},
-  {id:'g04_death',prompt:'若交通事故不幸造成死亡，下列哪一類屬於強制險法定人身保障？',options:['死亡給付','事故車折舊','道路護欄修復','車內物品損失'],correctIndex:0,explanation:'死亡屬於強制險法定人身給付範圍；財物損失則不是。'},
-  {id:'g05_phone',prompt:'事故中同時有人受傷、手機摔壞，哪一項較符合強制險法定保障範圍？',options:['人員受傷的法定人身給付','手機購置費','手機資料救援費','兩者都屬於財物給付'],correctIndex:0,explanation:'強制險保障人身損害，不負責手機等財物損失。'},
-  {id:'g06_facility',prompt:'車輛撞壞路旁交通設施所產生的修復費，是否屬於強制險法定人身給付？',options:['不屬於','一定屬於','只有夜間事故才屬於','只要警方到場就屬於'],correctIndex:0,explanation:'道路設施修復屬財物損害，不是強制險的法定人身給付。'},
-  {id:'g07_purpose',prompt:'強制汽車責任保險制度的法定保障重點，較接近下列哪一項？',options:['交通事故受害人的基本人身保障','事故車輛的完整修復','駕駛人的所有財務損失','道路救援與拖吊'],correctIndex:0,explanation:'制度核心是提供交通事故受害人基本的人身保障。'},
-  {id:'g08_two_losses',prompt:'同一事故同時產生醫療費與車輛維修費時，下列何者較正確？',options:['強制險的人身保障與車損應分開判斷','兩者都一定由強制險支付','兩者都一定不給付','只要有車損就不能申請人身給付'],correctIndex:0,explanation:'人身損害與財物損害屬不同範圍；強制險法定重點是人身保障。'},
-  {id:'g09_repair',prompt:'下列哪一項最明確不屬於強制險的法定人身給付？',options:['事故車輛維修費','傷害醫療給付','失能給付','死亡給付'],correctIndex:0,explanation:'車輛維修是財物損失；其餘皆屬強制險重要的人身給付類型。'},
-  {id:'g10_human',prompt:'判斷某項損失是否屬於強制險法定給付時，第一個應辨認的重點是什麼？',options:['是否屬於交通事故造成的人身損害','車輛品牌是否昂貴','是否為假日發生','駕駛是否趕時間'],correctIndex:0,explanation:'強制險首先要區分人身損害與財物損害。'},
-  {id:'g11_body_vs_property',prompt:'下列哪一組分類最符合強制險的基本概念？',options:['人員受傷屬人身風險；車體刮傷屬財物風險','兩者都屬人身風險','兩者都屬財物風險','車體刮傷屬人身風險'],correctIndex:0,explanation:'強制險的法定保障聚焦人身損害，車體損傷則屬財物損失。'},
-  {id:'g12_scope',prompt:'若題目只問「車輛修復費」是否由強制險法定人身給付負擔，最適當的判斷為何？',options:['不是法定人身給付項目','一定全額給付','只有新車才給付','依車速決定是否給付'],correctIndex:0,explanation:'車輛修復費不是強制險法定人身給付。'},
-  {id:'g13_injury',prompt:'交通事故造成身體受傷需要就醫時，下列哪一項最可能涉及強制險法定人身保障？',options:['傷害醫療給付','車輛美容費','改裝零件費','停車費'],correctIndex:0,explanation:'就醫屬人身傷害處理範圍；其他選項均屬財物或一般費用。'},
-  {id:'g14_mix',prompt:'下列何者與強制險「人身保障」的概念最一致？',options:['處理事故造成的傷害、失能或死亡保障','補償所有車輛折舊','支付所有拖吊費','補償車內私人財物'],correctIndex:0,explanation:'傷害、失能與死亡是強制險重要法定人身給付類型。'},
-  {id:'g15_not_all_loss',prompt:'「只要發生交通事故，所有損失都可由強制險給付」這句話是否正確？',options:['不正確，強制險有法定的人身保障範圍','正確，所有財損也包含在內','只有機車事故正確','只有汽車事故正確'],correctIndex:0,explanation:'強制險不是所有事故損失的綜合保險，應依其法定人身給付範圍判斷。'},
-  {id:'g16_vehicle_item',prompt:'事故造成安全帽、眼鏡或隨身物品損壞時，這些物品損失與強制險法定人身給付的關係為何？',options:['財物損失本身不屬於法定人身給付','全部都屬於醫療給付','只要受傷就一併全賠','價值低於一定金額就自動給付'],correctIndex:0,explanation:'物品損壞屬財物損失，不會因同時有人受傷就變成人身給付。'}
- ];
- if(caseInfo.kind==='npc'&&caseInfo.meta.hitRun)general.unshift(
-  {id:'h01_fund',prompt:'肇事汽車無法查究時，受害人的基本人身保障可依法向哪個機制請求補償？',options:['汽車交通事故特別補償基金','道路救援公司','車商保固中心','一般財產保險公會'],correctIndex:0,explanation:'符合法定情形時，可向汽車交通事故特別補償基金請求補償。'},
-  {id:'h02_unknown',prompt:'肇事車輛逃逸且事後仍無法查明時，下列處理觀念何者較正確？',options:['可檢視是否符合特別補償基金的法定補償條件','一定完全沒有任何基本保障','由受害人自行修車即可取得強制險車損給付','只要報警就由政府支付所有損失'],correctIndex:0,explanation:'無法查究肇事汽車等情況有特別補償制度，但仍須符合法定條件與給付範圍。'},
-  {id:'h03_personal',prompt:'特別補償基金在肇事汽車無法查究的情境中，主要延續哪一類保障精神？',options:['交通事故受害人的基本人身保障','事故車的全額修復','所有私人財物補償','道路維修'],correctIndex:0,explanation:'特別補償制度著重受害人的基本人身保障。'},
-  {id:'h04_property',prompt:'肇事車輛無法查究時，「對方找不到」是否代表車輛維修費就自動成為強制險法定人身給付？',options:['不是，車損仍屬財物損失','是，所有車損都會轉為人身給付','只有機車會轉換','由車齡決定'],correctIndex:0,explanation:'肇事者是否可查究不會把財物損失改變成人身給付。'}
- );
- if(caseInfo.kind==='npc'&&!caseInfo.meta.hitRun)general.unshift(
-  {id:'n01_npc_medical',prompt:'與另一輛汽車發生事故後，若同時有人受傷與車輛受損，強制險判斷時應優先區分什麼？',options:['人身損害與財物損害','汽車顏色','道路寬度','出發時間'],correctIndex:0,explanation:'強制險核心是人身保障，因此要先區分人身與財物損失。'},
-  {id:'n02_npc_damage',prompt:'對方車輛造成你的車體損壞時，該車損是否因此直接屬於強制險法定人身給付？',options:['不屬於','一定屬於','只要對方有保強制險就屬於','只要車損超過醫療費就屬於'],correctIndex:0,explanation:'車損屬財物損害，不屬於強制險法定人身給付。'}
- );
- return general
+ const bank=[];
+ const add=(id,category,scope,prompt,options,explanation,pdfPage)=>{
+   if(!Array.isArray(options)||options.length!==4)throw new Error('題庫選項數量異常：'+id);
+   bank.push({id,category,scope,prompt,options,correctIndex:0,explanation,pdfPage});
+ };
+ // 共同題：每題必須能直接對應目前 A / B（NPC）事故，或清楚標示同事故的延伸假設。
+ add('c01','事故處置','all','{{A}}與{{B}}發生碰撞，有人受傷倒地。此時最適當的第一個處置是什麼？',['確認現場安全並優先通報119救護、110報警','立刻交換賠償金額後離開','先在網路公布對方車牌','先把車子開去修好'],'事故有傷者時應先確保安全、優先救護並報警；手冊介紹現場「放、撥、劃、移、等」。',11);
+ add('c02','事故處置','all','{{A}}與{{B}}碰撞後，車輛停在車道上。為降低二次事故風險，應先採取哪項措施？',['開啟警示燈並在適當距離設置故障標誌','關閉車燈讓後車自行閃避','請傷者站在車道指揮交通','未確認安全便原地倒車'],'現場處置的「放」包括開啟警示燈及於適當距離放置故障標誌。',11);
+ add('c03','事故處置','all','{{A}}與{{B}}發生輕微碰撞，雙方均無人傷亡且車輛能行駛。移車前何者較妥當？',['先拍照及標繪車輛位置，再移至路邊','不必記錄現場，直接各自離去','先刪除行車紀錄器檔案','任意更動現場證物'],'手冊「劃、移」指出無人傷亡且車輛能行駛時應先留存位置及現場資料，再妥適移車。',11);
+ add('c04','事故處置','all','{{A}}與{{B}}相撞，現場有人受傷。針對事故車輛位置，哪個作法符合手冊的原則？',['先救護並保留現場，配合警方蒐證與指示','一定立即清空所有事故車輛','由旁觀者自行決定誰可離開','不報警就先洗車消除痕跡'],'涉及人員傷亡時，手冊強調等待警方蒐證調查，不應任意移動現場；緊急救護仍應優先。',11);
+ add('c05','事故處置','all','{{A}}想為本次與{{B}}的碰撞保留客觀證據，哪種做法最有幫助？',['拍攝事故位置與車損，保存目擊者聯絡方式','只記住車身顏色即可','將手機裡的現場照片刪掉','僅聽對方口頭承諾即可'],'手冊「劃」步驟建議拍照、標繪現場，並保留目擊者資訊。',11);
+ add('c06','事故處置','all','{{A}}與{{B}}發生事故後需要保險理賠，哪個處理流程較完整？',['報警留存資料、通知保險公司、備妥文件後處理理賠','只在聊天室投票決定責任','不留任何事故證據直接申請賠車價','事故發生後只需換新車牌'],'手冊理賠流程包括報案、保險出險、調查、和解及理賠。',10);
+ add('c07','事故處置','all','{{A}}與{{B}}事故的肇事責任尚未釐清時，較適當的做法是？',['報警並保存事故證據，避免自行武斷認定全部責任','由車價高的人決定責任','用誰先講話來分配過失','只要有保強制險就毋須紀錄事故'],'手冊指出一般人難在現場精確判斷肇事責任，建議報警處理。',12);
+ add('c08','事故處置','all','{{A}}與{{B}}在事故現場想立刻和解，下列何者較能保護雙方權益？',['在警方協助及充分確認後留下書面和解紀錄','只以口頭說好且不留資料','直接私下轉帳後刪除事故照片','要求受傷者不要就醫也不要通報'],'手冊建議確認事故及責任，處理和解時留下書面紀錄，勿忽略報警程序。',12);
+ add('c09','保障對象','all','{{A}}與{{B}}的汽車事故造成車上乘客受傷。依手冊，哪一種敘述正確？',['符合條件的車上乘客屬於強制險保障對象','乘客一律不得申請強制險','只有坐前座的乘客可能受保障','僅事故中較貴的車輛乘客受保障'],'強制險基本保障包括被保險車輛乘客與其他事故受害人，不以乘坐位置區分。',18);
+ add('c10','保障對象','all','{{A}}與{{B}}發生碰撞，{{A}}也有部分過失。對於{{A}}依法請求強制險給付，何者正確？',['不能只因{{A}}有部分過失就逕認一定不得申請','只要有1%過失就永遠不賠','必須先由對方承認全部過失','只能改申請車體損失險'],'手冊說明強制險採無過失責任的基本保障制度；仍應依法定被害人資格及給付要件判斷。',15);
+ add('c11','保障對象','all','{{A}}受傷後想申請本次與{{B}}事故的強制險給付，是否必須先得到{{B}}同意？',['不必先經加害人同意，可依法向保險人請求','必須取得對方全家同意','必須先更換汽車車牌','必須先購買任意車體險'],'手冊說明直接請求權，請求權人無須先獲加害人同意或先和解。',24);
+ add('c12','保障對象','all','{{A}}和{{B}}對事故責任仍有爭議，但{{A}}已受傷。手冊所說「直接請求權」主要是指？',['受害人得依法直接向保險人請求給付','受害人一定可要求保險公司賠所有財物','肇事人可以直接決定受害人的醫療金額','受害人只能透過代辦仲介申請'],'手冊強調受害人的直接請求權，不必先取得法院判決才得依規定提出請求。',24);
+ add('c13','保障範圍','all','本次{{A}}與{{B}}事故產生就醫支出及汽車維修費。強制汽車責任保險主要保障哪一類？',['依法定條件給付人身傷害、失能或死亡','全部汽車鈑金與烤漆','被撞壞的交通標誌修復費','手機和隨身財物一律全賠'],'手冊列出傷害醫療、失能、死亡三類給付，不含純粹財物損害。',19);
+ add('c14','保障範圍','all','{{A}}與{{B}}相撞後，{{A}}符合傷害醫療給付條件。依這份112年手冊，醫療給付合計上限為何？',['20萬元','2萬元','100萬元','200萬元'],'手冊所列傷害醫療給付合計最高20萬元；屬112年教材標準，正式使用需核對現行公告。',19);
+ add('c15','保障範圍','all','{{A}}與{{B}}碰撞後，某受害人傷勢符合失能認定。最符合手冊的說法是？',['可依法定失能等級及標準申請失能給付','只要住院就一定全額領200萬元','失能給付只補汽車車損','失能與傷害醫療是同一種車輛修理費'],'手冊介紹失能等級分級給付，不是所有傷者固定領取相同金額。',19);
+ add('c16','保障範圍','all','假設本次{{A}}與{{B}}事故導致一名受害人不幸死亡。依112年教師手冊所列每人死亡給付金額為何？',['200萬元','20萬元','50萬元','400萬元'],'手冊所列死亡給付每人200萬元；為教材所述標準。',19);
+ add('c17','保障範圍','all','{{A}}與{{B}}事故造成車損與體傷。若{{A}}只想用強制險支付車體刮傷，哪個判斷正確？',['車體刮傷屬財物損失，並非強制險人身給付','因為是交通事故就全額賠修車','只有藍色汽車的車損會給付','只要有人受傷，所有手機財損也會給付'],'強制險不承保車輛及隨身財物損害。',13);
+ add('c18','保險架構','all','{{A}}在本次與{{B}}事故中需要修復自己的車體，應先確認是否有投保哪類任意保險？',['車體損失險','強制險的死亡給付','微型電動二輪車掛牌費','人身失能給付'],'手冊車險架構將自身車體損失列為車體損失險保障重點，理賠依契約範圍。',15);
+ add('c19','保險架構','all','若{{A}}對{{B}}事故負賠償責任，且需賠償{{B}}的車損，哪類保險可依承保條件提供額度內保障？',['任意第三人責任險的財損保障','強制險死亡給付','{{A}}的竊盜損失險','{{B}}的駕駛人傷害險'],'手冊指出第三人責任險可以依被保險人法律責任及約定補償第三人財物損害。',14);
+ add('c20','保險架構','all','若{{A}}應對{{B}}負責，賠償額高於強制險及第三人責任險額度，通常可考慮哪種補強保障？',['超額責任險（須依契約約定）','強制險車輛竊盜附加險','個人旅遊不便險','車牌遺失保險'],'手冊說明超額責任險用來補足前階層責任保障額度的不足。',14);
+ add('c21','保險架構','all','本次{{A}}與{{B}}事故顯示責任險可幫助分攤賠償風險。這主要屬於哪種風險管理方式？',['風險移轉','風險規避','風險自留','風險增加'],'手冊將透過保險分散可能的大額損失歸類為風險移轉。',7);
+ add('c22','風險管理','all','{{A}}與{{B}}發生事故後，老師提醒全班：下雨天改搭大眾運輸，避免自行騎車的危險，屬於哪一種風險管理？',['風險規避','風險自留','風險移轉','風險提高'],'手冊以梅雨季不騎車、改搭大眾運輸為風險規避例子。',7);
+ add('c23','風險管理','all','為預防{{A}}與{{B}}這類事故，下次上路前檢查煞車、戴安全帽、保持距離，屬於哪種風險管理？',['風險降低','風險提高','風險自留','風險規避'],'採取防範措施降低事故機率與損害，屬風險降低。',7);
+ add('c24','風險管理','all','{{A}}與{{B}}碰撞後討論小額且可自行承受的損失，決定自行負擔而非轉嫁，較符合哪個觀念？',['風險自留','風險移轉','風險規避','風險消失'],'自行承擔可負擔的小額風險屬風險自留。',7);
+ add('c25','保險制度','all','{{A}}與{{B}}事故後討論：為什麼汽機車車主依法須投保強制汽車責任保險？',['為使交通事故受害人迅速獲得基本人身保障','為保證每個駕駛都不會發生車禍','為讓每次事故所有財物損失都由政府支付','為免除所有事故的民事責任'],'手冊強調政策性保險的社會安全及保障受害人目的。',13);
+ add('c26','保險制度','all','{{A}}與{{B}}事故涉及的強制汽車責任保險，屬於哪一類制度？',['依法律規範的政策性保險','完全不受法規規範的私人抽獎','只能由車廠販賣的車體保固','駕駛任意參加的道路會員制'],'手冊將強制險列為政策性保險。',9);
+ add('c27','保險制度','all','{{A}}因本次與{{B}}事故想了解強制險與任意險的差別，何者正確？',['強制險為法定基本保障；任意險依需求投保以補強風險','兩者都只保障自己汽車的烤漆','任意險必須完全取代強制險','強制險可以代替所有責任險及車體險'],'手冊以強制險作基本保障，任意險補強不同風險與額度。',13);
+ add('c28','保險制度','all','{{A}}與{{B}}事故可能產生民事賠償。強制險已給付的保險金與被保險人對受害人的賠償責任，何者正確？',['依法可視為被保險人損害賠償金額的一部分','強制險給付與賠償一定完全無關','支付保險金會自動消除刑事責任','保險金只能用於重新考駕照'],'手冊指出強制險保險給付依法得計入被保險人的損害賠償金額，避免重複計算。',22);
+ add('c29','投保義務','all','{{A}}與{{B}}發生事故後，{{A}}打算辦理車輛過戶。若強制險完全未投保，依手冊可能產生什麼影響？',['監理機關可能依法不得受理相關異動登記','強制險自動由買主永久免費取得','改換車色就不需保強制險','只要有交通事故即可免除投保'],'手冊指出辦理驗車、牌照異動、過戶等程序須注意強制險是否有效。',22);
+ add('c30','投保義務','all','{{A}}與{{B}}事故後，{{A}}發現自己未投保強制險。哪種觀念較正確？',['未投保可能涉及行政罰及受害人保障問題，應依法補辦','未投保不會有任何法律後果','事故後直接投保即可抹除既有違規','未投保車輛發生事故一定由政府支付所有車損'],'手冊強調汽機車車主有依法投保義務，未投保有行政處罰規範。',17);
+ add('c31','保險制度','all','{{A}}與{{B}}事故後查詢主管機關，強制汽車責任保險的主要監理機關為何？',['金融監督管理委員會','教育部','文化部','國家圖書館'],'教師手冊附件題列強制險主管機關為金管會。',30);
+ add('c32','保險架構','all','{{A}}與{{B}}碰撞，{{A}}另擔心自己的車輛整車被偷。下列哪類任意保險重點在整車失竊？',['竊盜損失險','強制險傷害醫療','強制險死亡給付','第三人責任險的體傷保障'],'手冊將整車失竊風險歸入竊盜損失險；仍依實際保單條款處理。',15);
+ add('c33','風險管理','all','{{A}}看到{{B}}操作有異常，提前減速並預留反應空間。這比較接近手冊哪個交通安全觀念？',['防禦駕駛，預防其他用路人的疏失','只需相信自己完全不會出錯','為了早到而立即加速','只要有保險就可以忽略號誌'],'手冊強調防禦駕駛：除了遵守規則，還要預想他人可能的疏失。',6);
+ add('c34','保障範圍','all','{{A}}與{{B}}事故後，家屬問強制險會不會給付所有精神撫慰金。依手冊，何者較正確？',['強制險有法定給付項目；其他賠償應另依法定責任及任意險判斷','只要有強制險就無上限給付所有精神撫慰金','任何交通事故完全不得請求精神損害','車體損失險一定支付所有精神撫慰金'],'手冊區別強制險法定人身給付及可能另涉民事責任的項目。',14);
+ add('c35','保障範圍','all','{{A}}與{{B}}碰撞後，{{A}}擔心自己醫療費以外的額外損害。強制險是否等同於「所有損失全額賠償」？',['不是，強制險依項目、標準與限額提供基本保障','是，車損及所有收入損失必定全額給付','只有有車牌就能無上限給付','全班答對題目就會自動放寬法定限額'],'手冊說明強制險是基本保障，非全面無限額承保所有損害。',14);
+ add('c36','保險制度','all','本次{{A}}與{{B}}事故若無人受傷、只有車體毀損，對強制險請求的判斷何者適當？',['單純車體財損不屬於強制險給付範圍','所有車體費用均由強制險負擔','對方駕駛沒有過失就全部賠車','只要兩車相撞就固定領20萬元'],'強制險著重人身傷害、失能、死亡，不賠純粹財物損失。',13);
+ add('c37','責任原則','all','{{A}}與{{B}}事故中，警方尚未釐清過失比例。手冊提到強制險「無過失責任」的重點是？',['法定受害人不須先以加害人過失成立作為唯一請求前提','任何人都可要求強制險付車子全部損失','事故責任與所有其他民事訴訟都自動消失','任何情況都不需要任何事故或傷害證明'],'手冊以無過失責任說明受害人的迅速基本保障；實際給付仍有法定條件。',15);
+ add('c38','事故處置','all','{{A}}於事故後覺得保險理賠有疑問，下列何者適合協助確認資料？',['保險公司客服及主管機關提供的正式管道','不明來源的黃牛保證代辦','要求同學代替警方製作假紀錄','直接刪除所有佐證資料'],'手冊提醒保留文件、循正式保險理賠流程，並注意代辦黃牛風險。',15);
+
+ // 兩位學生互撞的專屬推理：問句必須引用當前兩名玩家的身分及實際事實。
+ add('p01','保障對象','player','{{A}}與{{B}}兩位同學各自駕車相撞，{{A}}受傷。關於{{A}}能否申請強制險，哪項正確？',['可視事故車輛及其受害人身分依法判斷，不是因自己也駕車就必然排除','駕駛人只要受傷就只能請求自己的車損保險','兩車相撞時所有人一律不得申請','必須先把車輛過戶給{{B}}'],'兩車事故的駕駛人與一車自撞駕駛人情況不同，須依法判斷受害人身分。',18);
+ add('p02','責任原則','player','{{A}}與{{B}}互撞，假設雙方都有未注意車前狀況的過失。何種說法較符合強制險制度？',['雙方有過失不代表符合法定資格者完全不能請求給付','只有過失較少者能申請所有車損','只要雙方有過失保險契約就失效','要由學生投票過失比例才可申請'],'手冊說明強制險採無過失責任，仍按法定受害人資格及項目請求。',15);
+ add('p03','保險架構','player','{{A}}與{{B}}互撞，{{A}}的車修理費3萬元。若{{B}}有過失且投保任意第三人責任險，哪項最符合車損賠償方向？',['可依{{B}}應負責任及財損承保範圍處理','只能向{{B}}的強制險申請車損','只要{{A}}有強制險就能報銷全部修車','車損一定由特別補償基金支付'],'第三人責任險財損保障須考量法律責任、保額及條款，非強制險給付項目。',14);
+ add('p04','保障對象','player','{{A}}與{{B}}各駕一車相撞，{{A}}的乘客受傷。哪項判斷最適當？',['乘客可依事故與法定資格檢視強制險人身給付','乘客不論何時都完全沒有保障','乘客只能要求支付車體烤漆','必須先買車體竊盜險'],'手冊指出符合條件的乘客是強制險的重要保障對象。',18);
+ add('p05','責任原則','player','{{A}}與{{B}}對誰闖紅燈有爭議，{{A}}已取得診斷證明。依法請求強制險基本人身給付時，哪項不應被要求作為一律必要的先決條件？',['一定先取得法院最終判決判定{{B}}全部有過失','依法備妥事故證明','提出符合法定項目的就醫資料','查明可請求之保險人'],'直接請求與無過失責任的制度設計，並非一律須先等民事判決確定過失。',24);
+ add('p06','事故處置','player','{{A}}與{{B}}在路口擦撞，{{B}}請{{A}}不要報警直接各自開走。哪個作法較符合手冊？',['通報並妥善保留現場資料、按流程處理','為了避免麻煩立刻消失現場','先刪除雙方行車紀錄器','將責任全部交由社群媒體決定'],'手冊強調報警、蒐證與事故紀錄，以保障後續處理權益。',11);
+ add('p07','保險架構','player','{{A}}與{{B}}互撞後，{{A}}負有部分損害賠償責任，雙方傷者另有高額求償。何種保障可補足強制險法定給付不足的責任風險？',['依承保約定的任意第三人責任險','機車掛牌費','無關的手機延長保固','只靠強制險的車體險'],'手冊將任意第三人責任險列為補強強制險的責任保障。',14);
+ add('p08','保險架構','player','{{A}}與{{B}}兩車相撞，{{A}}只投保強制險但希望自己車體全額理賠。應如何判斷？',['強制險不賠車損，應再看車體險或法律責任等其他途徑','強制險自動包含甲乙丙式車體保險','強制險只要當年繳費就必賠所有車損','只要是兩名同學相撞，車損變成人身損失'],'手冊圖表區分強制險、車體損失險與第三人責任險。',13);
+ add('p09','保障範圍','player','{{A}}與{{B}}互撞，{{A}}受傷醫療費2萬元、車損5萬元。假設醫療費均屬可給付項目且未達限額，下列何者最正確？',['強制險可依法處理2萬元醫療費，但不支付5萬元車損','可用強制險直接領7萬元全損','只能用強制險支付5萬元車損','醫療費完全不是強制險項目'],'本題將人身傷害醫療與車體損失分開，金額是假設並非自動核准。',19);
+ add('p10','保險制度','player','{{A}}與{{B}}互撞，{{A}}因已有保險給付而與{{B}}協商民事賠償。何者正確？',['符合條件的保險給付依法可計入已賠償金額','保險給付一定是法院罰金','同一筆費用可無限重複索賠','只要有保險就完全免除其他法定義務'],'手冊說明強制險給付可作為被保險人損害賠償金額的一部分。',22);
+ add('p11','事故處置','player','{{A}}與{{B}}互撞，雙方都認為是對方轉彎不當。老師要求有客觀證據，哪項最有價值？',['保留號誌、行車紀錄器、撞擊位置和相關佐證','只比較哪個人說話比較大聲','刪除對自己不利的影像','不用看現場，直接以汽車價格判斷'],'事故調查應重視客觀紀錄與現場蒐證。',11);
+ add('p12','責任原則','player','{{A}}與{{B}}互撞後，{{B}}自認完全沒過失。對{{A}}符合條件的強制險人身給付，哪種說法較妥當？',['不應只以{{B}}單方面否認過失就排除所有依法請求的可能','{{B}}說沒有過失就一定不可能有任何請求','若{{A}}受傷，{{A}}車損就必定由強制險給付','只有警察處罰{{B}}後才能就醫'],'手冊說明無過失責任與直接請求的基本精神。',15);
+ add('p13','保障對象','player','{{A}}與{{B}}分別駕車，假設{{B}}的乘客也受傷。下列哪個人不會因身分本身就被排除於強制險受害人範圍？',['符合條件的{{B}}車上乘客','只要坐在車內就永遠不是受害人','只有行人才有基本保障','只有駕駛人能申請乘客的全部財物損失'],'手冊指出被保險車輛乘客及其他事故受害人可能屬保障對象。',18);
+ add('p14','風險管理','player','{{A}}追撞{{B}}的車尾。從手冊列出的常見肇因來看，最值得檢討的是哪個駕駛行為？',['保持適當跟車距離並注意車前狀況','優先比較保險公司的商標','調高音樂音量以維持精神','先查看{{B}}的車子年份'],'手冊事故肇因排行包含未注意車前狀況及未保持安全距離。',5);
+ add('p15','風險管理','player','{{A}}轉彎時與直行的{{B}}相撞，欲降低類似事故，何者最好？',['遵守轉彎、讓車及號誌規定並注意來車','只增加保險額度但忽略路口觀察','只要投保就能任意搶先轉彎','只靠其他駕駛替自己踩煞車'],'手冊引用交通事故常見肇因包括未依規定讓車、違規轉彎。',5);
+ add('p16','投保義務','player','{{A}}與{{B}}兩車相撞，{{A}}以為只有汽車要保強制險、機車不用保。哪個說法正確？',['汽車及機車均有依法投保強制險的義務','只有超過2000cc汽車需要投保','機車只要戴安全帽即可免投保','只有職業司機需要投保'],'手冊說明強制險適用汽車、機車及依法納管的微型電動二輪車等。',17);
+ add('p17','保險架構','player','{{A}}與{{B}}互撞，雙方均僅投保強制險。哪種風險仍有明顯保障缺口？',['事故引起的汽車修復及其他財物賠償責任','符合資格的傷害醫療基本給付','符合資格的死亡基本給付','符合資格的失能基本給付'],'手冊指出強制險不賠財損，宜視需求補足任意責任與車體保障。',14);
+ add('p18','保障範圍','player','{{A}}與{{B}}互撞，兩人都有受傷，且都想一次請求一大筆固定「車禍慰問金」。如何理解強制險較適當？',['依法律規定的傷害醫療、失能、死亡等給付標準判斷','只要兩人都是學生就固定領100萬元','不看任何傷勢資料就人人領200萬元','強制險只核發交通違規罰單'],'強制險依法定項目與標準提供基本人身保障，非無條件固定發放一筆慰問金。',19);
+ add('p19','保險制度','player','{{A}}與{{B}}互撞後，{{A}}說政府強制投保是為了讓所有人都不用負責。何者較正確？',['制度是提供受害人基本保障，並非免除所有其他法律責任','只要有強制險肇事後都不用報警','保險公司會代替法院判定刑事有罪','強制險會無條件支付所有額外的罰鍰'],'手冊說明強制險目的在受害人基本保障與分擔責任風險。',13);
+ add('p20','責任原則','player','{{A}}與{{B}}發生車禍後，兩人想把「強制險請求資格」與「侵權損害賠償責任」當成完全相同。哪個觀念正確？',['兩者屬不同法律判斷，強制險有無過失基本保障設計','所有強制險給付都需先確定對方刑事定罪','有強制險就不會有侵權責任','車損給付與傷害醫療完全沒有差別'],'手冊以三層保障圖區別強制險的基本給付與另依過失責任判斷的任意責任保障。',14);
+
+ // NPC題含「一般 NPC」「逃逸失聯」等；沒有被設定的事實不得逕當既成事實。
+ add('n01','保障對象','npc','{{A}}與一輛 NPC 汽車碰撞，{{A}}受傷。關於請求強制險給付，何者較正確？',['可依法定被害人身分向適當保險人提出人身給付請求','只能請求{{A}}的手機維修','NPC是電腦角色所以必定完全沒有保險','一有事故就可由強制險賠{{A}}全車烤漆'],'NPC在遊戲中代表另一輛真實汽車，法律保障仍須看事故、投保及法定資格。',18);
+ add('n02','保險架構','npc','{{A}}若對 NPC 汽車碰撞事故有應負的民事責任，NPC 車輛需要修車，最相關的任意保障為何？',['第三人責任險的財物損害保障','強制險醫療給付','{{A}}的竊盜險','NPC自己的死亡給付'],'對第三人的財物賠償，應看法律責任及任意第三人責任險財損條款。',14);
+ add('n03','保險架構','npc','NPC 汽車追撞{{A}}，{{A}}受傷又車損。下列何者最正確？',['人身損害可能涉及強制險，車損另依責任或任意險處理','強制險可無上限賠全車損','只要NPC有投保竊盜險就會全額給付醫療','因NPC撞人，所有財損立即轉為人身傷害'],'手冊區分強制險人身保障與任意第三人責任險財損。',14);
+ add('n04','保障對象','npc','{{A}}撞上NPC汽車，NPC汽車內乘客受傷。哪項描述符合強制險的保障重點？',['符合條件的乘客人身傷害可能屬給付對象','乘客一律不屬於被害人','只有NPC的車身才會受保障','乘客要先在遊戲投票勝出才能請求'],'手冊指出強制險保障包含車內乘客等人身受害者。',18);
+ add('n05','特殊補償','npc','假設本次撞上{{A}}的NPC汽車其實「未投保強制險」，{{A}}因此受傷且符合法定條件，應評估哪個制度？',['汽車交通事故特別補償基金','車廠新車保固','自行車停車收費基金','車體烤漆保險'],'手冊列未保險汽車為特別補償基金可依法申請之情形之一。',25);
+ add('n06','特殊補償','npc','假設撞上{{A}}的NPC汽車是失竊車，且未經被保險人同意使用，符合其他法定條件時可評估何者？',['向特別補償基金請求人身補償','要求車商保固全額支付財損','不管任何資格自動領取車價','只能申請汽車烤漆優惠'],'手冊將未經被保險人同意使用或管理的事故車輛列為特別補償法定情形。',25);
+ add('n07','特殊補償','npc','假設{{A}}遭到農用動力車輛撞傷，而該事故車依法無須訂立強制車險契約。若符合法定要件，可考慮何種保障？',['特別補償基金的人身補償','強制險車體烤漆給付','車輛免費更換零件','道路照明費補貼'],'手冊列事故汽車依法無須訂立強制險契約的情形為特別補償基金適用類型之一。',25);
+ add('n08','追償例外','npc','假設NPC駕駛酒精濃度超過法定標準，撞傷{{A}}。若符合強制險給付要件，保險人後續可能如何處理？',['先依法給付受害人，再依法向應負責的被保險人追償','因酒駕就必定不讓受害人有任何基本保障','將所有車損直接當作傷害醫療','讓學生代替法院決定刑事判決'],'手冊列酒駕屬特定情形下保險給付後得依法追償的原因。',24);
+ add('n09','追償例外','npc','假設NPC駕駛無照駕車撞傷{{A}}，手冊指出強制險可能出現哪種處理？',['符合條件時仍對受害人給付，之後保險人可依法追償','一律改由車商維修費充當人身給付','NPC沒駕照就代表受害人沒有權利','僅要求NPC補辦駕照就能消除所有責任'],'手冊將無照駕駛列為保險人給付後得依法行使追償的事由之一。',24);
+ add('n10','追償例外','npc','假設NPC駕駛吸食毒品後撞傷{{A}}。何者符合手冊所述的強制險例外機制？',['符合給付條件時先保障受害人，保險人再依法處理追償','吸毒就能讓車損全部變成醫療給付','受害人須先與加害人喝酒和解','受害人一律不能申請任何給付'],'手冊列吸食毒品等情形屬保險人可能追償的原因。',24);
+ add('n11','追償例外','npc','假設NPC駕駛故意駕車衝撞{{A}}，符合強制險請求條件時，手冊描述哪種可能結果？',['受害人可先獲依法給付，保險人再依法追償','故意行為可免除對受害人的任何保護','事故車輛因此由強制險全額修復','只須向車行索取免費導航'],'手冊將故意行為列為保險人可能依法追償的例外。',24);
+ add('n12','追償例外','npc','假設NPC駕駛為逃避拘捕而駕車肇事，造成{{A}}受傷。下列何者符合手冊？',['符合要件時保險人可先給付受害人，再依法追償','逃避拘捕就能免除所有民事責任','受害人只能申請車損','特別補償基金會無條件幫忙買新車'],'手冊列犯罪行為或逃避拘捕等特定事由，保險人可能於給付後依法追償。',24);
+ add('n13','追償例外','npc','NPC駕駛一般違規闖紅燈撞上{{A}}，未有酒駕、無照等特定事實。哪個說法較正確？',['不能只憑闖紅燈就直接認定屬手冊列舉的五大保險人追償事由','一般闖紅燈必然等於毒駕','違規闖紅燈等同失竊車輛','只要闖紅燈，車損就由強制險給付'],'手冊特列酒駕、毒駕、故意、犯罪或逃避拘捕、無照等追償情形；一般違規與特定追償事由應區分。',24);
+ add('n14','保障對象','npc','NPC車輛與{{A}}相撞，NPC駕駛自己也受傷。下列何者較正確？',['兩車事故應分別依各人身分、各車保險及法定資格判斷','NPC的車一定可用強制險修好','只有{{A}}的車漆屬於人身損害','NPC只要是電腦角色就不需考慮法律保障'],'兩車事故中不同駕駛、乘客請求資格不可混為一談。',18);
+ add('n15','保險架構','npc','若{{A}}碰撞NPC汽車後，NPC駕駛受傷，且{{A}}負有依法賠償責任，哪項任意保險保障最貼近不足部分？',['任意第三人責任險的體傷保障','{{A}}的車體竊盜險','車窗隔熱紙保固','強制險的車體維修'],'手冊指出第三人責任險體傷可依責任及額度補強強制險不足。',14);
+ add('n16','投保義務','npc','假設NPC汽車沒保強制險便上路與{{A}}相撞，哪項原則正確？',['車主依法有投保義務，未投保可能受行政處罰','只要車身顏色是白色即可免保','只要發生事故便追認過去所有保單','只有乘客而沒有駕駛人需要買強制險'],'手冊列汽機車強制投保及未投保處罰規定。',17);
+ add('n17','特殊補償','npc','如果{{A}}因本次NPC事故受傷，且由特別補償基金依法補償後，基金是否可能向應負責者求償？',['可能，基金依法補償後仍可能向加害人求償','不可能，任何人都永久免責','基金一定負擔NPC的所有車損','基金會自動免除所有交通罰單'],'手冊指出特別補償基金補償後，仍可能依法向加害人求償。',25);
+ add('n18','事故處置','npc','NPC汽車追撞{{A}}後，NPC駕駛仍留在現場。{{A}}應如何協助後續理賠？',['報警、保存現場與對方資料，並通知保險公司','不要確認人有沒有受傷，立即離去','只將事故畫面截圖作為唯一必要文件','先在網路公布對方地址而不報警'],'手冊強調現場處置五步驟及後續通知保險公司。',11);
+ add('n19','風險管理','npc','{{A}}發現NPC汽車突然逼近，提前放慢速度並觀察後方。這是哪種觀念？',['防禦駕駛與風險降低','只靠運氣規避所有責任','必須先撞擊確認風險','有投保就必須維持最高速度'],'手冊鼓勵防禦駕駛，預防其他車輛疏失造成事故。',6);
+ add('n20','保險架構','npc','假設{{A}}對NPC事故有賠償責任，NPC的醫療、財損合計超過任意第三人責任險額度。何種保險可依約補強？',['超額責任險','只補自己車身的竊盜險','強制險車身維修','手機碎屏保險'],'手冊將超額責任險作為第三層責任保障。',23);
+ add('n21','二輪車法規','npc','假設本次與{{A}}碰撞的NPC改為「微型電動二輪車」，車主依法上路前應完成哪組事項？',['投保強制險、登記領牌及懸掛牌照','只有把車噴成黃色','購買車體竊盜險即可免領牌','只帶耳機就可以直接上路'],'手冊介紹微型電動二輪車投保、領牌後方得依法上路的制度。',20);
+ add('n22','二輪車法規','npc','假設本次與{{A}}碰撞的NPC騎的是微型電動二輪車，依手冊所列速限，行駛速率不得超過？',['25 km/h','50 km/h','80 km/h','120 km/h'],'手冊列微型電動二輪車速限25 km/h。',20);
+ add('n23','二輪車法規','npc','假設本次與{{A}}碰撞的NPC改騎微型電動二輪車，駕駛人年滿幾歲始可依法騎乘？',['14歲','10歲','12歲','18歲'],'手冊列微型電動二輪車騎乘年齡為14歲以上。',20);
+ add('n24','二輪車法規','npc','假設本次與{{A}}碰撞的NPC改騎微型電動二輪車，哪項行為符合手冊所述規定？',['佩戴安全帽且不載人','在後座搭載另一名乘客','擅自解除限速器','不戴安全帽便可高速騎乘'],'手冊指出微型電動二輪車須戴安全帽、不得載人及不得擅改控制裝置。',20);
+ add('n25','二輪車法規','npc','假設本次與{{A}}碰撞的NPC是電動輔助自行車而非微型電動二輪車，依手冊判別的重要差異為何？',['電動輔助自行車有人力腳踏輔助，微型電動二輪車以電力直接輸出','兩者都一律要發汽車駕照','兩者都必定是電動輪椅','微型電動二輪車一定沒有動力'],'手冊區分電動輔助自行車與微型電動二輪車的構造與管理要求。',20);
+ add('n26','二輪車法規','npc','假設本次與{{A}}碰撞的是NPC微型電動二輪車且造成傷者，對「車種與強制險」何者正確？',['微型電動二輪車依規定也須投保強制險','微型電動二輪車一律沒有強制險制度','必須先改裝成汽車才能合法納保','只要沒有車損就一律免投保'],'手冊將微型電動二輪車列為須依法投保強制險的車種。',19);
+
+ // 僅真正肇逃且「事後仍無法查明事故車輛」可選的專題，避免把逃逸與無法查究劃等號。
+ add('h01','特殊補償','hitRun','撞上{{A}}的NPC汽車逃逸，事後仍無法查明肇事車。{{A}}因此受傷，符合條件時應向哪個機制評估補償？',['汽車交通事故特別補償基金','汽車烤漆保固','路燈維修基金','觀光旅遊補助'],'手冊列事故汽車無法查究為可依規定向特別補償基金請求補償之情形。',25);
+ add('h02','特殊補償','hitRun','{{A}}遭不明NPC汽車撞傷，事後查無車籍。對特別補償基金，哪個說法正確？',['符合條件時可就法定人身損害申請補償','一定補償{{A}}全部車輛維修','只要無法查究就不可能獲基本保障','基金只提供免費汽車保養'],'特別補償基金著重受害人的基本人身保障，不是純粹財損保險。',25);
+ add('h03','事故處置','hitRun','NPC撞上{{A}}後逃逸，{{A}}最應先保存哪種資訊以協助查明？',['事故現場照片、行車紀錄影像及目擊者線索','只保留遊戲積分','完全不報警、不留資料','刪除所有路口攝影紀錄'],'手冊事故現場五步驟含報警、蒐證與目擊者聯絡資訊。',11);
+ add('h04','特殊補償','hitRun','{{A}}遭撞傷，NPC駕駛逃逸但隔天已查明車籍及有效強制險。哪項判斷最合理？',['不能再僅以「肇車無法查究」為由認定適用該特補情形，應確認保險理賠途徑','只要曾逃逸就必定永遠查無肇事車','一律由基金賠全部車損','不能向任何保險公司提出請求'],'手冊以事故汽車無法查究為基金法定事由；已查明車輛時應重新判斷保險途徑。',25);
+ add('h05','特殊補償','hitRun','本次NPC肇逃且無法查明車輛，{{A}}既有醫療支出又有車損。特別補償基金主要承接何種保障？',['法定人身傷害等基本補償','汽車全額修理費','手機保固延長','違規罰鍰代繳'],'特別補償基金的補償範圍依強制險法定人身給付規定，而非車體財損。',25);
+ add('h06','特殊補償','hitRun','{{A}}遭查無車籍的NPC汽車撞傷。向特別補償基金請求時，是否必須先取得加害人書面同意？',['不必先取得無法查究的加害人同意，仍依法律程序檢附資料','必須取得逃逸者全家簽名','必須先付高額代辦保證金','必須先支付車輛改裝費'],'手冊指出可依法向保險人或特補基金直接請求，無須先取得加害人同意。',24);
+ add('h07','特殊補償','hitRun','本案NPC逃逸且無法查明，{{A}}向特別補償基金提出申請。誰是主要需被保障的對象？',['符合法定條件的汽車交通事故人身受害者','逃逸車輛的保養廠','事故後要換車的人一律全額補貼','僅是車體烤漆店'],'基金制度目的在使特定無法由保險人給付的事故受害人獲基本人身保障。',25);
+ add('h08','特殊補償','hitRun','{{A}}遭不明NPC車輛撞傷後，保險人暫時無法確認該車有無投保。哪個做法合理？',['報警並蒐集資料，釐清車輛及可請求的保險或基金管道','直接把對方沒投保當成已證實','只要對方跑掉就可要求所有車損現金','不必保存事故發生時間地點'],'手冊區分事故汽車無法查究與未保險等特補事由，應先查明證據。',25);
+
+ const kind=caseInfo.kind==='player'?'player':'npc';
+ return bank.filter(q=>q.scope==='all'||q.scope===kind||(q.scope==='hitRun'&&kind==='npc'&&!!caseInfo.meta?.hitRun));
 }
-function fallbackQuestion(){
- let n=questionSerial+1,mode=n%4;
- if(mode===0)return{id:`x_${n}`,prompt:`本局第 ${n} 起事故延伸判斷：若損失項目是「車輛維修費」，是否屬於強制險法定人身給付？`,options:['不屬於','一定屬於','只要有人受傷就屬於','只要有報警就屬於'],correctIndex:0,explanation:'車輛維修費屬財物損失，不是法定人身給付。'};
- if(mode===1)return{id:`x_${n}`,prompt:`本局第 ${n} 起事故延伸判斷：哪一項最符合強制險的人身保障方向？`,options:['事故造成的傷害醫療','車體烤漆','手機損壞','道路設施維修'],correctIndex:0,explanation:'強制險法定保障聚焦事故受害人的人身損害。'};
- if(mode===2)return{id:`x_${n}`,prompt:`本局第 ${n} 起事故延伸判斷：傷勢後續符合失能程度時，哪一項屬於強制險重要給付類型？`,options:['失能給付','車輛折舊','拖吊費','營業損失'],correctIndex:0,explanation:'失能是強制險重要法定人身給付類型之一。'};
- return{id:`x_${n}`,prompt:`本局第 ${n} 起事故延伸判斷：強制險的法定保障重點應如何描述？`,options:['以交通事故人身損害保障為核心','所有財產損失全額保障','只保障車輛本身','只處理道路修復'],correctIndex:0,explanation:'強制險以交通事故受害人的基本人身保障為核心。'}
+
+function fallbackQuestion(caseInfo){
+ // 只有在本次事故類型所有固定題均已抽完時才啟用；每回合金額重新生成且不重複題號。
+ const seq=questionSerial+1,med=(12+(seq*17)%85)*1000,repair=med+35000;
+ const fmt=n=>n.toLocaleString('zh-TW');
+ return {id:'dynamic_'+seq,category:'動態理賠計算',scope:caseInfo.kind,
+  prompt:`延伸${caseInfo.kind==='player'?'同學互撞':'NPC交通事故'}案例：假設有資格請求強制險的受害人，合於傷害醫療給付規定的費用為 ${fmt(med)} 元、車損為 ${fmt(repair)} 元，且尚未達醫療給付限額。下列哪一金額可能列入強制險傷害醫療給付？`,
+  options:[`${fmt(med)} 元`,`${fmt(med+repair)} 元`,`${fmt(repair)} 元`,'0元，因為同時有車損'],correctIndex:0,
+  explanation:'傷害醫療與車損應分開；題目已假設醫療費合規、被害人資格成立且未達限額。金額是教學示例，須以實際審認為準。',pdfPage:19};
 }
+function questionContext(caseInfo){
+ const a=caseInfo.victims?.[0]?.name||'事故當事人';
+ const b=caseInfo.kind==='player'?(caseInfo.victims?.[1]?.name||'另一位同學'):'NPC汽車';
+ return {A:a,B:b};
+}
+function fillCaseText(value,ctx){return String(value).replaceAll('{{A}}',ctx.A).replaceAll('{{B}}',ctx.B)}
+const QUIZ_HISTORY_KEY='cityInsuranceQuestionHistory_v734';
+let questionCategoryCounts={},lastQuestionCategory='',timedQuestionSerial=0;
+function pastQuestionHistory(){try{return JSON.parse(localStorage.getItem(QUIZ_HISTORY_KEY)||'[]')}catch(e){return []}}
 function buildQuestion(caseInfo){
- let candidates=questionCandidates(caseInfo),unused=candidates.filter(q=>!usedQuestionIds.has(q.id)),chosen=unused.length?pick(unused):fallbackQuestion();
+ const all=questionCandidates(caseInfo),remaining=all.filter(q=>!usedQuestionIds.has(q.id));
+ let chosen;
+ if(remaining.length){
+  // 種類分層：優先選最少出現的主題，避免連續幾題都考相同保障範圍。
+  const distinct=remaining.filter(q=>q.category!==lastQuestionCategory);
+  const base=distinct.length?distinct:remaining;
+  const history=new Set(pastQuestionHistory());
+  const fresh=base.filter(q=>!history.has(q.id));
+  const pool=fresh.length?fresh:base;
+  const min=Math.min(...pool.map(q=>questionCategoryCounts[q.category]||0));
+  const balanced=pool.filter(q=>(questionCategoryCounts[q.category]||0)<=min+1);
+  chosen=pick(balanced);
+ }else chosen=fallbackQuestion(caseInfo);
  usedQuestionIds.add(chosen.id);questionSerial++;
- let options=chosen.options.map((text,i)=>({text,correct:i===chosen.correctIndex}));
- for(let i=options.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[options[i],options[j]]=[options[j],options[i]]}
- return{id:'q_'+Date.now()+'_'+questionSerial,templateId:chosen.id,accidentSummary:accidentSummaryFor(caseInfo),prompt:chosen.prompt,options:options.map(x=>x.text),correctIndex:options.findIndex(x=>x.correct),explanation:chosen.explanation,revealed:false,closed:false,answers:{},createdAt:Date.now()}
+ lastQuestionCategory=chosen.category;
+ questionCategoryCounts[chosen.category]=(questionCategoryCounts[chosen.category]||0)+1;
+ try{localStorage.setItem(QUIZ_HISTORY_KEY,JSON.stringify([...pastQuestionHistory().filter(id=>id!==chosen.id),chosen.id].slice(-110)))}catch(e){}
+ const ctx=questionContext(caseInfo);
+ let opts=chosen.options.map((txt,i)=>({text:fillCaseText(txt,ctx),correct:i===chosen.correctIndex}));
+ for(let i=opts.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[opts[i],opts[j]]=[opts[j],opts[i]]}
+ return {id:'q_'+Date.now()+'_'+questionSerial,templateId:chosen.id,category:chosen.category,
+  pdfPage:chosen.pdfPage,accidentSummary:accidentSummaryFor(caseInfo),
+  prompt:fillCaseText(chosen.prompt,ctx),options:opts.map(x=>x.text),correctIndex:opts.findIndex(x=>x.correct),
+  explanation:fillCaseText(chosen.explanation,ctx)+`（教師手冊PDF第${chosen.pdfPage}頁）`,
+  revealed:false,closed:false,answers:{},createdAt:Date.now()};
 }
+
 async function triggerCollision(){
  if(collisionDone||paused)return;collisionDone=true;paused=true;stopEnvironmentCycle();
  let node=NODES[collisionNode],updates={status:'question'},victims=[];collisionAmbientId=null;
@@ -567,9 +721,9 @@ async function triggerCollision(){
   updates[`players/${id}/lastFeedback`]=null
  }
  let q=buildQuestion({kind:collisionMeta?.kind||'player',meta:collisionMeta||{},victims});
- updates.globalQuestion=q;updates[`usedQuestions/${q.templateId}`]=true;await roomRef.update(updates);renderCars()
+ updates.globalQuestion=q;updates[`usedQuestions/${q.templateId}`]=true;updates[`usedQuestionCategories/${q.category}`]=questionCategoryCounts[q.category];await roomRef.update(updates);renderCars()
 }
-function renderQuestion(){let q=currentQuestion;if(!q||q.closed){$('qOverlay').classList.add('hidden');return}$('qOverlay').classList.remove('hidden');$('accDetail').textContent=q.accidentSummary||'';$('qPrompt').textContent=q.prompt||'';let answers=q.answers||{},total=Object.values(players).filter(p=>p.ready).length,count=Object.keys(answers).length;$('qCount').textContent=`${count} / ${total} 已作答`;$('answeredText').textContent=total?`全班作答率 ${Math.round(count/total*100)}%`:'等待作答';$('bars').innerHTML=(q.options||[]).map((o,i)=>{let c=Object.values(answers).filter(a=>Number(a.option)===i).length,pct=total?Math.round(c/total*100):0,cls=q.revealed?(i===Number(q.correctIndex)?'correct':'wrongpick'):'';return `<div class="answerbar"><div class="letter">${String.fromCharCode(65+i)}</div><div class="track ${cls}"><div class="fill" style="width:${pct}%"></div><div class="label">${o}</div></div><div class="pct">${pct}%</div></div>`}).join('');$('revealBtn').classList.toggle('hidden',!!q.revealed);$('continueBtn').classList.toggle('hidden',!q.revealed);$('explain').classList.toggle('hidden',!q.revealed);$('explain').textContent=q.revealed?q.explanation||'':''}
+function renderQuestion(){let q=currentQuestion;if(!q||q.closed){$('qOverlay').classList.add('hidden');return}$('qOverlay').classList.remove('hidden');$('accDetail').textContent=q.accidentSummary||'';$('qPrompt').textContent=q.prompt||'';let answers=q.answers||{},total=Object.values(players).filter(p=>p.ready).length,count=Object.keys(answers).length;$('qCount').textContent=`${count} / ${total} 已作答`;$('answeredText').textContent=total?`全班作答率 ${Math.round(count/total*100)}%`:'等待作答';$('bars').innerHTML=(q.options||[]).map((o,i)=>{let c=Object.values(answers).filter(a=>Number(a.option)===i).length,pct=total?Math.round(c/total*100):0,cls=q.revealed?(i===Number(q.correctIndex)?'correct':'wrongpick'):'';return `<div class="answerbar"><div class="letter">${String.fromCharCode(65+i)}</div><div class="track ${cls}"><div class="fill" style="width:${pct}%"></div><div class="label">${safeText(o)}</div></div><div class="pct">${pct}%</div></div>`}).join('');$('revealBtn').classList.toggle('hidden',!!q.revealed);$('continueBtn').classList.toggle('hidden',!q.revealed);$('explain').classList.toggle('hidden',!q.revealed);$('explain').textContent=q.revealed?q.explanation||'':''}
 function setupRoomLifecycle(ref){
   if(heartbeatTimer)clearInterval(heartbeatTimer);
   try{ref.onDisconnect().remove()}catch(e){}
@@ -577,7 +731,7 @@ function setupRoomLifecycle(ref){
   window.onbeforeunload=()=>{try{ref.child('hostOnline').set(false)}catch(e){}};
   $('hostBadge').textContent='🟢 老師在線｜Firebase 已連線';
 }
-function watchRoom(){roomRef.child('players').on('value',snap=>{players=snap.val()||{};for(const [id,p] of Object.entries(players)){if(sim[id])sim[id].speed=Number(p.speed??sim[id].speed??40)}renderSide();renderCars()});roomRef.child('environment').on('value',s=>{currentEnvironment=s.val()||null;renderEnvironment()});roomRef.child('usedQuestions').on('value',s=>{usedQuestionIds=new Set(Object.keys(s.val()||{}))});roomRef.child('globalQuestion').on('value',s=>{currentQuestion=s.val();renderQuestion()});roomRef.child('status').on('value',s=>{let st=s.val();if(st==='question'){stopEnvironmentCycle()}if(st==='finished'){running=false;paused=false;stopEnvironmentCycle();$('mapStatus').textContent='⏹️ 本局已結束'}})}
+function watchRoom(){roomRef.child('players').on('value',snap=>{players=snap.val()||{};for(const [id,p] of Object.entries(players)){if(sim[id])sim[id].speed=Number(p.speed??sim[id].speed??40)}renderSide();renderCars()});roomRef.child('environment').on('value',s=>{currentEnvironment=s.val()||null;renderEnvironment()});roomRef.child('usedQuestions').on('value',s=>{usedQuestionIds=new Set(Object.keys(s.val()||{}))});roomRef.child('usedQuestionCategories').on('value',s=>{questionCategoryCounts=s.val()||{}});roomRef.child('globalQuestion').on('value',s=>{currentQuestion=s.val();renderQuestion()});roomRef.child('status').on('value',s=>{let st=s.val();if(st==='question'){stopEnvironmentCycle()}if(st==='finished'){running=false;paused=false;stopEnvironmentCycle();$('mapStatus').textContent='⏹️ 本局已結束'}})}
 
 function renderMemberList(){
   if(!$('memberList')) return;
@@ -586,7 +740,7 @@ function renderMemberList(){
   $('memberList').innerHTML=arr.length?arr.map((p,i)=>`<div class="memberRow"><div class="memberNo">${i+1}</div><div><b>${safeText(p.name||'未命名')}</b><small>${p.connected===false?'連線中斷':'已加入房間'}</small></div><div class="memberState ${p.ready?'ready':''}">${p.ready?'READY':'準備中'}</div></div>`).join(''):'<div style="padding:24px;text-align:center;font-weight:900;color:#789">目前尚無學生加入</div>';
 }
 function studentInviteUrl(){
-  return new URL(`student.html?v=732&room=${encodeURIComponent(room)}`, window.location.href).href;
+  return new URL(`student.html?v=734&room=${encodeURIComponent(room)}`, window.location.href).href;
 }
 function showInvite(){
   if(!room) return;
@@ -626,7 +780,7 @@ $('closeFinalBtn').onclick=()=>$('finalOverlay').classList.add('hidden');
 $('resetFromFinalBtn').onclick=async()=>{$('finalOverlay').classList.add('hidden');$('resetBtn').click()};
 $('stopBtn').onclick=async()=>{
   if(!roomRef)return;
-  running=false;paused=true;stopEnvironmentCycle();$('stopBtn').disabled=true;$('startBtn').disabled=true;
+  running=false;paused=true;stopEnvironmentCycle();stopQuestionClock();$('stopBtn').disabled=true;$('startBtn').disabled=true;
   if($('qOverlay'))$('qOverlay').classList.add('hidden');
   try{let ps=await roomRef.child('players').once('value');players=ps.val()||players}catch(e){}
   let updates={status:'finished',finishedAt:firebase.database.ServerValue.TIMESTAMP};
@@ -640,16 +794,16 @@ $('stopBtn').onclick=async()=>{
 };
 
 $('createBtn').onclick=async()=>{
-stopEnvironmentCycle();
+stopEnvironmentCycle();stopQuestionClock();
 let connectedSnap=await db.ref('.info/connected').once('value');
 if(connectedSnap.val()!==true){$('setupMsg').textContent='Firebase 尚未連線，請確認網路後再建立房間';return}
-let code=$('roomInput').value.trim();if(!/^\d{4}$/.test(code))code=String(Math.floor(1000+Math.random()*9000));let ref=db.ref(`rooms/${code}`),old=await ref.once('value');if(old.exists()){let online=old.child('hostOnline').val(),beat=Number(old.child('hostHeartbeat').val()||0);if(online&&Date.now()-beat<18000){$('setupMsg').textContent='這個房號目前已有老師使用，請換一個房號';return}}if(roomRef){try{await roomRef.remove()}catch(e){}try{await roomRef.onDisconnect().cancel()}catch(e){}}room=code;roomRef=ref;currentEnvironment=null;usedQuestionIds.clear();questionSerial=0;renderEnvironment();$('roomInput').value=code;$('roomShow').textContent=code;await roomRef.set({status:'waiting',hostUid:auth.currentUser.uid,hostOnline:true,hostHeartbeat:firebase.database.ServerValue.TIMESTAMP,createdAt:firebase.database.ServerValue.TIMESTAMP});setupRoomLifecycle(roomRef);$('resetBtn').disabled=false;$('inviteBtn').disabled=false;$('membersBtn').disabled=false;$('setupMsg').textContent='房間已建立；關閉老師頁面後房間會自動失效';$('cars').innerHTML='';sim={};setupAmbient();watchRoom();showMapMarks();renderSignals();log('建立房間 '+code,'good')};
-$('resetBtn').onclick=async()=>{if(!roomRef)return;$('finalOverlay').classList.add('hidden');$('stopBtn').disabled=true;running=false;paused=false;stopEnvironmentCycle();sim={};players={};collisionDone=false;collisionIds=[];collisionMeta=null;affectedCount=0;currentQuestion=null;lastMissionAward=0;accidentEligibleAt=0;accidentDeadlineAt=0;accidentsThisRound=0;overspeedPending.clear();environmentChangedAt=0;currentEnvironment=null;usedQuestionIds.clear();questionSerial=0;renderEnvironment();$('cars').innerHTML='';setupAmbient();await roomRef.set({status:'waiting',hostUid:auth.currentUser.uid,hostOnline:true,hostHeartbeat:firebase.database.ServerValue.TIMESTAMP,createdAt:firebase.database.ServerValue.TIMESTAMP});setupRoomLifecycle(roomRef);log('房間已重設','good')};
+let code=$('roomInput').value.trim();if(!/^\d{4}$/.test(code))code=String(Math.floor(1000+Math.random()*9000));let ref=db.ref(`rooms/${code}`),old=await ref.once('value');if(old.exists()){let online=old.child('hostOnline').val(),beat=Number(old.child('hostHeartbeat').val()||0);if(online&&Date.now()-beat<18000){$('setupMsg').textContent='這個房號目前已有老師使用，請換一個房號';return}}if(roomRef){try{await roomRef.remove()}catch(e){}try{await roomRef.onDisconnect().cancel()}catch(e){}}room=code;roomRef=ref;currentEnvironment=null;usedQuestionIds.clear();questionCategoryCounts={};lastQuestionCategory="";timedQuestionSerial=0;questionSerial=0;renderEnvironment();$('roomInput').value=code;$('roomShow').textContent=code;await roomRef.set({status:'waiting',hostUid:auth.currentUser.uid,hostOnline:true,hostHeartbeat:firebase.database.ServerValue.TIMESTAMP,createdAt:firebase.database.ServerValue.TIMESTAMP});setupRoomLifecycle(roomRef);$('resetBtn').disabled=false;$('inviteBtn').disabled=false;$('membersBtn').disabled=false;$('setupMsg').textContent='房間已建立；關閉老師頁面後房間會自動失效';$('cars').innerHTML='';sim={};setupAmbient();watchRoom();showMapMarks();renderSignals();log('建立房間 '+code,'good')};
+$('resetBtn').onclick=async()=>{if(!roomRef)return;$('finalOverlay').classList.add('hidden');$('stopBtn').disabled=true;running=false;paused=false;stopEnvironmentCycle();stopQuestionClock();sim={};players={};collisionDone=false;collisionIds=[];collisionMeta=null;affectedCount=0;currentQuestion=null;lastMissionAward=0;accidentEligibleAt=0;accidentDeadlineAt=0;accidentsThisRound=0;overspeedPending.clear();environmentChangedAt=0;currentEnvironment=null;usedQuestionIds.clear();questionCategoryCounts={};lastQuestionCategory="";timedQuestionSerial=0;questionSerial=0;renderEnvironment();$('cars').innerHTML='';setupAmbient();await roomRef.set({status:'waiting',hostUid:auth.currentUser.uid,hostOnline:true,hostHeartbeat:firebase.database.ServerValue.TIMESTAMP,createdAt:firebase.database.ServerValue.TIMESTAMP});setupRoomLifecycle(roomRef);log('房間已重設','good')};
 function initialPlacement(entries){let out={},starts=[['W1','A'],['E1','B'],['N1','A'],['S1','C'],['W2','C'],['E2','D'],['N2','B'],['S2','D'],['A','M1'],['C','M2'],['H','I'],['J','I']],slots=[.18,.46,.74],occupied=[];for(const a of ambient)occupied.push({from:a.from,to:a.to,t:a.t});entries.forEach(([id,p],i)=>{let chosen=null;for(let k=0;k<starts.length&&!chosen;k++){let [from,to]=starts[(i+k)%starts.length];for(const t of slots){let busy=occupied.some(o=>o.from===from&&o.to===to&&Math.abs(o.t-t)<.16);if(!busy){chosen={from,to,t};break}}}if(!chosen)chosen={from:'W1',to:'A',t:.12};let a=makeActor(id,p,i,false);a.from=chosen.from;a.to=chosen.to;a.t=chosen.t;out[id]=a;occupied.push(chosen)});return out}
 $('startBtn').onclick=async()=>{
  let arr=Object.entries(players);if(!arr.length||!arr.every(([,p])=>p.ready))return;
- sim=initialPlacement(arr);currentEnvironment=randomEnvironment();environmentChangedAt=Date.now()-ENVIRONMENT_ADJUST_MS;overspeedPending.clear();usedQuestionIds.clear();questionSerial=0;accidentsThisRound=0;roundSerial++;renderEnvironment();
- let updates={status:'running',globalQuestion:null,usedQuestions:null,environment:currentEnvironment,startedAt:firebase.database.ServerValue.TIMESTAMP};
+ sim=initialPlacement(arr);currentEnvironment=randomEnvironment();environmentChangedAt=Date.now()-ENVIRONMENT_ADJUST_MS;overspeedPending.clear();usedQuestionIds.clear();questionCategoryCounts={};lastQuestionCategory="";timedQuestionSerial=0;questionSerial=0;accidentsThisRound=0;roundSerial++;renderEnvironment();
+ let updates={status:'running',globalQuestion:null,usedQuestions:null,usedQuestionCategories:null,environment:currentEnvironment,startedAt:firebase.database.ServerValue.TIMESTAMP};
  arr.forEach(([id])=>{
   let p=players[id],a=sim[id];a.stops=missionPlan(p,1);a.stage=0;a.run=1;a.arrivalBusy=false;a.pauseUntil=0;a.runElapsedMs=0;a.runBudgetMs=0;
   updates[`players/${id}/status`]='driving';updates[`players/${id}/score`]=0;
@@ -657,7 +811,7 @@ $('startBtn').onclick=async()=>{
   updates[`players/${id}/currentEvent`]='🚦 行駛中';updates[`players/${id}/lastFeedback`]=null;updates[`players/${id}/lastMissionBonusAt`]=null;updates[`players/${id}/lastSpeedHintAt`]=null;updates[`players/${id}/overspeedUntil`]=null;updates[`players/${id}/lastOverspeedCrashAt`]=null
  });
  await roomRef.update(updates);running=true;paused=false;lastTs=performance.now();lastMissionAward=Date.now();
- $('stopBtn').disabled=false;$('startBtn').disabled=true;announce('🚦 出發！看路況調整時速、連續達標拿獎勵，車輛將自動跑完拜訪路線');startEnvironmentCycle();startAccidentCycle();requestAnimationFrame(tick)
+ $('stopBtn').disabled=false;$('startBtn').disabled=true;announce('🚦 出發！看路況調整時速、連續達標拿獎勵，車輛將自動跑完拜訪路線');startEnvironmentCycle();startAccidentCycle();startQuestionClock();requestAnimationFrame(tick)
 };
 function isTaskSpeedOnTarget(p){
  let s=Number(p.speed),r=drivingScoreRange(currentEnvironment);
@@ -690,20 +844,24 @@ $('revealBtn').onclick=async()=>{
  }
  if(jobs.length)await Promise.allSettled(jobs)
 };
-$('continueBtn').onclick=async()=>{let updates={status:'running','globalQuestion/closed':true},node=collisionNode;for(const id of collisionIds){if(id==='__NPC__')continue;let a=sim[id];if(!a)continue;a.forcePos=null;a.status='driving';a.t=Math.min(.94,Math.max(.08,a.t));updates[`players/${id}/status`]='driving';updates[`players/${id}/currentEvent`]='🚗 事故處理完成，重新上路'}if(collisionAmbientId){let a=ambient.find(x=>x.id===collisionAmbientId);if(a){a.forcePos=null;a.status='driving';a.t=Math.min(.92,Math.max(.12,a.t))}}await roomRef.update(updates);setTimeout(()=>roomRef.child('globalQuestion').remove(),500);paused=false;lastMissionAward=Date.now();startEnvironmentCycle();startAccidentCycle();log('事故題結束，事故車從事故路口繼續行駛','good')};
+$('continueBtn').onclick=async()=>{let updates={status:'running','globalQuestion/closed':true},node=collisionNode;for(const id of collisionIds){if(id==='__NPC__')continue;let a=sim[id];if(!a)continue;a.forcePos=null;a.status='driving';a.t=Math.min(.94,Math.max(.08,a.t));updates[`players/${id}/status`]='driving';updates[`players/${id}/currentEvent`]='🚗 事故處理完成，重新上路'}if(collisionAmbientId){let a=ambient.find(x=>x.id===collisionAmbientId);if(a){a.forcePos=null;a.status='driving';a.t=Math.min(.92,Math.max(.12,a.t))}}await roomRef.update(updates);setTimeout(()=>roomRef.child('globalQuestion').remove(),500);paused=false;lastMissionAward=Date.now();startEnvironmentCycle();startAccidentCycle();startQuestionClock();log('事故題結束，下一題將於行車30秒後出現','good')};
 async function tick(ts){
  if(!running)return;
- let dt=Math.min(90,Math.max(0,ts-(lastTs||ts)));lastTs=ts;renderSignals();
+ let dt=Math.min(90,Math.max(0,ts-(lastTs||ts)));lastTs=ts;renderSignals();renderQuestionCountdown();
  if(!paused){
   resumeOverspeedDrivers();
   checkOverspeedDrivers();
   advanceActors(dt);
   let now=Date.now();
-  if(!collisionDone){
+  if(nextQuestionAt&&now>=nextQuestionAt){
+   // No question before the 30-second clock elapses, regardless of collisions.
+   timedQuestionSerial++;
+   if(!(timedQuestionSerial%2===1&&forcePlayerQuestion()))forceNpcCollision(true);
+  }else if(!collisionDone){
    if(now>=accidentEligibleAt)tryPlayerCollision();
    if(!collisionDone&&now>=accidentDeadlineAt)forceNpcCollision();
   }
-  if(now-lastMissionAward>=5000){lastMissionAward=now;awardMissionProgress()}
+  if(!paused&&now-lastMissionAward>=5000){lastMissionAward=now;awardMissionProgress()}
   if(ts-lastSideRender>700){lastSideRender=ts;renderSide()}
  }
  renderCars();requestAnimationFrame(tick)
