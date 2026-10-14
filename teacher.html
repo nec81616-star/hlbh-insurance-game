@@ -62,7 +62,7 @@ button{position:relative;overflow:hidden;border:4px solid var(--deep);border-rad
 </style></head>
 <body>
 <div class="top">
-  <div><h1>🚦 險中求生城市交通大作戰 <span class="versionBadge">v7.0</span></h1></div>
+  <div><h1>🚦 險中求生城市交通大作戰 <span class="versionBadge">v7.1</span></h1></div>
   <div class="room">房號 <span id="roomShow">----</span></div>
 </div>
 <div class="hostControlBar">
@@ -76,15 +76,15 @@ button{position:relative;overflow:hidden;border:4px solid var(--deep);border-rad
   <button id="resetBtn" class="red" disabled>↻ 重設</button>
 </div>
 <div class="layout">
-<div class="panel"><div class="phead roadHead"><span class="roadHeadTitle">城市道路</span><div class="environmentInline"><div class="environmentBadge"><small>路況</small><strong id="roadDisplay">尚未開始</strong></div><div class="environmentBadge"><small>天氣</small><strong id="weatherDisplay">尚未開始</strong></div></div></div><div class="map" id="map">
+<div class="panel"><div class="phead roadHead"><span class="roadHeadTitle">城市道路</span><div class="environmentInline"><div class="environmentBadge"><small>路況</small><strong id="roadDisplay">尚未開始</strong></div><div class="environmentBadge"><small>天氣</small><strong id="weatherDisplay">尚未開始</strong></div><div class="environmentBadge"><small>遊戲得分速域</small><strong id="targetDisplay">—</strong></div></div></div><div class="map" id="map">
 <div class="grass"></div>
 <div class="road h top"></div><div class="road h bottom"></div><div class="road v left"></div><div class="road v right"></div><div class="road alleyH"></div><div class="road alleyV"></div>
 <div class="cross xA"><span class="zebra top"></span><span class="zebra bottom"></span><span class="zebra left"></span><span class="zebra right"></span></div><div class="cross xB"><span class="zebra top"></span><span class="zebra bottom"></span><span class="zebra left"></span><span class="zebra right"></span></div><div class="cross xC"><span class="zebra top"></span><span class="zebra bottom"></span><span class="zebra left"></span><span class="zebra right"></span></div><div class="cross xD"><span class="zebra top"></span><span class="zebra bottom"></span><span class="zebra left"></span><span class="zebra right"></span></div>
 <div class="building school b1">🏫</div><div class="building cafe b2">☕</div><div class="building office b3">🏢</div><div class="building hospital b4">✚</div><div class="building park b5">🌳</div><div class="building shop b6">🏪</div><div class="building gas b7">⛽</div><div class="building apt b8">🏠</div><div class="building office b9">🏬</div><div class="building shop b10">🛒</div><div class="building miniHouse b11">🏡</div><div class="building library b12">📚</div><div class="building station b13">🚉</div><div class="building miniShop b14">🥐</div><div class="building bank b15">🏦</div><div class="building post b16">📮</div><div class="building bookstore b17">📖</div><div class="building restaurant b18">🍜</div>
 <div class="lightPod lA" data-node="A"><span class="ns">NS</span><span class="ew">EW</span></div><div class="lightPod lB" data-node="B"><span class="ns">NS</span><span class="ew">EW</span></div><div class="lightPod lC" data-node="C"><span class="ns">NS</span><span class="ew">EW</span></div><div class="lightPod lD" data-node="D"><span class="ns">NS</span><span class="ew">EW</span></div>
-<div id="destinationPins"></div><div class="statusbar" id="mapStatus">建立房間後等待學生加入</div><div class="hostbadge" id="hostBadge">老師端 v7.0｜尚未建立房間</div><div id="cars"></div>
+<div id="destinationPins"></div><div class="statusbar" id="mapStatus">建立房間後等待學生加入</div><div class="hostbadge" id="hostBadge">老師端 v7.1｜尚未建立房間</div><div id="cars"></div>
 </div></div>
-<div><div class="panel"><div class="phead">積分排行</div><div class="pbody"><div id="setupMsg">請先建立房間；建立後即可邀請學生</div><div class="gameTicker" id="gameTicker">🧭 v7.0：連續拜訪・路線決策・即時突發事件</div><div class="metrics"><div class="metric"><small>玩家</small><strong id="mPlayers">0</strong></div><div class="metric"><small>READY</small><strong id="mReady">0</strong></div><div class="metric"><small>事故人數</small><strong id="mAcc">0</strong></div></div><div class="ranking" id="ranking"></div></div></div></div>
+<div><div class="panel"><div class="phead">積分排行</div><div class="pbody"><div id="setupMsg">請先建立房間；建立後即可邀請學生</div><div class="gameTicker" id="gameTicker">🧭 v7.1：連續拜訪・路線決策・即時突發事件</div><div class="metrics"><div class="metric"><small>玩家</small><strong id="mPlayers">0</strong></div><div class="metric"><small>READY</small><strong id="mReady">0</strong></div><div class="metric"><small>事故人數</small><strong id="mAcc">0</strong></div></div><div class="ranking" id="ranking"></div></div></div></div>
 </div>
 <div class="qoverlay hidden" id="qOverlay"><div class="qbox"><div class="qtop"><h2>💥 城市交通事故</h2><div class="answered" id="qCount">0 / 0 已作答</div></div><div class="accdetail" id="accDetail"></div><div class="question" id="qPrompt"></div><div id="bars"></div><div class="qfoot"><div class="answered" id="answeredText"></div><div><button id="revealBtn" class="orange">公布答案</button><button id="continueBtn" class="green hidden">繼續行車</button></div></div><div class="explain hidden" id="explain"></div></div></div>
 
@@ -94,7 +94,7 @@ button{position:relative;overflow:hidden;border:4px solid var(--deep);border-rad
 <div class="hostModal hidden" id="membersModal"><div class="hostModalBox"><div class="hostModalHead"><h2>👥 成員名單 <span id="memberCount">0</span></h2><button class="closeBtn" id="closeMembers">✕</button></div><div class="memberList" id="memberList"></div></div></div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-database-compat.js"></script><script src="firebase-config.js?v=700"></script><script src="game-data.js?v=700"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-database-compat.js"></script><script src="firebase-config.js?v=710"></script><script src="game-data.js?v=710"></script>
 <script>
 let db,auth,room='',roomRef=null,heartbeatTimer=null,environmentTimer=null,players={},sim={},ambient=[],running=false,paused=false,lastTs=0,lastSideRender=0,lastMissionAward=0,accidentEligibleAt=0,accidentDeadlineAt=0,collisionDone=false,collisionIds=[],collisionNode='A',collisionAmbientId=null,collisionMeta=null,currentQuestion=null,affectedCount=0,currentEnvironment=null,usedQuestionIds=new Set(),questionSerial=0,accidentsThisRound=0,lastPersonalScan=0,roundSerial=0;
 const $=id=>document.getElementById(id);
@@ -116,66 +116,37 @@ const VISIT_LIBRARY={
 const MAP_MARKS=[{x:17,y:18,label:'🏫 校園'},{x:83,y:18,label:'🏥 醫院'},{x:17,y:82,label:'🏠 社區'},{x:84,y:82,label:'🛒 商圈'},{x:51,y:18,label:'🏦 金融街'},{x:51,y:83,label:'📚 圖書館'},{x:16,y:52,label:'🏡 住宅區'},{x:84,y:52,label:'🏪 商店街'}];
 const TOTAL_QUESTIONS_PER_BRIEF=3;const RUN_BUDGET_SECONDS={urgent:105,medium:120,leisure:140};
 function safeText(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-function missionPlan(p,run=1){let arr=VISIT_LIBRARY[p.roleId]||VISIT_LIBRARY.office,count=p.taskPace==='urgent'?4:3,shift=(run-1)%arr.length;
+function missionPlan(p,run=1){let arr=VISIT_LIBRARY[p.roleId]||VISIT_LIBRARY.office,count=3,shift=(run-1)%arr.length;
  return Array.from({length:count},(_,i)=>{let v=arr[(shift+i)%arr.length];return{node:v[0],label:v[1]}})}
 function goalFor(a){return a.stops?.[a.stage]?.node||null}
 function alleyEdge(a,b){return a==='I'||b==='I'}
 function edgeDistance(a,b,mode){let len=nodeVec(a,b).len;if(!alleyEdge(a,b))return len;return len*(mode==='shortcut'?.62:3.3)}
 function remainingDistance(start,goal,mode){if(start===goal)return 0;let dist={[start]:0},seen=new Set(),q=[start];while(q.length){q.sort((a,b)=>dist[a]-dist[b]);let at=q.shift();if(seen.has(at))continue;if(at===goal)return dist[at];seen.add(at);for(const nx of ADJ[at]||[]){let newD=dist[at]+edgeDistance(at,nx,mode);if(newD<(dist[nx]??Infinity)){dist[nx]=newD;q.push(nx)}}}return Infinity}
-function nextMissionStep(actor,node,prev){let goal=goalFor(actor);if(!goal)return nextNode(actor,node,prev);let mode=players[actor.id]?.routePreference==='shortcut'?'shortcut':'main';let opts=ADJ[node]||[];let ranked=opts.map(n=>({node:n,score:edgeDistance(node,n,mode)+remainingDistance(n,goal,mode)+(n===prev?4:0)}));ranked.sort((a,b)=>a.score-b.score);return ranked[0]?.node||nextNode(actor,node,prev)}
+function nextMissionStep(actor,node,prev){let goal=goalFor(actor);if(!goal)return nextNode(actor,node,prev);let mode='main';let opts=ADJ[node]||[];let ranked=opts.map(n=>({node:n,score:edgeDistance(node,n,mode)+remainingDistance(n,goal,mode)+(n===prev?4:0)}));ranked.sort((a,b)=>a.score-b.score);return ranked[0]?.node||nextNode(actor,node,prev)}
 function showMapMarks(){$('destinationPins').innerHTML=MAP_MARKS.map(x=>`<div class="mapPin" style="left:${x.x}%;top:${x.y}%">${x.label}</div>`).join('')}
 function announce(text){if($('gameTicker'))$('gameTicker').textContent=text}
-function missionArrival(a,node){if(a.arrivalBusy||!running)return;
+function missionArrival(a,node){
+ if(a.arrivalBusy||!running)return;
  const p=players[a.id];if(!p||!a.stops?.[a.stage]||a.stops[a.stage].node!==node)return;
- let current=a.stops[a.stage],wasFinal=a.stage===a.stops.length-1,ontime=wasFinal&&a.runElapsedMs<=a.runBudgetMs;
- a.arrivalBusy=true;a.stage++;a.pauseUntil=Date.now()+2300;
- let run=a.run||1;
- if(wasFinal){a.run=run+1;a.stops=missionPlan(p,a.run);a.stage=0;a.runElapsedMs=0}
- let updates={missionStops:a.stops,missionIndex:a.stage,missionRound:a.run||run,visitCount:Number(p.visitCount||0)+1,completedRuns:Number(p.completedRuns||0)+(wasFinal?1:0),lastVisitName:current.label,currentEvent:wasFinal?`🎉 完成第 ${run} 趟任務${ontime?'，準時加碼＋12！':''}，繼續下一趟！`:`📍 完成 ${current.label}，前往下一站`};
- announce(`📍 ${p.name||'玩家'}完成：${current.label}${wasFinal?'｜獲得整趟任務獎勵！':''}`);
- roomRef.child(`players/${a.id}`).update(updates).then(()=>roomRef.child(`players/${a.id}/score`).transaction(s=>Number(s||0)+18+(wasFinal?35:0)+(ontime?12:0))).catch(e=>console.warn('拜訪獎勵失敗',e)).finally(()=>{a.arrivalBusy=false});
-}
-const PERSONAL_SITUATIONS=[
- {type:'construction',title:'🚧 前方施工',text:'前方臨時施工封閉部分路段，請選擇後續安排。',choices:[{id:'detour',label:'改道前往下一站',delay:2200,points:4,route:'shortcut'},{id:'wait',label:'停下等待開放通行',delay:6200,points:2}]},
- {type:'appointment',title:'📞 拜訪時間調整',text:'下一位拜訪對象通知時間延後。如何應對行程比較有效率？',choices:[{id:'contact',label:'先聯絡確認，再調整順序',delay:2100,points:4},{id:'keep',label:'依原定順序前往並等候',delay:5600,points:2}]},
- {type:'hazard',title:'🚶 行人穿越',text:'前方有行人準備通過路口，你應該如何安全處理？',choices:[{id:'yield',label:'減速禮讓，確認安全後通過',delay:3200,points:4},{id:'stop',label:'靠近路口先停妥，再確認行人',delay:4700,points:3}]},
- {type:'traffic',title:'🚙 臨時車潮',text:'通往拜訪點的道路突然塞車，你要怎麼安排？',choices:[{id:'reroute',label:'評估改走替代路線',delay:2500,points:4,route:'shortcut'},{id:'queue',label:'保持車距，依序等待通行',delay:5500,points:2}]}
-];
-const LOCAL_ACCIDENT={type:'accident',title:'💥 個人交通事故處置',text:'發生碰撞！這次由事故當事人先行處理，其他同學繼續跑任務。請選擇事故後的優先處置。',choices:[{id:'assist',label:'確認傷者、通報警消並維護現場安全',delay:4900,points:5},{id:'photos',label:'先停妥車輛、拍照後立即確認傷勢與求援',delay:7500,points:2}]};
-function personalEventFor(actor,template){
- if(!running||paused||actor.status!=='driving')return false;
- let id='pe_'+Date.now()+'_'+actor.id+'_'+Math.floor(Math.random()*9999),now=Date.now();
- actor.status='decision';actor.eventId=id;actor.eventDeadline=now+15000;actor.eventResolving=false;
- let ev={id,type:template.type,title:template.title,text:template.text,choices:template.choices,createdAt:now,expiresAt:now+15000};
- roomRef.child(`players/${actor.id}`).update({status:'decision',personalEvent:ev,personalAnswer:null,currentEvent:template.title}).catch(e=>console.warn(e));
- return true
-}
-async function resolvePersonalEvent(actor,choiceId){if(actor.eventResolving||!actor.eventId)return;
- let p=players[actor.id],ev=p?.personalEvent;if(!ev||ev.id!==actor.eventId)return;
- actor.eventResolving=true;let choice=(ev.choices||[]).find(c=>c.id===choiceId)||ev.choices?.[0];if(!choice)return;
- const evId=actor.eventId;actor.pauseUntil=Date.now()+Number(choice.delay||2000);actor.status='driving';actor.eventId=null;actor.nextChallengeAt=Date.now()+((choice.route||p.routePreference)==='shortcut'?22000:38000)+rand(0,13000);
- let updates={status:'driving',personalEvent:null,personalAnswer:null,currentEvent:`✅ ${choice.label}，繼續任務`,decisionCount:Number(p.decisionCount||0)+1};if(choice.route)updates.routePreference=choice.route;
- try{await roomRef.child(`players/${actor.id}`).update(updates);if(running&&choice.points)await roomRef.child(`players/${actor.id}/score`).transaction(n=>Number(n||0)+Number(choice.points));}
- catch(e){console.warn('決策結算失敗',e)}finally{actor.eventResolving=false}
-}
-function scanPersonalEvents(now){
- for(const [id,a] of Object.entries(sim)){
-  let p=players[id];if(!p||!p.ready)continue;
-  if(a.status==='decision'){
-   const ans=p.personalAnswer,evt=p.personalEvent;
-   if(evt&&evt.id===a.eventId&&ans?.eventId===a.eventId)resolvePersonalEvent(a,ans.choiceId);
-   else if(now>=a.eventDeadline)resolvePersonalEvent(a,'');
-  }else if(a.status==='driving'&&now>=(a.nextChallengeAt||Infinity)&&!paused){
-   personalEventFor(a,pick(PERSONAL_SITUATIONS));a.nextChallengeAt=now+55000
-  }
- }
+ let current=a.stops[a.stage],wasFinal=a.stage===a.stops.length-1,run=a.run||1;
+ a.arrivalBusy=true;a.stage++;a.pauseUntil=Date.now()+1500;
+ if(wasFinal){a.run=run+1;a.stops=missionPlan(p,a.run);a.stage=0}
+ let updates={missionStops:a.stops,missionIndex:a.stage,missionRound:a.run||run,visitCount:Number(p.visitCount||0)+1,completedRuns:Number(p.completedRuns||0)+(wasFinal?1:0),lastVisitName:current.label,lastVisitAt:firebase.database.ServerValue.TIMESTAMP,currentEvent:wasFinal?`🎉 完成第 ${run} 趟任務！拜訪＋15／整趟＋25`:`📍 完成 ${current.label}，拜訪＋15 分`};
+ announce(`📍 ${p.name||'玩家'}完成 ${current.label}${wasFinal?'｜整趟任務達成＋25！':''}`);
+ roomRef.child(`players/${a.id}`).update(updates).then(()=>roomRef.child(`players/${a.id}/score`).transaction(s=>Number(s||0)+15+(wasFinal?25:0))).catch(e=>console.warn('拜訪獎勵失敗',e)).finally(()=>{a.arrivalBusy=false});
 }
 function handleAccident(){
  accidentsThisRound++;
- if(accidentsThisRound%TOTAL_QUESTIONS_PER_BRIEF===0){announce(`📚 第 ${accidentsThisRound} 起事故｜進入全班保險挑戰`);triggerCollision();return}
- let involved=[...new Set(collisionIds.filter(id=>id!=='__NPC__'))];let affected=0;
- for(const id of involved){let a=sim[id];if(a&&a.status==='driving'){if(personalEventFor(a,LOCAL_ACCIDENT))affected++}}
- announce(`💥 第 ${accidentsThisRound} 起事故｜${affected} 位當事人處理中，其餘玩家繼續任務`);
+ if(accidentsThisRound%TOTAL_QUESTIONS_PER_BRIEF===0){
+  announce(`📚 第 ${accidentsThisRound} 起事故｜全班強制險挑戰`);
+  triggerCollision();return;
+ }
+ // Small incidents are shown on the teacher map but never interrupt students.
+ let victims=[...new Set(collisionIds.filter(id=>id!=='__NPC__'))];
+ announce(`💥 第 ${accidentsThisRound} 起交通事件｜持續行車；每三起才進行一次全班保險題`);
+ for(let id of victims){let actor=sim[id];if(actor)actor.pauseUntil=Date.now()+1200;
+  if(roomRef)roomRef.child(`players/${id}/currentEvent`).set('💥 發現交通事故，交通已恢復，分數保留').catch(()=>{});
+ }
  startAccidentCycle();
 }
 
@@ -184,7 +155,12 @@ const SIGNAL_OFFSET={A:0,B:6000,C:6000,D:0};
 const ROAD_STATES=[{key:'clear',name:'暢通',icon:'🟢',offset:8},{key:'congested',name:'壅塞',icon:'🔴',offset:-8}];
 const WEATHER_STATES=[{key:'sunny',name:'晴天',icon:'☀️',offset:0},{key:'cloudy',name:'陰天',icon:'☁️',offset:-5},{key:'rainy',name:'雨天',icon:'🌧️',offset:-10}];
 function randomEnvironment(){let r=pick(ROAD_STATES),w=pick(WEATHER_STATES);return{roadKey:r.key,roadName:r.name,roadIcon:r.icon,roadOffset:r.offset,weatherKey:w.key,weatherName:w.name,weatherIcon:w.icon,weatherOffset:w.offset}}
-function renderEnvironment(){let e=currentEnvironment;if(!e){$('roadDisplay').textContent='尚未開始';$('weatherDisplay').textContent='尚未開始';return}$('roadDisplay').textContent=`${e.roadIcon||''} ${e.roadName||''}`;$('weatherDisplay').textContent=`${e.weatherIcon||''} ${e.weatherName||''}`}
+function drivingScoreRange(env){
+ if(!env)return null;
+ let cap=Math.min(env.roadKey==='congested'?30:50,env.weatherKey==='rainy'?35:env.weatherKey==='cloudy'?45:50);
+ return {min:Math.max(15,cap-15),max:cap};
+}
+function renderEnvironment(){let e=currentEnvironment;if(!e){$('roadDisplay').textContent='尚未開始';$('weatherDisplay').textContent='尚未開始';$('targetDisplay').textContent='—';return}$('roadDisplay').textContent=`${e.roadIcon||''} ${e.roadName||''}`;$('weatherDisplay').textContent=`${e.weatherIcon||''} ${e.weatherName||''}`;let r=drivingScoreRange(e);$('targetDisplay').textContent=`${r.min}～${r.max} km/h`}
 async function changeOneEnvironmentVariable(){
  if(!running||!roomRef)return;
  let next={...(currentEnvironment||randomEnvironment())};
@@ -240,11 +216,11 @@ function scoreRank(){return Object.entries(players).filter(([,p])=>p.ready).sort
 function renderSide(){
   let arr=Object.entries(players),ready=arr.filter(([,p])=>p.ready).length;
   $('mPlayers').textContent=arr.length;$('mReady').textContent=ready;$('mAcc').textContent=affectedCount;
-  $('ranking').innerHTML=scoreRank().map(([id,p],i)=>`<div class="rank"><div class="no">${i+1}</div><div><b>${safeText(p.name||'玩家')}</b><small>時速 ${p.speed??'-'} km/h｜${p.routePreference==='shortcut'?'🏘 巷弄':'🛣 主路'}</small><span class="missionMeta">📍 拜訪 ${Number(p.visitCount||0)} 站 · ${Number(p.completedRuns||0)} 趟</span></div><div class="score">${p.score||0}</div></div>`).join('');
+  $('ranking').innerHTML=scoreRank().map(([id,p],i)=>`<div class="rank"><div class="no">${i+1}</div><div><b>${safeText(p.name||'玩家')}</b><small>時速 ${p.speed??'-'} km/h｜🔥 連擊 ${Number(p.safeStreak||0)}</small><span class="missionMeta">📍 拜訪 ${Number(p.visitCount||0)} 站 · ${Number(p.completedRuns||0)} 趟</span></div><div class="score">${p.score||0}</div></div>`).join('');
   if($('membersBtn')) $('membersBtn').textContent=`👥 成員名單 (${arr.length})`;
   renderMemberList();
   let all=arr.length>0&&ready===arr.length&&!running&&!collisionDone;$('startBtn').disabled=!all;
-  $('mapStatus').textContent=paused?'全班保險題：已暫停':running?`跑點進行中｜本局 ${accidentsThisRound} 起事故`:arr.length?`${ready}/${arr.length} READY`:'等待學生加入';
+  $('mapStatus').textContent=paused?'全班保險題：已暫停':running?`自動跑點｜達標 ${arr.filter(([,p])=>p.ready&&isTaskSpeedOnTarget(p)).length}/${ready} 人｜事故 ${accidentsThisRound} 起`:arr.length?`${ready}/${arr.length} READY`:'等待學生加入';
 }
 function causeWeight(p){
  let s=Number(p.speed||0),w=s<=20?.35:s<=30?.55:s<=50?1:s<=60?1.8:s<=80?3.6:s<100?6:9;
@@ -418,11 +394,11 @@ async function triggerCollision(){
   let id=collisionIds[i],pos=coords[i%coords.length];
   if(id==='__NPC__'){
    let npc=ambient.find(a=>a.status==='driving')||ambient[0];
-   if(npc){collisionAmbientId=npc.id;npc.status='accident';npc.forcePos=pos}
+   if(npc){collisionAmbientId=npc.id;npc.status='accident';npc.forcePos=actorPos(npc)}
    continue
   }
   let p=players[id],a=sim[id];if(!p||!a)continue;
-  a.status='accident';a.forcePos=pos;victims.push(victimRecord(p));
+  a.status='accident';a.forcePos=actorPos(a);victims.push(victimRecord(p));
   updates[`players/${id}/status`]='accident';
   updates[`players/${id}/currentEvent`]=collisionMeta?.kind==='self'?'⚠️ 發生單一車輛事故':'💥 發生交通事故';
   updates[`players/${id}/lastFeedback`]=null
@@ -447,7 +423,7 @@ function renderMemberList(){
   $('memberList').innerHTML=arr.length?arr.map((p,i)=>`<div class="memberRow"><div class="memberNo">${i+1}</div><div><b>${safeText(p.name||'未命名')}</b><small>${p.connected===false?'連線中斷':'已加入房間'}</small></div><div class="memberState ${p.ready?'ready':''}">${p.ready?'READY':'準備中'}</div></div>`).join(''):'<div style="padding:24px;text-align:center;font-weight:900;color:#789">目前尚無學生加入</div>';
 }
 function studentInviteUrl(){
-  return new URL(`student.html?v=700&room=${encodeURIComponent(room)}`, window.location.href).href;
+  return new URL(`student.html?v=710&room=${encodeURIComponent(room)}`, window.location.href).href;
 }
 function showInvite(){
   if(!room) return;
@@ -476,7 +452,7 @@ function showFinalPodium(){
     let [,p]=item;
     return `<div class="pod ${cls}"><div class="medal">${medal}</div><div class="place">${place}</div><div class="winnerName">${safeText(p.name||'玩家')}</div><div class="winnerScore">${Number(p.score||0)} 分</div></div>`
   }).join('');
-  let awardDefs=[['🧭 任務達人','visitCount','最多拜訪站數'],['🛡️ 安全駕駛','safeTicks','最多安全任務判定'],['🧠 保險知識王','quizCorrect','最多保險題答對']];
+  let awardDefs=[['🧭 任務達人','visitCount','最多拜訪站數'],['🔥 連擊達人','bestStreak','最長連續達標次數'],['🧠 保險知識王','quizCorrect','最多保險題答對']];
  $('specialAwards').innerHTML=awardDefs.map(([title,key,subtitle])=>{
  let winner=Object.values(players).filter(p=>p.ready).sort((a,b)=>Number(b[key]||0)-Number(a[key]||0))[0];
  return `<div class="specialAward">${title}<strong>${safeText(winner?.name||'—')}</strong><small>${subtitle} ${Number(winner?.[key]||0)}</small></div>`
@@ -512,31 +488,34 @@ $('startBtn').onclick=async()=>{
  sim=initialPlacement(arr);currentEnvironment=randomEnvironment();usedQuestionIds.clear();questionSerial=0;accidentsThisRound=0;roundSerial++;renderEnvironment();
  let updates={status:'running',globalQuestion:null,usedQuestions:null,environment:currentEnvironment,startedAt:firebase.database.ServerValue.TIMESTAMP};
  arr.forEach(([id])=>{
-  let p=players[id],a=sim[id];a.stops=missionPlan(p,1);a.stage=0;a.run=1;a.nextChallengeAt=Date.now()+16000+rand(0,18000);a.arrivalBusy=false;a.pauseUntil=0;a.eventId=null;a.runElapsedMs=0;a.runBudgetMs=(RUN_BUDGET_SECONDS[p.taskPace]||120)*1000;
-  updates[`players/${id}/status`]='driving';updates[`players/${id}/score`]=0;updates[`players/${id}/routePreference`]='main';
-  updates[`players/${id}/missionStops`]=a.stops;updates[`players/${id}/missionIndex`]=0;updates[`players/${id}/missionRound`]=1;updates[`players/${id}/runRemainingSec`]=Math.round(a.runBudgetMs/1000);updates[`players/${id}/visitCount`]=0;updates[`players/${id}/completedRuns`]=0;updates[`players/${id}/decisionCount`]=0;updates[`players/${id}/safeTicks`]=0;updates[`players/${id}/quizCorrect`]=0;updates[`players/${id}/personalEvent`]=null;updates[`players/${id}/personalAnswer`]=null;
+  let p=players[id],a=sim[id];a.stops=missionPlan(p,1);a.stage=0;a.run=1;a.arrivalBusy=false;a.pauseUntil=0;a.runElapsedMs=0;a.runBudgetMs=0;
+  updates[`players/${id}/status`]='driving';updates[`players/${id}/score`]=0;
+  updates[`players/${id}/missionStops`]=a.stops;updates[`players/${id}/missionIndex`]=0;updates[`players/${id}/missionRound`]=1;updates[`players/${id}/visitCount`]=0;updates[`players/${id}/completedRuns`]=0;updates[`players/${id}/safeTicks`]=0;updates[`players/${id}/safeStreak`]=0;updates[`players/${id}/bestStreak`]=0;updates[`players/${id}/lastBonusAmount`]=0;updates[`players/${id}/lastVisitAt`]=null;updates[`players/${id}/quizCorrect`]=0;
   updates[`players/${id}/currentEvent`]='🚦 行駛中';updates[`players/${id}/lastFeedback`]=null;updates[`players/${id}/lastMissionBonusAt`]=null;updates[`players/${id}/lastSpeedHintAt`]=null
  });
  await roomRef.update(updates);running=true;paused=false;lastTs=performance.now();lastMissionAward=Date.now();
- $('stopBtn').disabled=false;$('startBtn').disabled=true;announce('🚦 出發！完成連續拜訪、選擇路線，途中處理突發事件');startEnvironmentCycle();startAccidentCycle();requestAnimationFrame(tick)
+ $('stopBtn').disabled=false;$('startBtn').disabled=true;announce('🚦 出發！看路況調整時速、連續達標拿獎勵，車輛將自動跑完拜訪路線');startEnvironmentCycle();startAccidentCycle();requestAnimationFrame(tick)
 };
-function adjustedTaskRange(p){
- let min=Number(p.taskMin),max=Number(p.taskMax),road=Number(currentEnvironment?.roadOffset||0),weather=Number(currentEnvironment?.weatherOffset||0),shift=road+weather;
- return{min:min+shift,max:max+shift}
-}
 function isTaskSpeedOnTarget(p){
- let s=Number(p.speed),r=adjustedTaskRange(p);
- return Number.isFinite(s)&&Number.isFinite(r.min)&&Number.isFinite(r.max)&&s>=r.min&&s<=r.max
+ let s=Number(p.speed),r=drivingScoreRange(currentEnvironment);
+ return !!r&&Number.isFinite(s)&&s>=r.min&&s<=r.max;
 }
 async function awardMissionProgress(){
- let jobs=[];
+ const jobs=[];
  for(const [id,p] of Object.entries(players)){
   if(!p.ready||p.status!=='driving')continue;
-  let pref=roomRef.child(`players/${id}`);let actor=sim[id];if(actor?.runBudgetMs)jobs.push(pref.child('runRemainingSec').set(Math.max(0,Math.ceil((actor.runBudgetMs-actor.runElapsedMs)/1000))));
-  if(isTaskSpeedOnTarget(p))jobs.push(pref.child('score').transaction(cur=>Number(cur||0)+3).then(()=>pref.update({lastMissionBonusAt:firebase.database.ServerValue.TIMESTAMP,safeTicks:Number(p.safeTicks||0)+1})));
-  else jobs.push(pref.child('lastSpeedHintAt').set(firebase.database.ServerValue.TIMESTAMP))
+  const pref=roomRef.child(`players/${id}`);
+  if(isTaskSpeedOnTarget(p)){
+   let streak=Number(p.safeStreak||0)+1,bonus=streak%4===0?13:3;
+   jobs.push(pref.child('score').transaction(cur=>Number(cur||0)+bonus).then(()=>pref.update({
+    lastMissionBonusAt:firebase.database.ServerValue.TIMESTAMP,lastBonusAmount:bonus,
+    safeStreak:streak,bestStreak:Math.max(streak,Number(p.bestStreak||0)),safeTicks:Number(p.safeTicks||0)+1
+   })));
+  }else if(Number(p.safeStreak||0)>0){
+   jobs.push(pref.child('safeStreak').set(0));
+  }
  }
- if(jobs.length)await Promise.allSettled(jobs)
+ if(jobs.length)await Promise.allSettled(jobs);
 }
 $('revealBtn').onclick=async()=>{
  let q=currentQuestion;if(!q||q.revealed)return;
@@ -548,7 +527,7 @@ $('revealBtn').onclick=async()=>{
  }
  if(jobs.length)await Promise.allSettled(jobs)
 };
-$('continueBtn').onclick=async()=>{let updates={status:'running','globalQuestion/closed':true},node=collisionNode;for(const id of collisionIds){if(id==='__NPC__')continue;let a=sim[id];if(!a)continue;a.forcePos=null;a.status='driving';a.from=node;a.to=nextMissionStep(a,node,a.from);a.t=.08;a.nextChallengeAt=Date.now()+(players[id]?.routePreference==='shortcut'?19000:30000)+rand(0,14000);updates[`players/${id}/status`]='driving';updates[`players/${id}/currentEvent`]='🚗 事故處理完成，重新上路'}if(collisionAmbientId){let a=ambient.find(x=>x.id===collisionAmbientId);if(a){a.forcePos=null;a.status='driving';a.from=node;a.to=pick(ADJ[node]||[]);a.t=.12}}await roomRef.update(updates);setTimeout(()=>roomRef.child('globalQuestion').remove(),500);paused=false;lastMissionAward=Date.now();startEnvironmentCycle();startAccidentCycle();log('事故題結束，事故車從事故路口繼續行駛','good')};
+$('continueBtn').onclick=async()=>{let updates={status:'running','globalQuestion/closed':true},node=collisionNode;for(const id of collisionIds){if(id==='__NPC__')continue;let a=sim[id];if(!a)continue;a.forcePos=null;a.status='driving';a.t=Math.min(.94,Math.max(.08,a.t));updates[`players/${id}/status`]='driving';updates[`players/${id}/currentEvent`]='🚗 事故處理完成，重新上路'}if(collisionAmbientId){let a=ambient.find(x=>x.id===collisionAmbientId);if(a){a.forcePos=null;a.status='driving';a.t=Math.min(.92,Math.max(.12,a.t))}}await roomRef.update(updates);setTimeout(()=>roomRef.child('globalQuestion').remove(),500);paused=false;lastMissionAward=Date.now();startEnvironmentCycle();startAccidentCycle();log('事故題結束，事故車從事故路口繼續行駛','good')};
 async function tick(ts){
  if(!running)return;
  let dt=Math.min(90,Math.max(0,ts-(lastTs||ts)));lastTs=ts;renderSignals();
@@ -559,7 +538,6 @@ async function tick(ts){
    if(now>=accidentEligibleAt)tryPlayerCollision();
    if(!collisionDone&&now>=accidentDeadlineAt)forceNpcCollision();
   }
-  if(now-lastPersonalScan>=350){lastPersonalScan=now;scanPersonalEvents(now)}
   if(now-lastMissionAward>=5000){lastMissionAward=now;awardMissionProgress()}
   if(ts-lastSideRender>700){lastSideRender=ts;renderSide()}
  }
