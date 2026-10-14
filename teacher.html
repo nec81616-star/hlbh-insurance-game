@@ -36,7 +36,7 @@ button{position:relative;overflow:hidden;border:4px solid var(--deep);border-rad
 .b15{left:36%;top:37%;width:7%;height:8%}.b16{left:57%;top:37%;width:7%;height:8%}.b17{left:35%;bottom:36%;width:7%;height:8%}.b18{left:57%;bottom:36%;width:7%;height:8%}
 
 .lightPod{position:absolute;z-index:22;transform:translate(-50%,-50%);width:50px;height:50px;border-radius:12px;background:#172033;border:3px solid #0c1830;display:grid;grid-template-columns:1fr 1fr;gap:3px;padding:4px;box-shadow:0 4px 0 rgba(0,0,0,.22)}.lightPod span{display:grid;place-items:center;border-radius:7px;background:#303a4c;color:#c9d2df;font-size:9px;font-weight:1000}.lightPod .green{background:#3cd85d;color:#082b12;box-shadow:0 0 10px #3cd85d}.lightPod .red{background:#ff4a4a;color:#4e0909;box-shadow:0 0 10px #ff4a4a}.lightPod .yellow{background:#ffd84b;color:#573e00;box-shadow:0 0 10px #ffd84b}.lA{left:20.8%;top:20.5%}.lB{left:79.2%;top:20.5%}.lC{left:20.8%;top:79.5%}.lD{left:79.2%;top:79.5%}
-.car{position:absolute;width:47px;height:66px;transform:translate(-50%,-50%) rotate(var(--rot));z-index:12;will-change:left,top,transform;pointer-events:none}.car.moto{width:28px;height:58px;z-index:13}.sprite{position:absolute;inset:0;border:4px solid #142b58;border-radius:15px;background:var(--c);box-shadow:0 7px 8px rgba(0,0,0,.25)}.car.moto .sprite{left:6px;right:6px;border-radius:14px}.sprite:before{content:"";position:absolute;left:15%;right:15%;top:13%;height:22%;background:#dff7ff;border:3px solid #142b58;border-radius:7px}.car.moto .sprite:before{height:14%}.sprite:after{content:"";position:absolute;left:23%;right:23%;bottom:10%;height:18%;background:#273c60;border-radius:6px}.name{position:absolute;left:50%;top:-22px;transform:translateX(-50%) rotate(calc(-1 * var(--rot)));white-space:nowrap;background:#fff4ad;border:2px solid #765600;border-radius:7px;padding:2px 5px;font-size:10px;font-weight:1000;color:#5d4300}.ambient{opacity:.72;z-index:10}.ambient .name{display:none}.boom{display:none;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) rotate(calc(-1 * var(--rot)));font-size:42px;z-index:20}.car.accident .boom{display:block;animation:boom .5s infinite alternate}.car.accident .sprite{filter:grayscale(.45)}.car.offstage{opacity:0}@keyframes boom{to{transform:translate(-50%,-50%) rotate(calc(-1 * var(--rot))) scale(1.25)}}
+.car{position:absolute;width:47px;height:66px;transform:translate(-50%,-50%) rotate(var(--rot));z-index:12;will-change:left,top,transform;pointer-events:none}.car.moto{width:28px;height:58px;z-index:13}.sprite{position:absolute;inset:0;border:4px solid #142b58;border-radius:15px;background:var(--c);box-shadow:0 7px 8px rgba(0,0,0,.25)}.car.moto .sprite{left:6px;right:6px;border-radius:14px}.sprite:before{content:"";position:absolute;left:15%;right:15%;top:13%;height:22%;background:#dff7ff;border:3px solid #142b58;border-radius:7px}.car.moto .sprite:before{height:14%}.sprite:after{content:"";position:absolute;left:23%;right:23%;bottom:10%;height:18%;background:#273c60;border-radius:6px}.name{position:absolute;left:50%;top:-22px;transform:translateX(-50%) rotate(calc(-1 * var(--rot)));white-space:nowrap;background:#fff4ad;border:2px solid #765600;border-radius:7px;padding:2px 5px;font-size:10px;font-weight:1000;color:#5d4300}.ambient{opacity:.72;z-index:10}.ambient .name{display:none}.boom{display:none;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) rotate(calc(-1 * var(--rot)));font-size:42px;z-index:20}.car.accident .boom,.car.overspeed .boom{display:block;animation:boom .5s infinite alternate}.car.accident .sprite,.car.overspeed .sprite{filter:grayscale(.45)}.crashObstacle{display:none;position:absolute;left:50%;top:-58px;transform:translateX(-50%) rotate(calc(-1 * var(--rot)));white-space:nowrap;background:#ffeded;color:#9b1717;border:2px solid #bc2929;border-radius:9px;padding:3px 6px;font-size:13px;font-weight:1000;z-index:21}.car.overspeed .crashObstacle{display:block}.car.offstage{opacity:0}@keyframes boom{to{transform:translate(-50%,-50%) rotate(calc(-1 * var(--rot))) scale(1.25)}}
 .metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:8px}.metric{border:2px solid #7694bf;border-radius:10px;background:#edf5ff;padding:7px;text-align:center}.metric small{display:block;font-weight:900;color:#678}.metric strong{font-size:19px}.ranking{max-height:470px;overflow:auto;display:flex;flex-direction:column;gap:6px}.rank{display:grid;grid-template-columns:35px 1fr auto;gap:7px;align-items:center;border:2px solid #9ab0cf;background:#f4f8ff;border-radius:10px;padding:7px}.rank .no{font-size:20px;font-weight:1000;text-align:center;color:#315ea5}.rank b{display:block;font-size:13px}.rank small{font-weight:900;color:#667995}.rank .score{font-size:19px;font-weight:1000;color:#d06c00}.feed{height:120px;overflow:auto;display:flex;flex-direction:column;gap:5px}.log{border:2px solid #9bb0ce;border-radius:8px;background:#edf4ff;padding:6px;font-size:11px;font-weight:900}.log.acc{background:#ffe2e2;border-color:#db7a7a}.log.good{background:#e5f8e9;border-color:#73bf83}#setupMsg{padding:8px;background:#fff0ba;border:2px solid #c18b1c;border-radius:9px;font-weight:900;margin-bottom:8px}
 .qoverlay{position:fixed;inset:0;background:rgba(7,17,39,.82);z-index:100;display:grid;place-items:center;padding:18px}.qbox{width:min(1050px,96vw);max-height:94vh;overflow:auto;background:#fffef6;border:6px solid var(--deep);border-radius:24px;box-shadow:0 18px 45px rgba(0,0,0,.38);padding:20px}.qtop{display:flex;justify-content:space-between;gap:15px;align-items:start}.qtop h2{margin:0;font-size:30px}.accdetail{background:#ffe0e0;border:3px solid #cc5050;border-radius:14px;padding:11px 13px;margin:12px 0;font-weight:900;line-height:1.65}.question{font-size:24px;font-weight:1000;margin:14px 0}.answerbar{display:grid;grid-template-columns:42px minmax(0,1fr) 66px;gap:8px;align-items:center;margin:9px 0}.letter{font-size:22px;font-weight:1000;text-align:center}.track{position:relative;height:48px;border:3px solid #294f8d;border-radius:12px;background:#edf4ff;overflow:hidden}.fill{position:absolute;left:0;top:0;bottom:0;width:0;background:linear-gradient(90deg,#5ac8ff,#3187ed);transition:.28s}.track.correct{border-color:#2e9b4a;background:#e9f9ec}.track.correct .fill{background:linear-gradient(90deg,#7eea87,#37bd51)}.track.wrongpick{border-color:#cf5353}.label{position:absolute;inset:0;display:flex;align-items:center;padding:0 12px;font-weight:1000;z-index:2}.pct{text-align:right;font-weight:1000;font-size:16px}.qfoot{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap;margin-top:14px}.answered{font-weight:1000;color:#365982}.explain{margin-top:12px;padding:11px;border-radius:12px;background:#e8f8eb;border:3px solid #65b875;font-weight:900;line-height:1.55}
 @media(max-width:1020px){.layout{grid-template-columns:1fr}.map{min-height:680px}}
@@ -62,7 +62,7 @@ button{position:relative;overflow:hidden;border:4px solid var(--deep);border-rad
 </style></head>
 <body>
 <div class="top">
-  <div><h1>🚦 險中求生城市交通大作戰 <span class="versionBadge">v7.1</span></h1></div>
+  <div><h1>🚦 險中求生城市交通大作戰 <span class="versionBadge">v7.2</span></h1></div>
   <div class="room">房號 <span id="roomShow">----</span></div>
 </div>
 <div class="hostControlBar">
@@ -82,9 +82,9 @@ button{position:relative;overflow:hidden;border:4px solid var(--deep);border-rad
 <div class="cross xA"><span class="zebra top"></span><span class="zebra bottom"></span><span class="zebra left"></span><span class="zebra right"></span></div><div class="cross xB"><span class="zebra top"></span><span class="zebra bottom"></span><span class="zebra left"></span><span class="zebra right"></span></div><div class="cross xC"><span class="zebra top"></span><span class="zebra bottom"></span><span class="zebra left"></span><span class="zebra right"></span></div><div class="cross xD"><span class="zebra top"></span><span class="zebra bottom"></span><span class="zebra left"></span><span class="zebra right"></span></div>
 <div class="building school b1">🏫</div><div class="building cafe b2">☕</div><div class="building office b3">🏢</div><div class="building hospital b4">✚</div><div class="building park b5">🌳</div><div class="building shop b6">🏪</div><div class="building gas b7">⛽</div><div class="building apt b8">🏠</div><div class="building office b9">🏬</div><div class="building shop b10">🛒</div><div class="building miniHouse b11">🏡</div><div class="building library b12">📚</div><div class="building station b13">🚉</div><div class="building miniShop b14">🥐</div><div class="building bank b15">🏦</div><div class="building post b16">📮</div><div class="building bookstore b17">📖</div><div class="building restaurant b18">🍜</div>
 <div class="lightPod lA" data-node="A"><span class="ns">NS</span><span class="ew">EW</span></div><div class="lightPod lB" data-node="B"><span class="ns">NS</span><span class="ew">EW</span></div><div class="lightPod lC" data-node="C"><span class="ns">NS</span><span class="ew">EW</span></div><div class="lightPod lD" data-node="D"><span class="ns">NS</span><span class="ew">EW</span></div>
-<div id="destinationPins"></div><div class="statusbar" id="mapStatus">建立房間後等待學生加入</div><div class="hostbadge" id="hostBadge">老師端 v7.1｜尚未建立房間</div><div id="cars"></div>
+<div id="destinationPins"></div><div class="statusbar" id="mapStatus">建立房間後等待學生加入</div><div class="hostbadge" id="hostBadge">老師端 v7.2｜尚未建立房間</div><div id="cars"></div>
 </div></div>
-<div><div class="panel"><div class="phead">積分排行</div><div class="pbody"><div id="setupMsg">請先建立房間；建立後即可邀請學生</div><div class="gameTicker" id="gameTicker">🧭 v7.1：連續拜訪・路線決策・即時突發事件</div><div class="metrics"><div class="metric"><small>玩家</small><strong id="mPlayers">0</strong></div><div class="metric"><small>READY</small><strong id="mReady">0</strong></div><div class="metric"><small>事故人數</small><strong id="mAcc">0</strong></div></div><div class="ranking" id="ranking"></div></div></div></div>
+<div><div class="panel"><div class="phead">積分排行</div><div class="pbody"><div id="setupMsg">請先建立房間；建立後即可邀請學生</div><div class="gameTicker" id="gameTicker">🧭 v7.2：連續拜訪・路線決策・即時突發事件</div><div class="metrics"><div class="metric"><small>玩家</small><strong id="mPlayers">0</strong></div><div class="metric"><small>READY</small><strong id="mReady">0</strong></div><div class="metric"><small>事故人數</small><strong id="mAcc">0</strong></div></div><div class="ranking" id="ranking"></div></div></div></div>
 </div>
 <div class="qoverlay hidden" id="qOverlay"><div class="qbox"><div class="qtop"><h2>💥 城市交通事故</h2><div class="answered" id="qCount">0 / 0 已作答</div></div><div class="accdetail" id="accDetail"></div><div class="question" id="qPrompt"></div><div id="bars"></div><div class="qfoot"><div class="answered" id="answeredText"></div><div><button id="revealBtn" class="orange">公布答案</button><button id="continueBtn" class="green hidden">繼續行車</button></div></div><div class="explain hidden" id="explain"></div></div></div>
 
@@ -94,9 +94,9 @@ button{position:relative;overflow:hidden;border:4px solid var(--deep);border-rad
 <div class="hostModal hidden" id="membersModal"><div class="hostModalBox"><div class="hostModalHead"><h2>👥 成員名單 <span id="memberCount">0</span></h2><button class="closeBtn" id="closeMembers">✕</button></div><div class="memberList" id="memberList"></div></div></div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-database-compat.js"></script><script src="firebase-config.js?v=710"></script><script src="game-data.js?v=710"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-database-compat.js"></script><script src="firebase-config.js?v=720"></script><script src="game-data.js?v=720"></script>
 <script>
-let db,auth,room='',roomRef=null,heartbeatTimer=null,environmentTimer=null,players={},sim={},ambient=[],running=false,paused=false,lastTs=0,lastSideRender=0,lastMissionAward=0,accidentEligibleAt=0,accidentDeadlineAt=0,collisionDone=false,collisionIds=[],collisionNode='A',collisionAmbientId=null,collisionMeta=null,currentQuestion=null,affectedCount=0,currentEnvironment=null,usedQuestionIds=new Set(),questionSerial=0,accidentsThisRound=0,lastPersonalScan=0,roundSerial=0;
+let db,auth,room='',roomRef=null,heartbeatTimer=null,environmentTimer=null,players={},sim={},ambient=[],running=false,paused=false,lastTs=0,lastSideRender=0,lastMissionAward=0,accidentEligibleAt=0,accidentDeadlineAt=0,collisionDone=false,collisionIds=[],collisionNode='A',collisionAmbientId=null,collisionMeta=null,currentQuestion=null,affectedCount=0,currentEnvironment=null,usedQuestionIds=new Set(),questionSerial=0,accidentsThisRound=0,lastPersonalScan=0,roundSerial=0,environmentChangedAt=0,overspeedPending=new Set();
 const $=id=>document.getElementById(id);
 const NODES={
  W1:{x:-7,y:26,boundary:true},A:{x:25,y:26,signal:true},M1:{x:50,y:26},B:{x:75,y:26,signal:true},E1:{x:107,y:26,boundary:true},
@@ -126,8 +126,8 @@ function nextMissionStep(actor,node,prev){let goal=goalFor(actor);if(!goal)retur
 function showMapMarks(){$('destinationPins').innerHTML=MAP_MARKS.map(x=>`<div class="mapPin" style="left:${x.x}%;top:${x.y}%">${x.label}</div>`).join('')}
 function announce(text){if($('gameTicker'))$('gameTicker').textContent=text}
 function missionArrival(a,node){
- if(a.arrivalBusy||!running)return;
- const p=players[a.id];if(!p||!a.stops?.[a.stage]||a.stops[a.stage].node!==node)return;
+ if(a.arrivalBusy||!running||paused||a.status!=='driving')return;
+ const p=players[a.id];if(!p||p.status!=='driving'||isDangerouslyFast(p)||!a.stops?.[a.stage]||a.stops[a.stage].node!==node)return;
  let current=a.stops[a.stage],wasFinal=a.stage===a.stops.length-1,run=a.run||1;
  a.arrivalBusy=true;a.stage++;a.pauseUntil=Date.now()+1500;
  if(wasFinal){a.run=run+1;a.stops=missionPlan(p,a.run);a.stage=0}
@@ -160,6 +160,51 @@ function drivingScoreRange(env){
  let cap=Math.min(env.roadKey==='congested'?30:50,env.weatherKey==='rainy'?35:env.weatherKey==='cloudy'?45:50);
  return {min:Math.max(15,cap-15),max:cap};
 }
+const OVERSPEED_MARGIN=10;
+const OVERSPEED_PENALTY=50;
+const OVERSPEED_STOP_MS=4000;
+const ENVIRONMENT_ADJUST_MS=3000;
+const OVERSPEED_OBSTACLES=[{name:'路燈',icon:'💡'},{name:'電線桿',icon:'⚡'},{name:'中央分隔島',icon:'🚧'}];
+function dangerousSpeedLimit(){let r=drivingScoreRange(currentEnvironment);return r?r.max+OVERSPEED_MARGIN:null}
+function isDangerouslyFast(p){let limit=dangerousSpeedLimit(),speed=Number(p?.speed);return limit!==null&&Number.isFinite(speed)&&speed>limit}
+function checkOverspeedDrivers(){
+ if(!running||paused||!roomRef||Date.now()-environmentChangedAt<ENVIRONMENT_ADJUST_MS)return;
+ const limit=dangerousSpeedLimit();if(limit===null)return;
+ const now=Date.now();
+ for(const [id,p] of Object.entries(players)){
+  const a=sim[id];if(!a||!p.ready||p.status!=='driving'||a.status!=='driving'||overspeedPending.has(id))continue;
+  if(!isDangerouslyFast(p))continue;
+  overspeedPending.add(id);
+  const obstacle=pick(OVERSPEED_OBSTACLES),event=`💥 超速撞上${obstacle.name}！扣 ${OVERSPEED_PENALTY} 分，停車 4 秒`;
+  a.status='overspeed';a.pauseUntil=now+OVERSPEED_STOP_MS;a.crashObstacle=`${obstacle.icon} ${obstacle.name}`;a.speed=limit;
+  announce(`💥 ${p.name||'玩家'}時速 ${Number(p.speed)} km/h，撞上${obstacle.name}！扣 ${OVERSPEED_PENALTY} 分`);
+  log(`${p.name||'玩家'}超速撞上${obstacle.name}，扣${OVERSPEED_PENALTY}分`,'acc');
+  const pref=roomRef.child(`players/${id}`),until=a.pauseUntil;
+  // First mark the penalty state so other score mechanics stop immediately.
+  pref.update({status:'overspeed',safeStreak:0,currentEvent:event,lastFeedback:event,overspeedUntil:until,lastOverspeedCrashAt:firebase.database.ServerValue.TIMESTAMP}).then(()=>
+   // Atomic score subtraction prevents concurrently earned +3/+15/+30 from being overwritten.
+   pref.child('score').transaction(cur=>Math.max(0,Number(cur||0)-OVERSPEED_PENALTY))
+  ).then(()=>
+   // Atomic speed correction prevents stale values from reusing 160 km/h after impact.
+   pref.child('speed').transaction(cur=>Math.min(Math.max(0,Number(cur)||0),limit))
+  ).catch(e=>{console.error('超速事故同步失敗',e);a.status='driving';a.pauseUntil=0;a.crashObstacle=null}).finally(()=>overspeedPending.delete(id));
+ }
+}
+function resumeOverspeedDrivers(){
+ const now=Date.now();
+ for(const [id,a] of Object.entries(sim)){
+  if(a.status!=='overspeed'||now<(a.pauseUntil||0)||overspeedPending.has(id))continue;
+  if(!roomRef)continue;
+  overspeedPending.add(id);
+  const pref=roomRef.child(`players/${id}`),currentLimit=dangerousSpeedLimit()??50;
+  // Weather may have changed during the four-second stop; recheck before releasing controls.
+  pref.child('speed').transaction(cur=>Math.min(Math.max(0,Number(cur)||0),currentLimit))
+   .then(()=>pref.update({status:'driving',overspeedUntil:null,lastFeedback:null,currentEvent:'🚗 已恢復行車，請遵守目前得分速域'}))
+   .then(()=>{a.status='driving';a.pauseUntil=0;a.crashObstacle=null})
+   .catch(e=>console.warn('恢復行車失敗',e))
+   .finally(()=>overspeedPending.delete(id));
+ }
+}
 function renderEnvironment(){let e=currentEnvironment;if(!e){$('roadDisplay').textContent='尚未開始';$('weatherDisplay').textContent='尚未開始';$('targetDisplay').textContent='—';return}$('roadDisplay').textContent=`${e.roadIcon||''} ${e.roadName||''}`;$('weatherDisplay').textContent=`${e.weatherIcon||''} ${e.weatherName||''}`;let r=drivingScoreRange(e);$('targetDisplay').textContent=`${r.min}～${r.max} km/h`}
 async function changeOneEnvironmentVariable(){
  if(!running||!roomRef)return;
@@ -171,7 +216,7 @@ async function changeOneEnvironmentVariable(){
   let pool=WEATHER_STATES.filter(x=>x.key!==next.weatherKey),w=pick(pool.length?pool:WEATHER_STATES);
   next.weatherKey=w.key;next.weatherName=w.name;next.weatherIcon=w.icon;next.weatherOffset=w.offset;
  }
- currentEnvironment=next;renderEnvironment();
+ currentEnvironment=next;environmentChangedAt=Date.now();renderEnvironment();
  await roomRef.child('environment').set(next)
 }
 function startEnvironmentCycle(){
@@ -193,14 +238,14 @@ function chooseTurn(prev,node,cands){if(cands.length===1)return cands[0];let vin
 function nextNode(actor,nodeId,prevId){let c=(ADJ[nodeId]||[]).filter(n=>n!==prevId);if(!c.length)c=ADJ[nodeId]||[];return chooseTurn(prevId,nodeId,c)}
 function laneOffset(actor,from,to){let v=nodeVec(from,to),alley=(from==='I'||to==='I'||['M1','M2','H','J'].includes(from)&&['M1','M2','H','J'].includes(to));let mag=actor.vehicleType==='moto'?(alley?1.55:2.7):(alley?.8:1.45);return{x:-v.uy*mag,y:v.ux*mag}}
 function actorPos(actor){if(actor.forcePos)return actor.forcePos;let A=NODES[actor.from],B=NODES[actor.to],t=actor.t,off=laneOffset(actor,actor.from,actor.to);return{x:A.x+(B.x-A.x)*t+off.x,y:A.y+(B.y-A.y)*t+off.y,rot:Math.atan2(B.y-A.y,B.x-A.x)*180/Math.PI+90}}
-function createCar(id,p,isAmbient=false){let el=document.getElementById('car_'+id);if(el)return el;el=document.createElement('div');el.id='car_'+id;el.className='car '+(p.vehicleType==='moto'?'moto ':'')+(isAmbient?'ambient':'');el.innerHTML='<div class="name"></div><div class="sprite"></div><div class="boom">💥</div>';el.style.setProperty('--c',p.color||'#3b82f6');$('cars').appendChild(el);return el}
-function renderCars(){let now=Date.now();for(const [id,p] of Object.entries(players)){if(!p.ready)continue;let a=sim[id];if(!a)continue;let el=createCar(id,p,false),pos=actorPos(a);el.style.left=pos.x+'%';el.style.top=pos.y+'%';el.style.setProperty('--rot',pos.rot+'deg');el.style.setProperty('--c',p.color||'#3b82f6');el.className='car '+(p.vehicleType==='moto'?'moto ':'')+(a.status==='accident'?'accident ':'')+(a.hiddenUntil&&now<a.hiddenUntil?'offstage':'');el.querySelector('.name').textContent=p.name||'玩家'}
+function createCar(id,p,isAmbient=false){let el=document.getElementById('car_'+id);if(el)return el;el=document.createElement('div');el.id='car_'+id;el.className='car '+(p.vehicleType==='moto'?'moto ':'')+(isAmbient?'ambient':'');el.innerHTML='<div class="name"></div><div class="sprite"></div><div class="boom">💥</div><div class="crashObstacle"></div>';el.style.setProperty('--c',p.color||'#3b82f6');$('cars').appendChild(el);return el}
+function renderCars(){let now=Date.now();for(const [id,p] of Object.entries(players)){if(!p.ready)continue;let a=sim[id];if(!a)continue;let el=createCar(id,p,false),pos=actorPos(a);el.style.left=pos.x+'%';el.style.top=pos.y+'%';el.style.setProperty('--rot',pos.rot+'deg');el.style.setProperty('--c',p.color||'#3b82f6');el.className='car '+(p.vehicleType==='moto'?'moto ':'')+(a.status==='accident'?'accident ':'')+(a.status==='overspeed'?'overspeed ':'')+(a.hiddenUntil&&now<a.hiddenUntil?'offstage':'');el.querySelector('.name').textContent=p.name||'玩家';el.querySelector('.crashObstacle').textContent=a.crashObstacle||''}
  for(const a of ambient){let el=createCar(a.id,a,true),pos=actorPos(a);el.style.left=pos.x+'%';el.style.top=pos.y+'%';el.style.setProperty('--rot',pos.rot+'deg');el.style.setProperty('--c',a.color);el.className='car '+(a.vehicleType==='moto'?'moto ':'')+'ambient '+(a.status==='accident'?'accident ':'')+(a.hiddenUntil&&now<a.hiddenUntil?'offstage':'')}
 }
 function makeActor(id,p,index,isAmbient=false){let starts=[['W1','A'],['E1','B'],['N1','A'],['S1','C'],['W2','C'],['E2','D'],['N2','B'],['S2','D'],['A','M1'],['C','M2'],['H','I'],['J','I']];let [from,to]=starts[index%starts.length];return{id,from,to,t:.05+(index%3)*.22,status:'driving',speed:isAmbient?rand(32,64):Math.max(5,Number(p.speed||40)),vehicleType:p.vehicleType||'car',color:p.color||'#b8c2cf',forcePos:null,hiddenUntil:0,boundaryWait:0,isAmbient}}
 function setupAmbient(){ambient=[];for(let i=0;i<10;i++){let v=i%4===0?'moto':'car',a=makeActor('amb'+i,{vehicleType:v,color:['#b8c2cf','#f5a623','#7f8cff','#ef7373','#56c596','#d88ce8'][i%6],speed:rand(30,62)},i+3,true);ambient.push(a);createCar(a.id,a,true)}}
 function allActors(){let out=[];for(const [id,p] of Object.entries(players)){let a=sim[id];if(a&&p.ready)out.push(a)}return out.concat(ambient)}
-function speedUnits(actor){let live=actor.isAmbient?Number(actor.speed||40):Number(players[actor.id]?.speed??actor.speed??40);actor.speed=live;let factor=(!actor.isAmbient&&alleyEdge(actor.from,actor.to))?.78:1;return (3.6+Math.min(160,Math.max(0,live))*.11)*factor}
+function speedUnits(actor){let live=actor.isAmbient?Number(actor.speed||40):Number(players[actor.id]?.speed??actor.speed??40);actor.speed=live;let safePhysicalSpeed=actor.isAmbient?live:Math.min(live,dangerousSpeedLimit()??50);let factor=(!actor.isAmbient&&alleyEdge(actor.from,actor.to))?.78:1;return (3.6+Math.min(160,Math.max(0,safePhysicalSpeed))*.11)*factor}
 function edgeKey(a){return a.from+'>'+a.to}
 function minGapUnits(a,b){return(a.vehicleType==='moto'&&b.vehicleType==='moto')?4.0:(a.vehicleType==='moto'||b.vehicleType==='moto')?5.0:6.2}
 function nodeBusy(nodeId,selfId){return allActors().some(a=>a.id!==selfId&&a.status==='driving'&&a.from===nodeId&&a.t<.16)}
@@ -423,7 +468,7 @@ function renderMemberList(){
   $('memberList').innerHTML=arr.length?arr.map((p,i)=>`<div class="memberRow"><div class="memberNo">${i+1}</div><div><b>${safeText(p.name||'未命名')}</b><small>${p.connected===false?'連線中斷':'已加入房間'}</small></div><div class="memberState ${p.ready?'ready':''}">${p.ready?'READY':'準備中'}</div></div>`).join(''):'<div style="padding:24px;text-align:center;font-weight:900;color:#789">目前尚無學生加入</div>';
 }
 function studentInviteUrl(){
-  return new URL(`student.html?v=710&room=${encodeURIComponent(room)}`, window.location.href).href;
+  return new URL(`student.html?v=720&room=${encodeURIComponent(room)}`, window.location.href).href;
 }
 function showInvite(){
   if(!room) return;
@@ -481,17 +526,17 @@ stopEnvironmentCycle();
 let connectedSnap=await db.ref('.info/connected').once('value');
 if(connectedSnap.val()!==true){$('setupMsg').textContent='Firebase 尚未連線，請確認網路後再建立房間';return}
 let code=$('roomInput').value.trim();if(!/^\d{4}$/.test(code))code=String(Math.floor(1000+Math.random()*9000));let ref=db.ref(`rooms/${code}`),old=await ref.once('value');if(old.exists()){let online=old.child('hostOnline').val(),beat=Number(old.child('hostHeartbeat').val()||0);if(online&&Date.now()-beat<18000){$('setupMsg').textContent='這個房號目前已有老師使用，請換一個房號';return}}if(roomRef){try{await roomRef.remove()}catch(e){}try{await roomRef.onDisconnect().cancel()}catch(e){}}room=code;roomRef=ref;currentEnvironment=null;usedQuestionIds.clear();questionSerial=0;renderEnvironment();$('roomInput').value=code;$('roomShow').textContent=code;await roomRef.set({status:'waiting',hostUid:auth.currentUser.uid,hostOnline:true,hostHeartbeat:firebase.database.ServerValue.TIMESTAMP,createdAt:firebase.database.ServerValue.TIMESTAMP});setupRoomLifecycle(roomRef);$('resetBtn').disabled=false;$('inviteBtn').disabled=false;$('membersBtn').disabled=false;$('setupMsg').textContent='房間已建立；關閉老師頁面後房間會自動失效';$('cars').innerHTML='';sim={};setupAmbient();watchRoom();showMapMarks();renderSignals();log('建立房間 '+code,'good')};
-$('resetBtn').onclick=async()=>{if(!roomRef)return;$('finalOverlay').classList.add('hidden');$('stopBtn').disabled=true;running=false;paused=false;stopEnvironmentCycle();sim={};players={};collisionDone=false;collisionIds=[];collisionMeta=null;affectedCount=0;currentQuestion=null;lastMissionAward=0;accidentEligibleAt=0;accidentDeadlineAt=0;accidentsThisRound=0;currentEnvironment=null;usedQuestionIds.clear();questionSerial=0;renderEnvironment();$('cars').innerHTML='';setupAmbient();await roomRef.set({status:'waiting',hostUid:auth.currentUser.uid,hostOnline:true,hostHeartbeat:firebase.database.ServerValue.TIMESTAMP,createdAt:firebase.database.ServerValue.TIMESTAMP});setupRoomLifecycle(roomRef);log('房間已重設','good')};
+$('resetBtn').onclick=async()=>{if(!roomRef)return;$('finalOverlay').classList.add('hidden');$('stopBtn').disabled=true;running=false;paused=false;stopEnvironmentCycle();sim={};players={};collisionDone=false;collisionIds=[];collisionMeta=null;affectedCount=0;currentQuestion=null;lastMissionAward=0;accidentEligibleAt=0;accidentDeadlineAt=0;accidentsThisRound=0;overspeedPending.clear();environmentChangedAt=0;currentEnvironment=null;usedQuestionIds.clear();questionSerial=0;renderEnvironment();$('cars').innerHTML='';setupAmbient();await roomRef.set({status:'waiting',hostUid:auth.currentUser.uid,hostOnline:true,hostHeartbeat:firebase.database.ServerValue.TIMESTAMP,createdAt:firebase.database.ServerValue.TIMESTAMP});setupRoomLifecycle(roomRef);log('房間已重設','good')};
 function initialPlacement(entries){let out={},starts=[['W1','A'],['E1','B'],['N1','A'],['S1','C'],['W2','C'],['E2','D'],['N2','B'],['S2','D'],['A','M1'],['C','M2'],['H','I'],['J','I']],slots=[.18,.46,.74],occupied=[];for(const a of ambient)occupied.push({from:a.from,to:a.to,t:a.t});entries.forEach(([id,p],i)=>{let chosen=null;for(let k=0;k<starts.length&&!chosen;k++){let [from,to]=starts[(i+k)%starts.length];for(const t of slots){let busy=occupied.some(o=>o.from===from&&o.to===to&&Math.abs(o.t-t)<.16);if(!busy){chosen={from,to,t};break}}}if(!chosen)chosen={from:'W1',to:'A',t:.12};let a=makeActor(id,p,i,false);a.from=chosen.from;a.to=chosen.to;a.t=chosen.t;out[id]=a;occupied.push(chosen)});return out}
 $('startBtn').onclick=async()=>{
  let arr=Object.entries(players);if(!arr.length||!arr.every(([,p])=>p.ready))return;
- sim=initialPlacement(arr);currentEnvironment=randomEnvironment();usedQuestionIds.clear();questionSerial=0;accidentsThisRound=0;roundSerial++;renderEnvironment();
+ sim=initialPlacement(arr);currentEnvironment=randomEnvironment();environmentChangedAt=Date.now()-ENVIRONMENT_ADJUST_MS;overspeedPending.clear();usedQuestionIds.clear();questionSerial=0;accidentsThisRound=0;roundSerial++;renderEnvironment();
  let updates={status:'running',globalQuestion:null,usedQuestions:null,environment:currentEnvironment,startedAt:firebase.database.ServerValue.TIMESTAMP};
  arr.forEach(([id])=>{
   let p=players[id],a=sim[id];a.stops=missionPlan(p,1);a.stage=0;a.run=1;a.arrivalBusy=false;a.pauseUntil=0;a.runElapsedMs=0;a.runBudgetMs=0;
   updates[`players/${id}/status`]='driving';updates[`players/${id}/score`]=0;
   updates[`players/${id}/missionStops`]=a.stops;updates[`players/${id}/missionIndex`]=0;updates[`players/${id}/missionRound`]=1;updates[`players/${id}/visitCount`]=0;updates[`players/${id}/completedRuns`]=0;updates[`players/${id}/safeTicks`]=0;updates[`players/${id}/safeStreak`]=0;updates[`players/${id}/bestStreak`]=0;updates[`players/${id}/lastBonusAmount`]=0;updates[`players/${id}/lastVisitAt`]=null;updates[`players/${id}/quizCorrect`]=0;
-  updates[`players/${id}/currentEvent`]='🚦 行駛中';updates[`players/${id}/lastFeedback`]=null;updates[`players/${id}/lastMissionBonusAt`]=null;updates[`players/${id}/lastSpeedHintAt`]=null
+  updates[`players/${id}/currentEvent`]='🚦 行駛中';updates[`players/${id}/lastFeedback`]=null;updates[`players/${id}/lastMissionBonusAt`]=null;updates[`players/${id}/lastSpeedHintAt`]=null;updates[`players/${id}/overspeedUntil`]=null;updates[`players/${id}/lastOverspeedCrashAt`]=null
  });
  await roomRef.update(updates);running=true;paused=false;lastTs=performance.now();lastMissionAward=Date.now();
  $('stopBtn').disabled=false;$('startBtn').disabled=true;announce('🚦 出發！看路況調整時速、連續達標拿獎勵，車輛將自動跑完拜訪路線');startEnvironmentCycle();startAccidentCycle();requestAnimationFrame(tick)
@@ -532,6 +577,8 @@ async function tick(ts){
  if(!running)return;
  let dt=Math.min(90,Math.max(0,ts-(lastTs||ts)));lastTs=ts;renderSignals();
  if(!paused){
+  resumeOverspeedDrivers();
+  checkOverspeedDrivers();
   advanceActors(dt);
   let now=Date.now();
   if(!collisionDone){
