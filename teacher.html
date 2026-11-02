@@ -57,10 +57,10 @@ button{position:relative;overflow:hidden;border:4px solid var(--deep);border-rad
 /* v7 mission routing and arcade overlays */
 .mapPin{position:absolute;z-index:8;background:#fff8c4;border:2px solid #19467b;color:#163b6c;font-size:11px;font-weight:1000;border-radius:999px;padding:3px 6px;transform:translate(-50%,-50%);box-shadow:0 3px 0 rgba(0,0,0,.15);pointer-events:none;white-space:nowrap}
 .gameTicker{font-size:12px;font-weight:900;line-height:1.5;color:#27577c;background:#ebf8ff;border:2px solid #9bc4eb;padding:7px;border-radius:9px;margin-bottom:8px}
-.v7Note{display:block;color:#5c7293;font-size:11px;font-weight:900;margin-top:4px}.missionMeta{display:block;font-size:11px;color:#3f7c55;font-weight:1000}.specialAwards{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:8px 0 16px}.specialAward{border:3px solid #20487c;border-radius:13px;padding:10px 6px;background:#f1f8ff;font-weight:1000;font-size:14px}.specialAward strong{display:block;margin:6px 0 0;color:#b96315;font-size:17px}.specialAward small{display:block;color:#6983a2;font-size:11px;margin-top:4px}
+.v7Note{display:block;color:#5c7293;font-size:11px;font-weight:900;margin-top:4px}.missionMeta{display:block;font-size:11px;color:#3f7c55;font-weight:1000}.specialAwards{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin:8px 0 16px}.specialAward{border:3px solid #20487c;border-radius:13px;padding:10px 6px;background:#f1f8ff;font-weight:1000;font-size:14px}.specialAward strong{display:block;margin:6px 0 0;color:#b96315;font-size:17px}.specialAward small{display:block;color:#6983a2;font-size:11px;margin-top:4px}
 @media(max-width:650px){.specialAwards{grid-template-columns:1fr}}
 
-/* ==== v7.34 cartoon reskin overrides ==== */
+/* ==== v7.35 cartoon reskin overrides ==== */
 :root{--deep:#18315e;--green:#37c978;--yellow:#ffd24d;--red:#ff6666;--blue:#4aa8ff;--road:#616779;--curb:#40485c;--paper:#fff8eb}
 body{background:
  radial-gradient(circle at 10% 15%,rgba(255,255,255,.35) 0 12px,transparent 13px),
@@ -151,7 +151,7 @@ button:hover:not(:disabled){transform:translateY(-2px) scale(1.02)}
 @media(max-width:1020px){.layout{grid-template-columns:1fr}.map{min-height:680px}}
 
 
-/* v7.34 traffic light refinement */
+/* v7.35 traffic light refinement */
 .lightPod{width:66px;height:86px;display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:8px 7px;border-radius:18px;background:linear-gradient(180deg,#253049,#121a2b);border:4px solid #0d1630;box-shadow:0 8px 0 rgba(0,0,0,.2),0 12px 18px rgba(0,0,0,.16)}
 .lightPod .signalCol{display:flex;flex-direction:column;justify-content:space-between;align-items:center;background:rgba(255,255,255,.03);border-radius:10px;padding:2px 0}
 .lightPod .lamp{display:block;width:18px;height:18px;border-radius:50%;border:2px solid rgba(255,255,255,.14);box-shadow:inset 0 -2px 3px rgba(0,0,0,.45);transition:.18s}
@@ -163,7 +163,7 @@ button:hover:not(:disabled){transform:translateY(-2px) scale(1.02)}
 .lightPod .greenLamp.active{background:#39dd68;box-shadow:0 0 12px rgba(57,221,104,.9), inset 0 0 5px rgba(255,255,255,.35)}
 
 
-/* v7.34 four-side horizontal traffic lights */
+/* v7.35 four-side horizontal traffic lights */
 .signalGroup{position:absolute;z-index:22;transform:translate(-50%,-50%);pointer-events:none;width:78px;height:78px}
 .sgA{left:25%;top:26%}.sgB{left:75%;top:26%}.sgC{left:25%;top:74%}.sgD{left:75%;top:74%}
 .signalSide{position:absolute;display:flex;gap:4px;align-items:center;justify-content:center;width:62px;height:22px;padding:2px 5px;border-radius:999px;background:linear-gradient(180deg,#28324b,#141d2d);border:3px solid #0d1630;box-shadow:0 5px 0 rgba(0,0,0,.18),0 8px 14px rgba(0,0,0,.14)}
@@ -180,7 +180,7 @@ button:hover:not(:disabled){transform:translateY(-2px) scale(1.02)}
 </style></head>
 <body>
 <div class="top">
-  <div><h1>🚦 險中求生城市交通大作戰 <span class="versionBadge">v7.34</span></h1></div>
+  <div><h1>🚦 險中求生城市交通大作戰 <span class="versionBadge">v7.35</span></h1></div>
   <div class="room">房號 <span id="roomShow">----</span></div>
 </div>
 <div class="hostControlBar">
@@ -194,15 +194,15 @@ button:hover:not(:disabled){transform:translateY(-2px) scale(1.02)}
   <button id="resetBtn" class="red" disabled>↻ 重設</button>
 </div>
 <div class="layout">
-<div class="panel"><div class="phead roadHead"><span class="roadHeadTitle">城市道路</span><div class="environmentInline"><div class="environmentBadge"><small>下題</small><strong id="nextQuestionDisplay">—</strong></div><div class="environmentBadge"><small>路況</small><strong id="roadDisplay">尚未開始</strong></div><div class="environmentBadge"><small>天氣</small><strong id="weatherDisplay">尚未開始</strong></div><div class="environmentBadge"><small>遊戲得分速域</small><strong id="targetDisplay">—</strong></div></div></div><div class="map" id="map">
+<div class="panel"><div class="phead roadHead"><span class="roadHeadTitle">城市道路</span><div class="environmentInline"><div class="environmentBadge"><small>路況</small><strong id="roadDisplay">尚未開始</strong></div><div class="environmentBadge"><small>天氣</small><strong id="weatherDisplay">尚未開始</strong></div><div class="environmentBadge"><small>遊戲得分速域</small><strong id="targetDisplay">—</strong></div></div></div><div class="map" id="map">
 <div class="grass"></div>
 <div class="road h top"></div><div class="road h bottom"></div><div class="road v left"></div><div class="road v right"></div><div class="road alleyH"></div><div class="road alleyV"></div>
 <div class="cross xA"><span class="zebra top"></span><span class="zebra bottom"></span><span class="zebra left"></span><span class="zebra right"></span></div><div class="cross xB"><span class="zebra top"></span><span class="zebra bottom"></span><span class="zebra left"></span><span class="zebra right"></span></div><div class="cross xC"><span class="zebra top"></span><span class="zebra bottom"></span><span class="zebra left"></span><span class="zebra right"></span></div><div class="cross xD"><span class="zebra top"></span><span class="zebra bottom"></span><span class="zebra left"></span><span class="zebra right"></span></div>
 <div class="building school b1">🏫</div><div class="building cafe b2">☕</div><div class="building office b3">🏢</div><div class="building hospital b4">✚</div><div class="building park b5">🌳</div><div class="building shop b6">🏪</div><div class="building gas b7">⛽</div><div class="building apt b8">🏠</div><div class="building office b9">🏬</div><div class="building shop b10">🛒</div><div class="building miniHouse b11">🏡</div><div class="building library b12">📚</div><div class="building station b13">🚉</div><div class="building miniShop b14">🥐</div><div class="building bank b15">🏦</div><div class="building post b16">📮</div><div class="building bookstore b17">📖</div><div class="building restaurant b18">🍜</div>
 <div class="signalGroup sgA" data-node="A"><div class="signalSide ns side-top"><span class="lamp redLamp"></span><span class="lamp yellowLamp"></span><span class="lamp greenLamp"></span></div><div class="signalSide ew side-right"><span class="lamp redLamp"></span><span class="lamp yellowLamp"></span><span class="lamp greenLamp"></span></div><div class="signalSide ns side-bottom"><span class="lamp redLamp"></span><span class="lamp yellowLamp"></span><span class="lamp greenLamp"></span></div><div class="signalSide ew side-left"><span class="lamp redLamp"></span><span class="lamp yellowLamp"></span><span class="lamp greenLamp"></span></div></div><div class="signalGroup sgB" data-node="B"><div class="signalSide ns side-top"><span class="lamp redLamp"></span><span class="lamp yellowLamp"></span><span class="lamp greenLamp"></span></div><div class="signalSide ew side-right"><span class="lamp redLamp"></span><span class="lamp yellowLamp"></span><span class="lamp greenLamp"></span></div><div class="signalSide ns side-bottom"><span class="lamp redLamp"></span><span class="lamp yellowLamp"></span><span class="lamp greenLamp"></span></div><div class="signalSide ew side-left"><span class="lamp redLamp"></span><span class="lamp yellowLamp"></span><span class="lamp greenLamp"></span></div></div><div class="signalGroup sgC" data-node="C"><div class="signalSide ns side-top"><span class="lamp redLamp"></span><span class="lamp yellowLamp"></span><span class="lamp greenLamp"></span></div><div class="signalSide ew side-right"><span class="lamp redLamp"></span><span class="lamp yellowLamp"></span><span class="lamp greenLamp"></span></div><div class="signalSide ns side-bottom"><span class="lamp redLamp"></span><span class="lamp yellowLamp"></span><span class="lamp greenLamp"></span></div><div class="signalSide ew side-left"><span class="lamp redLamp"></span><span class="lamp yellowLamp"></span><span class="lamp greenLamp"></span></div></div><div class="signalGroup sgD" data-node="D"><div class="signalSide ns side-top"><span class="lamp redLamp"></span><span class="lamp yellowLamp"></span><span class="lamp greenLamp"></span></div><div class="signalSide ew side-right"><span class="lamp redLamp"></span><span class="lamp yellowLamp"></span><span class="lamp greenLamp"></span></div><div class="signalSide ns side-bottom"><span class="lamp redLamp"></span><span class="lamp yellowLamp"></span><span class="lamp greenLamp"></span></div><div class="signalSide ew side-left"><span class="lamp redLamp"></span><span class="lamp yellowLamp"></span><span class="lamp greenLamp"></span></div></div>
-<div id="destinationPins"></div><div class="statusbar" id="mapStatus">建立房間後等待學生加入</div><div class="hostbadge" id="hostBadge">老師端 v7.34｜尚未建立房間</div><div id="cars"></div>
+<div id="destinationPins"></div><div class="statusbar" id="mapStatus">建立房間後等待學生加入</div><div class="hostbadge" id="hostBadge">老師端 v7.35｜尚未建立房間</div><div id="cars"></div>
 </div></div>
-<div><div class="panel"><div class="phead">積分排行</div><div class="pbody"><div id="setupMsg">請先建立房間；建立後即可邀請學生</div><div class="gameTicker" id="gameTicker">🧭 v7.34：連續拜訪・路線決策・即時突發事件</div><div class="metrics"><div class="metric"><small>玩家</small><strong id="mPlayers">0</strong></div><div class="metric"><small>READY</small><strong id="mReady">0</strong></div><div class="metric"><small>事故人數</small><strong id="mAcc">0</strong></div></div><div class="ranking" id="ranking"></div></div></div></div>
+<div><div class="panel"><div class="phead">積分排行</div><div class="pbody"><div id="setupMsg">請先建立房間；建立後即可邀請學生</div><div class="gameTicker" id="gameTicker">🧭 v7.35：連續拜訪・路線決策・即時突發事件</div><div class="metrics"><div class="metric"><small>玩家</small><strong id="mPlayers">0</strong></div><div class="metric"><small>READY</small><strong id="mReady">0</strong></div><div class="metric"><small>事故人數</small><strong id="mAcc">0</strong></div></div><div class="ranking" id="ranking"></div></div></div></div>
 </div>
 <div class="qoverlay hidden" id="qOverlay"><div class="qbox"><div class="qtop"><h2>💥 城市交通事故</h2><div class="answered" id="qCount">0 / 0 已作答</div></div><div class="accdetail" id="accDetail"></div><div class="question" id="qPrompt"></div><div id="bars"></div><div class="qfoot"><div class="answered" id="answeredText"></div><div><button id="revealBtn" class="orange">公布答案</button><button id="continueBtn" class="green hidden">繼續行車</button></div></div><div class="explain hidden" id="explain"></div></div></div>
 
@@ -212,7 +212,7 @@ button:hover:not(:disabled){transform:translateY(-2px) scale(1.02)}
 <div class="hostModal hidden" id="membersModal"><div class="hostModalBox"><div class="hostModalHead"><h2>👥 成員名單 <span id="memberCount">0</span></h2><button class="closeBtn" id="closeMembers">✕</button></div><div class="memberList" id="memberList"></div></div></div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-database-compat.js"></script><script src="firebase-config.js?v=734"></script><script src="game-data.js?v=734"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-database-compat.js"></script><script src="firebase-config.js?v=735"></script><script src="game-data.js?v=735"></script>
 <script>
 let db,auth,room='',roomRef=null,heartbeatTimer=null,environmentTimer=null,players={},sim={},ambient=[],running=false,paused=false,lastTs=0,lastSideRender=0,lastMissionAward=0,accidentEligibleAt=0,accidentDeadlineAt=0,collisionDone=false,collisionIds=[],collisionNode='A',collisionAmbientId=null,collisionMeta=null,currentQuestion=null,affectedCount=0,currentEnvironment=null,usedQuestionIds=new Set(),questionSerial=0,accidentsThisRound=0,lastPersonalScan=0,roundSerial=0,environmentChangedAt=0,overspeedPending=new Set(),nextQuestionAt=0;
 const QUESTION_INTERVAL_MS=30000;
@@ -244,15 +244,22 @@ function remainingDistance(start,goal,mode){if(start===goal)return 0;let dist={[
 function nextMissionStep(actor,node,prev){let goal=goalFor(actor);if(!goal)return nextNode(actor,node,prev);let mode='main';let opts=ADJ[node]||[];let ranked=opts.map(n=>({node:n,score:edgeDistance(node,n,mode)+remainingDistance(n,goal,mode)+(n===prev?4:0)}));ranked.sort((a,b)=>a.score-b.score);return ranked[0]?.node||nextNode(actor,node,prev)}
 function showMapMarks(){$('destinationPins').innerHTML=MAP_MARKS.map(x=>`<div class="mapPin" style="left:${x.x}%;top:${x.y}%">${x.label}</div>`).join('')}
 function announce(text){if($('gameTicker'))$('gameTicker').textContent=text}
+const MIN_VISIT_DRIVE_MS=9000;     // Real active driving time, not wall-clock time or number of frames.
+const MIN_VISIT_ROAD_DISTANCE=18; // Road-coordinate units moved since the last paid destination.
 function missionArrival(a,node){
- if(a.arrivalBusy||!running||paused||a.status!=='driving')return;
- const p=players[a.id];if(!p||p.status!=='driving'||isDangerouslyFast(p)||!a.stops?.[a.stage]||a.stops[a.stage].node!==node)return;
+ // Return false until a physical trip is complete. The car waits at the current target instead of teleporting to the next one.
+ if(a.arrivalBusy||!running||paused||a.status!=='driving')return false;
+ const p=players[a.id];
+ if(!p||p.status!=='driving'||!a.stops?.[a.stage]||a.stops[a.stage].node!==node)return false;
+ if(isDangerouslyFast(p)||a.driveElapsedMs-a.lastVisitDriveMs<MIN_VISIT_DRIVE_MS||a.distanceSinceVisit<MIN_VISIT_ROAD_DISTANCE)return false;
  let current=a.stops[a.stage],wasFinal=a.stage===a.stops.length-1,run=a.run||1;
  a.arrivalBusy=true;a.stage++;a.pauseUntil=Date.now()+1500;
+ a.lastVisitDriveMs=a.driveElapsedMs;a.distanceSinceVisit=0;
  if(wasFinal){a.run=run+1;a.stops=missionPlan(p,a.run);a.stage=0}
  let updates={missionStops:a.stops,missionIndex:a.stage,missionRound:a.run||run,visitCount:Number(p.visitCount||0)+1,completedRuns:Number(p.completedRuns||0)+(wasFinal?1:0),lastVisitName:current.label,lastVisitAt:firebase.database.ServerValue.TIMESTAMP,currentEvent:wasFinal?`🎉 完成第 ${run} 趟任務！拜訪＋15／整趟＋25`:`📍 完成 ${current.label}，拜訪＋15 分`};
  announce(`📍 ${p.name||'玩家'}完成 ${current.label}${wasFinal?'｜整趟任務達成＋25！':''}`);
  roomRef.child(`players/${a.id}`).update(updates).then(()=>roomRef.child(`players/${a.id}/score`).transaction(s=>Number(s||0)+15+(wasFinal?25:0))).catch(e=>console.warn('拜訪獎勵失敗',e)).finally(()=>{a.arrivalBusy=false});
+ return true;
 }
 function handleAccident(){
  // Ordinary collisions may occur during driving, but do not affect the fixed 30s quiz clock.
@@ -267,11 +274,6 @@ function handleAccident(){
 }
 function startQuestionClock(){nextQuestionAt=Date.now()+QUESTION_INTERVAL_MS}
 function stopQuestionClock(){nextQuestionAt=0}
-function renderQuestionCountdown(){
- const el=$('nextQuestionDisplay');if(!el)return;
- const label=!running?'—':paused?'講解中':nextQuestionAt?Math.max(0,Math.ceil((nextQuestionAt-Date.now())/1000))+'秒':'準備中';
- if(el.textContent!==label)el.textContent=label;
-}
 
 const MAIN_SIGNALS=new Set(['A','B','C','D']);
 const SIGNAL_OFFSET={A:0,B:6000,C:6000,D:0};
@@ -360,12 +362,19 @@ function renderSignals(){document.querySelectorAll('.signalGroup').forEach(g=>{l
 function chooseTurn(prev,node,cands){if(cands.length===1)return cands[0];let vin=nodeVec(prev,node),scored=cands.map(n=>{let v=nodeVec(node,n),dot=vin.ux*v.ux+vin.uy*v.uy,cross=vin.ux*v.uy-vin.uy*v.ux;let kind=dot>.65?'straight':cross>0?'right':'left';let w=kind==='straight'?5:kind==='right'?3:2;return{n,w,kind}}),total=scored.reduce((s,x)=>s+x.w,0),r=Math.random()*total;for(const x of scored){r-=x.w;if(r<=0)return x.n}return scored[0].n}
 function nextNode(actor,nodeId,prevId){let c=(ADJ[nodeId]||[]).filter(n=>n!==prevId);if(!c.length)c=ADJ[nodeId]||[];return chooseTurn(prevId,nodeId,c)}
 function laneOffset(actor,from,to){let v=nodeVec(from,to),alley=(from==='I'||to==='I'||['M1','M2','H','J'].includes(from)&&['M1','M2','H','J'].includes(to));let mag=actor.vehicleType==='moto'?(alley?1.55:2.7):(alley?.8:1.45);return{x:-v.uy*mag,y:v.ux*mag}}
-function actorPos(actor){if(actor.forcePos)return actor.forcePos;let A=NODES[actor.from],B=NODES[actor.to],t=actor.t,off=laneOffset(actor,actor.from,actor.to);return{x:A.x+(B.x-A.x)*t+off.x,y:A.y+(B.y-A.y)*t+off.y,rot:Math.atan2(B.y-A.y,B.x-A.x)*180/Math.PI+90}}
+function actorPos(actor){
+ if(actor.forcePos)return actor.forcePos;
+ let A=NODES[actor.from],B=NODES[actor.to],t=Math.max(0,Math.min(1,Number(actor.t)||0));
+ let off=laneOffset(actor,actor.from,actor.to);
+ // Smooth the lateral lane shift when entering a new road; keep the sprite at the previous edge's exit point.
+ if(actor.entryLaneOffset){let f=Math.max(0,Math.min(1,t/.25));off={x:actor.entryLaneOffset.x*(1-f)+off.x*f,y:actor.entryLaneOffset.y*(1-f)+off.y*f}}
+ return{x:A.x+(B.x-A.x)*t+off.x,y:A.y+(B.y-A.y)*t+off.y,rot:Math.atan2(B.y-A.y,B.x-A.x)*180/Math.PI+90};
+} 
 function createCar(id,p,isAmbient=false){let el=document.getElementById('car_'+id);if(el)return el;el=document.createElement('div');el.id='car_'+id;el.className='car '+(p.vehicleType==='moto'?'moto ':'')+(isAmbient?'ambient':'');el.innerHTML='<div class="name"></div><div class="sprite"></div><div class="boom">💥</div><div class="crashObstacle"></div>';el.style.setProperty('--c',p.color||'#3b82f6');$('cars').appendChild(el);return el}
 function renderCars(){let now=Date.now();for(const [id,p] of Object.entries(players)){if(!p.ready)continue;let a=sim[id];if(!a)continue;let el=createCar(id,p,false),pos=actorPos(a);el.style.left=pos.x+'%';el.style.top=pos.y+'%';el.style.setProperty('--rot',pos.rot+'deg');el.style.setProperty('--c',p.color||'#3b82f6');el.className='car '+(p.vehicleType==='moto'?'moto ':'')+(a.status==='accident'?'accident ':'')+(a.status==='overspeed'?'overspeed ':'')+(a.hiddenUntil&&now<a.hiddenUntil?'offstage':'');el.querySelector('.name').textContent=p.name||'玩家';el.querySelector('.crashObstacle').textContent=a.crashObstacle||''}
  for(const a of ambient){let el=createCar(a.id,a,true),pos=actorPos(a);el.style.left=pos.x+'%';el.style.top=pos.y+'%';el.style.setProperty('--rot',pos.rot+'deg');el.style.setProperty('--c',a.color);el.className='car '+(a.vehicleType==='moto'?'moto ':'')+'ambient '+(a.status==='accident'?'accident ':'')+(a.hiddenUntil&&now<a.hiddenUntil?'offstage':'')}
 }
-function makeActor(id,p,index,isAmbient=false){let starts=[['W1','A'],['E1','B'],['N1','A'],['S1','C'],['W2','C'],['E2','D'],['N2','B'],['S2','D'],['A','M1'],['C','M2'],['H','I'],['J','I']];let [from,to]=starts[index%starts.length];return{id,from,to,t:.05+(index%3)*.22,status:'driving',speed:isAmbient?rand(32,64):Math.max(5,Number(p.speed||40)),vehicleType:p.vehicleType||'car',color:p.color||'#b8c2cf',forcePos:null,hiddenUntil:0,boundaryWait:0,isAmbient}}
+function makeActor(id,p,index,isAmbient=false){let starts=[['W1','A'],['E1','B'],['N1','A'],['S1','C'],['W2','C'],['E2','D'],['N2','B'],['S2','D'],['A','M1'],['C','M2'],['H','I'],['J','I']];let [from,to]=starts[index%starts.length];return{id,from,to,t:.05+(index%3)*.22,status:'driving',speed:isAmbient?rand(32,64):Math.max(5,Number(p.speed||40)),vehicleType:p.vehicleType||'car',color:p.color||'#b8c2cf',forcePos:null,hiddenUntil:0,boundaryWait:0,isAmbient,entryLaneOffset:null,driveElapsedMs:0,lastVisitDriveMs:0,distanceSinceVisit:0,arrivalBusy:false}}
 function setupAmbient(){ambient=[];for(let i=0;i<10;i++){let v=i%4===0?'moto':'car',a=makeActor('amb'+i,{vehicleType:v,color:['#b8c2cf','#f5a623','#7f8cff','#ef7373','#56c596','#d88ce8'][i%6],speed:rand(30,62)},i+3,true);ambient.push(a);createCar(a.id,a,true)}}
 function allActors(){let out=[];for(const [id,p] of Object.entries(players)){let a=sim[id];if(a&&p.ready)out.push(a)}return out.concat(ambient)}
 function speedUnits(actor){let live=actor.isAmbient?Number(actor.speed||40):Number(players[actor.id]?.speed??actor.speed??40);actor.speed=live;let safePhysicalSpeed=actor.isAmbient?live:Math.min(live,dangerousSpeedLimit()??50);let factor=(!actor.isAmbient&&alleyEdge(actor.from,actor.to))?.78:1;return (3.6+Math.min(160,Math.max(0,safePhysicalSpeed))*.11)*factor}
@@ -373,12 +382,54 @@ function edgeKey(a){return a.from+'>'+a.to}
 function minGapUnits(a,b){return(a.vehicleType==='moto'&&b.vehicleType==='moto')?4.0:(a.vehicleType==='moto'||b.vehicleType==='moto')?5.0:6.2}
 function nodeBusy(nodeId,selfId){return allActors().some(a=>a.id!==selfId&&a.status==='driving'&&a.from===nodeId&&a.t<.16)}
 function canEnterSignal(actor){let node=actor.to;if(!MAIN_SIGNALS.has(node))return true;let ph=signalPhase(node),ax=axisFor(actor.from,node);return ph[ax]==='green'}
-function advanceActors(dt){let actors=allActors(),now=Date.now();for(const a of Object.values(sim))if(a.runBudgetMs)a.runElapsedMs=(a.runElapsedMs||0)+dt;
- for(const a of actors){if(a.status!=='driving')continue;if(a.pauseUntil&&now<a.pauseUntil)continue;if(a.boundaryWait&&now<a.boundaryWait)continue;if(a.boundaryWait&&now>=a.boundaryWait){a.boundaryWait=0;a.hiddenUntil=now+120;a.t=.01}
-   let v=nodeVec(a.from,a.to),step=speedUnits(a)*(dt/1000)/v.len,aNext=a.t+step;if(aNext>.88&&MAIN_SIGNALS.has(a.to)&&!canEnterSignal(a))aNext=Math.min(aNext,.88);if(aNext>.92&&ADJ[a.to]?.length>=3&&nodeBusy(a.to,a.id))aNext=Math.min(aNext,.90);a.nextT=aNext}
- let groups={};for(const a of actors){if(a.status!=='driving')continue;(groups[edgeKey(a)]||(groups[edgeKey(a)]=[])).push(a)}
- for(const g of Object.values(groups)){g.sort((a,b)=>b.t-a.t);let front=null;for(const a of g){let nt=a.nextT??a.t;if(front){let len=nodeVec(a.from,a.to).len,gap=minGapUnits(a,front)/len;nt=Math.min(nt,front.t-gap)}a.t=Math.max(a.t,nt);front=a}}
- for(const a of actors){if(a.status!=='driving'||a.t<1)continue;let prev=a.from,node=a.to;if(NODES[node].boundary){a.from=node;a.to=(ADJ[node]||[])[0];a.t=0;a.boundaryWait=now+rand(550,1100);a.hiddenUntil=a.boundaryWait+120;continue}if(!a.isAmbient)missionArrival(a,node);let nxt=a.isAmbient?nextNode(a,node,prev):nextMissionStep(a,node,prev);a.from=node;a.to=nxt;a.t=0.01}
+function advanceActors(dt){
+ const actors=allActors(),now=Date.now();
+ // In the old version nextT could survive a road transition or stop, causing visible jumps and repeated stop rewards.
+ for(const a of actors)a.nextT=a.t;
+ for(const a of actors){
+  if(a.status!=='driving'||(a.pauseUntil&&now<a.pauseUntil)||(a.boundaryWait&&now<a.boundaryWait))continue;
+  if(a.boundaryWait&&now>=a.boundaryWait){a.boundaryWait=0;a.hiddenUntil=now+120}
+  let v=nodeVec(a.from,a.to),step=speedUnits(a)*(dt/1000)/v.len,aNext=Math.min(1,a.t+step);
+  if(aNext>.88&&MAIN_SIGNALS.has(a.to)&&!canEnterSignal(a))aNext=Math.min(aNext,.88);
+  if(aNext>.92&&ADJ[a.to]?.length>=3&&nodeBusy(a.to,a.id))aNext=Math.min(aNext,.90);
+  a.nextT=aNext;
+ }
+ const groups={};
+ for(const a of actors){if(a.status==='driving')(groups[edgeKey(a)]||(groups[edgeKey(a)]=[])).push(a)}
+ for(const g of Object.values(groups)){
+  g.sort((a,b)=>b.t-a.t);let front=null;
+  for(const a of g){
+   let nt=a.nextT;
+   if(front){let len=nodeVec(a.from,a.to).len,gap=minGapUnits(a,front)/len;nt=Math.min(nt,front.t-gap)}
+   let previous=a.t;
+   a.t=Math.max(previous,Math.min(1,nt));
+   if(!a.isAmbient&&a.status==='driving'&&(!a.pauseUntil||now>=a.pauseUntil)&&(!a.boundaryWait||now>=a.boundaryWait)){
+    const moved=Math.max(0,a.t-previous)*nodeVec(a.from,a.to).len;
+    a.distanceSinceVisit=(a.distanceSinceVisit||0)+moved;
+    a.driveElapsedMs=(a.driveElapsedMs||0)+dt;
+   }
+   front=a;
+  }
+ }
+ for(const a of actors){
+  if(a.status!=='driving'||a.t<1)continue;
+  // Do not chain another road transition while temporarily stopped or awaiting destination confirmation.
+  if((a.pauseUntil&&now<a.pauseUntil)||(a.boundaryWait&&now<a.boundaryWait)){a.t=.999;continue}
+  let prev=a.from,node=a.to;
+  if(!a.isAmbient&&goalFor(a)===node&&!missionArrival(a,node)){
+   a.t=.999;continue;
+  }
+  let enteringOffset=laneOffset(a,prev,node);
+  if(NODES[node].boundary){
+   a.from=node;a.to=(ADJ[node]||[])[0];a.t=0;
+   a.entryLaneOffset=enteringOffset;a.boundaryWait=now+rand(550,1100);a.hiddenUntil=a.boundaryWait+120;
+  }else{
+   let nxt=a.isAmbient?nextNode(a,node,prev):nextMissionStep(a,node,prev);
+   a.from=node;a.to=nxt;a.t=0;
+   a.entryLaneOffset=enteringOffset;
+  }
+  a.nextT=a.t;
+ }
 }
 function scoreRank(){return Object.entries(players).filter(([,p])=>p.ready).sort((a,b)=>(b[1].score||0)-(a[1].score||0))}
 function renderSide(){
@@ -546,7 +597,7 @@ function accidentSummaryFor(caseInfo){
  }
  return summary
 }
-/* v7.34 教師手冊情境題庫：題目為本案延伸教學判斷，實際給付依事故事實與法定條件認定。 */
+/* v7.35 交通事故情境題庫：題目為本案延伸教學判斷，實際給付依事故事實與法定條件認定。 */
 function questionCandidates(caseInfo){
  const bank=[];
  const add=(id,category,scope,prompt,options,explanation,pdfPage)=>{
@@ -554,104 +605,44 @@ function questionCandidates(caseInfo){
    bank.push({id,category,scope,prompt,options,correctIndex:0,explanation,pdfPage});
  };
  // 共同題：每題必須能直接對應目前 A / B（NPC）事故，或清楚標示同事故的延伸假設。
- add('c01','事故處置','all','{{A}}與{{B}}發生碰撞，有人受傷倒地。此時最適當的第一個處置是什麼？',['確認現場安全並優先通報119救護、110報警','立刻交換賠償金額後離開','先在網路公布對方車牌','先把車子開去修好'],'事故有傷者時應先確保安全、優先救護並報警；手冊介紹現場「放、撥、劃、移、等」。',11);
- add('c02','事故處置','all','{{A}}與{{B}}碰撞後，車輛停在車道上。為降低二次事故風險，應先採取哪項措施？',['開啟警示燈並在適當距離設置故障標誌','關閉車燈讓後車自行閃避','請傷者站在車道指揮交通','未確認安全便原地倒車'],'現場處置的「放」包括開啟警示燈及於適當距離放置故障標誌。',11);
- add('c03','事故處置','all','{{A}}與{{B}}發生輕微碰撞，雙方均無人傷亡且車輛能行駛。移車前何者較妥當？',['先拍照及標繪車輛位置，再移至路邊','不必記錄現場，直接各自離去','先刪除行車紀錄器檔案','任意更動現場證物'],'手冊「劃、移」指出無人傷亡且車輛能行駛時應先留存位置及現場資料，再妥適移車。',11);
- add('c04','事故處置','all','{{A}}與{{B}}相撞，現場有人受傷。針對事故車輛位置，哪個作法符合手冊的原則？',['先救護並保留現場，配合警方蒐證與指示','一定立即清空所有事故車輛','由旁觀者自行決定誰可離開','不報警就先洗車消除痕跡'],'涉及人員傷亡時，手冊強調等待警方蒐證調查，不應任意移動現場；緊急救護仍應優先。',11);
- add('c05','事故處置','all','{{A}}想為本次與{{B}}的碰撞保留客觀證據，哪種做法最有幫助？',['拍攝事故位置與車損，保存目擊者聯絡方式','只記住車身顏色即可','將手機裡的現場照片刪掉','僅聽對方口頭承諾即可'],'手冊「劃」步驟建議拍照、標繪現場，並保留目擊者資訊。',11);
- add('c06','事故處置','all','{{A}}與{{B}}發生事故後需要保險理賠，哪個處理流程較完整？',['報警留存資料、通知保險公司、備妥文件後處理理賠','只在聊天室投票決定責任','不留任何事故證據直接申請賠車價','事故發生後只需換新車牌'],'手冊理賠流程包括報案、保險出險、調查、和解及理賠。',10);
- add('c07','事故處置','all','{{A}}與{{B}}事故的肇事責任尚未釐清時，較適當的做法是？',['報警並保存事故證據，避免自行武斷認定全部責任','由車價高的人決定責任','用誰先講話來分配過失','只要有保強制險就毋須紀錄事故'],'手冊指出一般人難在現場精確判斷肇事責任，建議報警處理。',12);
- add('c08','事故處置','all','{{A}}與{{B}}在事故現場想立刻和解，下列何者較能保護雙方權益？',['在警方協助及充分確認後留下書面和解紀錄','只以口頭說好且不留資料','直接私下轉帳後刪除事故照片','要求受傷者不要就醫也不要通報'],'手冊建議確認事故及責任，處理和解時留下書面紀錄，勿忽略報警程序。',12);
- add('c09','保障對象','all','{{A}}與{{B}}的汽車事故造成車上乘客受傷。依手冊，哪一種敘述正確？',['符合條件的車上乘客屬於強制險保障對象','乘客一律不得申請強制險','只有坐前座的乘客可能受保障','僅事故中較貴的車輛乘客受保障'],'強制險基本保障包括被保險車輛乘客與其他事故受害人，不以乘坐位置區分。',18);
- add('c10','保障對象','all','{{A}}與{{B}}發生碰撞，{{A}}也有部分過失。對於{{A}}依法請求強制險給付，何者正確？',['不能只因{{A}}有部分過失就逕認一定不得申請','只要有1%過失就永遠不賠','必須先由對方承認全部過失','只能改申請車體損失險'],'手冊說明強制險採無過失責任的基本保障制度；仍應依法定被害人資格及給付要件判斷。',15);
- add('c11','保障對象','all','{{A}}受傷後想申請本次與{{B}}事故的強制險給付，是否必須先得到{{B}}同意？',['不必先經加害人同意，可依法向保險人請求','必須取得對方全家同意','必須先更換汽車車牌','必須先購買任意車體險'],'手冊說明直接請求權，請求權人無須先獲加害人同意或先和解。',24);
- add('c12','保障對象','all','{{A}}和{{B}}對事故責任仍有爭議，但{{A}}已受傷。手冊所說「直接請求權」主要是指？',['受害人得依法直接向保險人請求給付','受害人一定可要求保險公司賠所有財物','肇事人可以直接決定受害人的醫療金額','受害人只能透過代辦仲介申請'],'手冊強調受害人的直接請求權，不必先取得法院判決才得依規定提出請求。',24);
- add('c13','保障範圍','all','本次{{A}}與{{B}}事故產生就醫支出及汽車維修費。強制汽車責任保險主要保障哪一類？',['依法定條件給付人身傷害、失能或死亡','全部汽車鈑金與烤漆','被撞壞的交通標誌修復費','手機和隨身財物一律全賠'],'手冊列出傷害醫療、失能、死亡三類給付，不含純粹財物損害。',19);
- add('c14','保障範圍','all','{{A}}與{{B}}相撞後，{{A}}符合傷害醫療給付條件。依這份112年手冊，醫療給付合計上限為何？',['20萬元','2萬元','100萬元','200萬元'],'手冊所列傷害醫療給付合計最高20萬元；屬112年教材標準，正式使用需核對現行公告。',19);
- add('c15','保障範圍','all','{{A}}與{{B}}碰撞後，某受害人傷勢符合失能認定。最符合手冊的說法是？',['可依法定失能等級及標準申請失能給付','只要住院就一定全額領200萬元','失能給付只補汽車車損','失能與傷害醫療是同一種車輛修理費'],'手冊介紹失能等級分級給付，不是所有傷者固定領取相同金額。',19);
- add('c16','保障範圍','all','假設本次{{A}}與{{B}}事故導致一名受害人不幸死亡。依112年教師手冊所列每人死亡給付金額為何？',['200萬元','20萬元','50萬元','400萬元'],'手冊所列死亡給付每人200萬元；為教材所述標準。',19);
- add('c17','保障範圍','all','{{A}}與{{B}}事故造成車損與體傷。若{{A}}只想用強制險支付車體刮傷，哪個判斷正確？',['車體刮傷屬財物損失，並非強制險人身給付','因為是交通事故就全額賠修車','只有藍色汽車的車損會給付','只要有人受傷，所有手機財損也會給付'],'強制險不承保車輛及隨身財物損害。',13);
- add('c18','保險架構','all','{{A}}在本次與{{B}}事故中需要修復自己的車體，應先確認是否有投保哪類任意保險？',['車體損失險','強制險的死亡給付','微型電動二輪車掛牌費','人身失能給付'],'手冊車險架構將自身車體損失列為車體損失險保障重點，理賠依契約範圍。',15);
- add('c19','保險架構','all','若{{A}}對{{B}}事故負賠償責任，且需賠償{{B}}的車損，哪類保險可依承保條件提供額度內保障？',['任意第三人責任險的財損保障','強制險死亡給付','{{A}}的竊盜損失險','{{B}}的駕駛人傷害險'],'手冊指出第三人責任險可以依被保險人法律責任及約定補償第三人財物損害。',14);
- add('c20','保險架構','all','若{{A}}應對{{B}}負責，賠償額高於強制險及第三人責任險額度，通常可考慮哪種補強保障？',['超額責任險（須依契約約定）','強制險車輛竊盜附加險','個人旅遊不便險','車牌遺失保險'],'手冊說明超額責任險用來補足前階層責任保障額度的不足。',14);
- add('c21','保險架構','all','本次{{A}}與{{B}}事故顯示責任險可幫助分攤賠償風險。這主要屬於哪種風險管理方式？',['風險移轉','風險規避','風險自留','風險增加'],'手冊將透過保險分散可能的大額損失歸類為風險移轉。',7);
- add('c22','風險管理','all','{{A}}與{{B}}發生事故後，老師提醒全班：下雨天改搭大眾運輸，避免自行騎車的危險，屬於哪一種風險管理？',['風險規避','風險自留','風險移轉','風險提高'],'手冊以梅雨季不騎車、改搭大眾運輸為風險規避例子。',7);
+ add('c01','事故處置','all','{{A}}與{{B}}發生碰撞，有人受傷倒地。此時最適當的第一個處置是什麼？',['確認現場安全並優先通報119救護、110報警','立刻交換賠償金額後離開','先在網路公布對方車牌','先把車子開去修好'],'事故有傷者時應先確保安全、優先救護並報警；現場「放、撥、劃、移、等」。',11);
+ add('c05','事故處置','all','{{A}}想為本次與{{B}}的碰撞保留客觀證據，哪種做法最有幫助？',['拍攝事故位置與車損，保存目擊者聯絡方式','只記住車身顏色即可','將手機裡的現場照片刪掉','僅聽對方口頭承諾即可'],'「劃」步驟建議拍照、標繪現場，並保留目擊者資訊。',11);
+ add('c06','事故處置','all','{{A}}與{{B}}發生事故後需要保險理賠，哪個處理流程較完整？',['報警留存資料、通知保險公司、備妥文件後處理理賠','只在聊天室投票決定責任','不留任何事故證據直接申請賠車價','事故發生後只需換新車牌'],'理賠流程包括報案、保險出險、調查、和解及理賠。',10);
+ add('c10','保障對象','all','{{A}}與{{B}}發生碰撞，{{A}}也有部分過失。對於{{A}}依法請求強制險給付，何者正確？',['不能只因{{A}}有部分過失就逕認一定不得申請','只要有1%過失就永遠不賠','必須先由對方承認全部過失','只能改申請車體損失險'],'強制險採無過失責任的基本保障制度；仍應依法定被害人資格及給付要件判斷。',15);
+ add('c11','保障對象','all','{{A}}受傷後想申請本次與{{B}}事故的強制險給付，是否必須先得到{{B}}同意？',['不必先經加害人同意，可依法向保險人請求','必須取得對方全家同意','必須先更換汽車車牌','必須先購買任意車體險'],'受害人享有直接請求權，請求權人無須先獲加害人同意或先和解。',24);
+ add('c13','保障範圍','all','本次{{A}}與{{B}}事故產生就醫支出及汽車維修費。強制汽車責任保險主要保障哪一類？',['依法定條件給付人身傷害、失能或死亡','全部汽車鈑金與烤漆','被撞壞的交通標誌修復費','手機和隨身財物一律全賠'],'法定規範包含傷害醫療、失能、死亡三類給付，不含純粹財物損害。',19);
+ add('c15','保障範圍','all','{{A}}與{{B}}碰撞後，某受害人傷勢符合失能認定。下列說法何者正確？',['可依法定失能等級及標準申請失能給付','只要住院就一定全額領200萬元','失能給付只補汽車車損','失能與傷害醫療是同一種車輛修理費'],'失能等級分級給付，不是所有傷者固定領取相同金額。',19);
+ add('c19','保險架構','all','若{{A}}對{{B}}事故負賠償責任，且需賠償{{B}}的車損，哪類保險可依承保條件提供額度內保障？',['任意第三人責任險的財損保障','強制險死亡給付','{{A}}的竊盜損失險','{{B}}的駕駛人傷害險'],'第三人責任險可以依被保險人法律責任及約定補償第三人財物損害。',14);
+ add('c20','保險架構','all','若{{A}}應對{{B}}負責，賠償額高於強制險及第三人責任險額度，通常可考慮哪種補強保障？',['超額責任險（須依契約約定）','強制險車輛竊盜附加險','個人旅遊不便險','車牌遺失保險'],'超額責任險用來補足基本責任保險額度不足的部分。',14);
+ add('c22','風險管理','all','{{A}}與{{B}}發生事故後，老師提醒全班：下雨天改搭大眾運輸，避免自行騎車的危險，屬於哪一種風險管理？',['風險規避','風險自留','風險移轉','風險提高'],'雨季改搭大眾運輸，可避開自行騎車的交通事故風險，屬於風險規避。',7);
  add('c23','風險管理','all','為預防{{A}}與{{B}}這類事故，下次上路前檢查煞車、戴安全帽、保持距離，屬於哪種風險管理？',['風險降低','風險提高','風險自留','風險規避'],'採取防範措施降低事故機率與損害，屬風險降低。',7);
- add('c24','風險管理','all','{{A}}與{{B}}碰撞後討論小額且可自行承受的損失，決定自行負擔而非轉嫁，較符合哪個觀念？',['風險自留','風險移轉','風險規避','風險消失'],'自行承擔可負擔的小額風險屬風險自留。',7);
- add('c25','保險制度','all','{{A}}與{{B}}事故後討論：為什麼汽機車車主依法須投保強制汽車責任保險？',['為使交通事故受害人迅速獲得基本人身保障','為保證每個駕駛都不會發生車禍','為讓每次事故所有財物損失都由政府支付','為免除所有事故的民事責任'],'手冊強調政策性保險的社會安全及保障受害人目的。',13);
- add('c26','保險制度','all','{{A}}與{{B}}事故涉及的強制汽車責任保險，屬於哪一類制度？',['依法律規範的政策性保險','完全不受法規規範的私人抽獎','只能由車廠販賣的車體保固','駕駛任意參加的道路會員制'],'手冊將強制險列為政策性保險。',9);
- add('c27','保險制度','all','{{A}}因本次與{{B}}事故想了解強制險與任意險的差別，何者正確？',['強制險為法定基本保障；任意險依需求投保以補強風險','兩者都只保障自己汽車的烤漆','任意險必須完全取代強制險','強制險可以代替所有責任險及車體險'],'手冊以強制險作基本保障，任意險補強不同風險與額度。',13);
- add('c28','保險制度','all','{{A}}與{{B}}事故可能產生民事賠償。強制險已給付的保險金與被保險人對受害人的賠償責任，何者正確？',['依法可視為被保險人損害賠償金額的一部分','強制險給付與賠償一定完全無關','支付保險金會自動消除刑事責任','保險金只能用於重新考駕照'],'手冊指出強制險保險給付依法得計入被保險人的損害賠償金額，避免重複計算。',22);
- add('c29','投保義務','all','{{A}}與{{B}}發生事故後，{{A}}打算辦理車輛過戶。若強制險完全未投保，依手冊可能產生什麼影響？',['監理機關可能依法不得受理相關異動登記','強制險自動由買主永久免費取得','改換車色就不需保強制險','只要有交通事故即可免除投保'],'手冊指出辦理驗車、牌照異動、過戶等程序須注意強制險是否有效。',22);
- add('c30','投保義務','all','{{A}}與{{B}}事故後，{{A}}發現自己未投保強制險。哪種觀念較正確？',['未投保可能涉及行政罰及受害人保障問題，應依法補辦','未投保不會有任何法律後果','事故後直接投保即可抹除既有違規','未投保車輛發生事故一定由政府支付所有車損'],'手冊強調汽機車車主有依法投保義務，未投保有行政處罰規範。',17);
- add('c31','保險制度','all','{{A}}與{{B}}事故後查詢主管機關，強制汽車責任保險的主要監理機關為何？',['金融監督管理委員會','教育部','文化部','國家圖書館'],'教師手冊附件題列強制險主管機關為金管會。',30);
- add('c32','保險架構','all','{{A}}與{{B}}碰撞，{{A}}另擔心自己的車輛整車被偷。下列哪類任意保險重點在整車失竊？',['竊盜損失險','強制險傷害醫療','強制險死亡給付','第三人責任險的體傷保障'],'手冊將整車失竊風險歸入竊盜損失險；仍依實際保單條款處理。',15);
- add('c33','風險管理','all','{{A}}看到{{B}}操作有異常，提前減速並預留反應空間。這比較接近手冊哪個交通安全觀念？',['防禦駕駛，預防其他用路人的疏失','只需相信自己完全不會出錯','為了早到而立即加速','只要有保險就可以忽略號誌'],'手冊強調防禦駕駛：除了遵守規則，還要預想他人可能的疏失。',6);
- add('c34','保障範圍','all','{{A}}與{{B}}事故後，家屬問強制險會不會給付所有精神撫慰金。依手冊，何者較正確？',['強制險有法定給付項目；其他賠償應另依法定責任及任意險判斷','只要有強制險就無上限給付所有精神撫慰金','任何交通事故完全不得請求精神損害','車體損失險一定支付所有精神撫慰金'],'手冊區別強制險法定人身給付及可能另涉民事責任的項目。',14);
- add('c35','保障範圍','all','{{A}}與{{B}}碰撞後，{{A}}擔心自己醫療費以外的額外損害。強制險是否等同於「所有損失全額賠償」？',['不是，強制險依項目、標準與限額提供基本保障','是，車損及所有收入損失必定全額給付','只有有車牌就能無上限給付','全班答對題目就會自動放寬法定限額'],'手冊說明強制險是基本保障，非全面無限額承保所有損害。',14);
- add('c36','保險制度','all','本次{{A}}與{{B}}事故若無人受傷、只有車體毀損，對強制險請求的判斷何者適當？',['單純車體財損不屬於強制險給付範圍','所有車體費用均由強制險負擔','對方駕駛沒有過失就全部賠車','只要兩車相撞就固定領20萬元'],'強制險著重人身傷害、失能、死亡，不賠純粹財物損失。',13);
- add('c37','責任原則','all','{{A}}與{{B}}事故中，警方尚未釐清過失比例。手冊提到強制險「無過失責任」的重點是？',['法定受害人不須先以加害人過失成立作為唯一請求前提','任何人都可要求強制險付車子全部損失','事故責任與所有其他民事訴訟都自動消失','任何情況都不需要任何事故或傷害證明'],'手冊以無過失責任說明受害人的迅速基本保障；實際給付仍有法定條件。',15);
- add('c38','事故處置','all','{{A}}於事故後覺得保險理賠有疑問，下列何者適合協助確認資料？',['保險公司客服及主管機關提供的正式管道','不明來源的黃牛保證代辦','要求同學代替警方製作假紀錄','直接刪除所有佐證資料'],'手冊提醒保留文件、循正式保險理賠流程，並注意代辦黃牛風險。',15);
+ add('c25','保險制度','all','{{A}}與{{B}}事故後討論：為什麼汽機車車主依法須投保強制汽車責任保險？',['為使交通事故受害人迅速獲得基本人身保障','為保證每個駕駛都不會發生車禍','為讓每次事故所有財物損失都由政府支付','為免除所有事故的民事責任'],'制度強調政策性保險的社會安全及保障受害人目的。',13);
 
  // 兩位學生互撞的專屬推理：問句必須引用當前兩名玩家的身分及實際事實。
  add('p01','保障對象','player','{{A}}與{{B}}兩位同學各自駕車相撞，{{A}}受傷。關於{{A}}能否申請強制險，哪項正確？',['可視事故車輛及其受害人身分依法判斷，不是因自己也駕車就必然排除','駕駛人只要受傷就只能請求自己的車損保險','兩車相撞時所有人一律不得申請','必須先把車輛過戶給{{B}}'],'兩車事故的駕駛人與一車自撞駕駛人情況不同，須依法判斷受害人身分。',18);
- add('p02','責任原則','player','{{A}}與{{B}}互撞，假設雙方都有未注意車前狀況的過失。何種說法較符合強制險制度？',['雙方有過失不代表符合法定資格者完全不能請求給付','只有過失較少者能申請所有車損','只要雙方有過失保險契約就失效','要由學生投票過失比例才可申請'],'手冊說明強制險採無過失責任，仍按法定受害人資格及項目請求。',15);
+ add('p02','責任原則','player','{{A}}與{{B}}互撞，假設雙方都有未注意車前狀況的過失。何種說法較符合強制險制度？',['雙方有過失不代表符合法定資格者完全不能請求給付','只有過失較少者能申請所有車損','只要雙方有過失保險契約就失效','要由學生投票過失比例才可申請'],'強制險採無過失責任，仍按法定受害人資格及項目請求。',15);
  add('p03','保險架構','player','{{A}}與{{B}}互撞，{{A}}的車修理費3萬元。若{{B}}有過失且投保任意第三人責任險，哪項最符合車損賠償方向？',['可依{{B}}應負責任及財損承保範圍處理','只能向{{B}}的強制險申請車損','只要{{A}}有強制險就能報銷全部修車','車損一定由特別補償基金支付'],'第三人責任險財損保障須考量法律責任、保額及條款，非強制險給付項目。',14);
- add('p04','保障對象','player','{{A}}與{{B}}各駕一車相撞，{{A}}的乘客受傷。哪項判斷最適當？',['乘客可依事故與法定資格檢視強制險人身給付','乘客不論何時都完全沒有保障','乘客只能要求支付車體烤漆','必須先買車體竊盜險'],'手冊指出符合條件的乘客是強制險的重要保障對象。',18);
- add('p05','責任原則','player','{{A}}與{{B}}對誰闖紅燈有爭議，{{A}}已取得診斷證明。依法請求強制險基本人身給付時，哪項不應被要求作為一律必要的先決條件？',['一定先取得法院最終判決判定{{B}}全部有過失','依法備妥事故證明','提出符合法定項目的就醫資料','查明可請求之保險人'],'直接請求與無過失責任的制度設計，並非一律須先等民事判決確定過失。',24);
- add('p06','事故處置','player','{{A}}與{{B}}在路口擦撞，{{B}}請{{A}}不要報警直接各自開走。哪個作法較符合手冊？',['通報並妥善保留現場資料、按流程處理','為了避免麻煩立刻消失現場','先刪除雙方行車紀錄器','將責任全部交由社群媒體決定'],'手冊強調報警、蒐證與事故紀錄，以保障後續處理權益。',11);
- add('p07','保險架構','player','{{A}}與{{B}}互撞後，{{A}}負有部分損害賠償責任，雙方傷者另有高額求償。何種保障可補足強制險法定給付不足的責任風險？',['依承保約定的任意第三人責任險','機車掛牌費','無關的手機延長保固','只靠強制險的車體險'],'手冊將任意第三人責任險列為補強強制險的責任保障。',14);
- add('p08','保險架構','player','{{A}}與{{B}}兩車相撞，{{A}}只投保強制險但希望自己車體全額理賠。應如何判斷？',['強制險不賠車損，應再看車體險或法律責任等其他途徑','強制險自動包含甲乙丙式車體保險','強制險只要當年繳費就必賠所有車損','只要是兩名同學相撞，車損變成人身損失'],'手冊圖表區分強制險、車體損失險與第三人責任險。',13);
+ add('p04','保障對象','player','{{A}}與{{B}}各駕一車相撞，{{A}}的乘客受傷。哪項判斷最適當？',['乘客可依事故與法定資格檢視強制險人身給付','乘客不論何時都完全沒有保障','乘客只能要求支付車體烤漆','必須先買車體竊盜險'],'符合條件的乘客是強制險的重要保障對象。',18);
  add('p09','保障範圍','player','{{A}}與{{B}}互撞，{{A}}受傷醫療費2萬元、車損5萬元。假設醫療費均屬可給付項目且未達限額，下列何者最正確？',['強制險可依法處理2萬元醫療費，但不支付5萬元車損','可用強制險直接領7萬元全損','只能用強制險支付5萬元車損','醫療費完全不是強制險項目'],'本題將人身傷害醫療與車體損失分開，金額是假設並非自動核准。',19);
- add('p10','保險制度','player','{{A}}與{{B}}互撞，{{A}}因已有保險給付而與{{B}}協商民事賠償。何者正確？',['符合條件的保險給付依法可計入已賠償金額','保險給付一定是法院罰金','同一筆費用可無限重複索賠','只要有保險就完全免除其他法定義務'],'手冊說明強制險給付可作為被保險人損害賠償金額的一部分。',22);
- add('p11','事故處置','player','{{A}}與{{B}}互撞，雙方都認為是對方轉彎不當。老師要求有客觀證據，哪項最有價值？',['保留號誌、行車紀錄器、撞擊位置和相關佐證','只比較哪個人說話比較大聲','刪除對自己不利的影像','不用看現場，直接以汽車價格判斷'],'事故調查應重視客觀紀錄與現場蒐證。',11);
- add('p12','責任原則','player','{{A}}與{{B}}互撞後，{{B}}自認完全沒過失。對{{A}}符合條件的強制險人身給付，哪種說法較妥當？',['不應只以{{B}}單方面否認過失就排除所有依法請求的可能','{{B}}說沒有過失就一定不可能有任何請求','若{{A}}受傷，{{A}}車損就必定由強制險給付','只有警察處罰{{B}}後才能就醫'],'手冊說明無過失責任與直接請求的基本精神。',15);
- add('p13','保障對象','player','{{A}}與{{B}}分別駕車，假設{{B}}的乘客也受傷。下列哪個人不會因身分本身就被排除於強制險受害人範圍？',['符合條件的{{B}}車上乘客','只要坐在車內就永遠不是受害人','只有行人才有基本保障','只有駕駛人能申請乘客的全部財物損失'],'手冊指出被保險車輛乘客及其他事故受害人可能屬保障對象。',18);
- add('p14','風險管理','player','{{A}}追撞{{B}}的車尾。從手冊列出的常見肇因來看，最值得檢討的是哪個駕駛行為？',['保持適當跟車距離並注意車前狀況','優先比較保險公司的商標','調高音樂音量以維持精神','先查看{{B}}的車子年份'],'手冊事故肇因排行包含未注意車前狀況及未保持安全距離。',5);
- add('p15','風險管理','player','{{A}}轉彎時與直行的{{B}}相撞，欲降低類似事故，何者最好？',['遵守轉彎、讓車及號誌規定並注意來車','只增加保險額度但忽略路口觀察','只要投保就能任意搶先轉彎','只靠其他駕駛替自己踩煞車'],'手冊引用交通事故常見肇因包括未依規定讓車、違規轉彎。',5);
- add('p16','投保義務','player','{{A}}與{{B}}兩車相撞，{{A}}以為只有汽車要保強制險、機車不用保。哪個說法正確？',['汽車及機車均有依法投保強制險的義務','只有超過2000cc汽車需要投保','機車只要戴安全帽即可免投保','只有職業司機需要投保'],'手冊說明強制險適用汽車、機車及依法納管的微型電動二輪車等。',17);
- add('p17','保險架構','player','{{A}}與{{B}}互撞，雙方均僅投保強制險。哪種風險仍有明顯保障缺口？',['事故引起的汽車修復及其他財物賠償責任','符合資格的傷害醫療基本給付','符合資格的死亡基本給付','符合資格的失能基本給付'],'手冊指出強制險不賠財損，宜視需求補足任意責任與車體保障。',14);
- add('p18','保障範圍','player','{{A}}與{{B}}互撞，兩人都有受傷，且都想一次請求一大筆固定「車禍慰問金」。如何理解強制險較適當？',['依法律規定的傷害醫療、失能、死亡等給付標準判斷','只要兩人都是學生就固定領100萬元','不看任何傷勢資料就人人領200萬元','強制險只核發交通違規罰單'],'強制險依法定項目與標準提供基本人身保障，非無條件固定發放一筆慰問金。',19);
- add('p19','保險制度','player','{{A}}與{{B}}互撞後，{{A}}說政府強制投保是為了讓所有人都不用負責。何者較正確？',['制度是提供受害人基本保障，並非免除所有其他法律責任','只要有強制險肇事後都不用報警','保險公司會代替法院判定刑事有罪','強制險會無條件支付所有額外的罰鍰'],'手冊說明強制險目的在受害人基本保障與分擔責任風險。',13);
- add('p20','責任原則','player','{{A}}與{{B}}發生車禍後，兩人想把「強制險請求資格」與「侵權損害賠償責任」當成完全相同。哪個觀念正確？',['兩者屬不同法律判斷，強制險有無過失基本保障設計','所有強制險給付都需先確定對方刑事定罪','有強制險就不會有侵權責任','車損給付與傷害醫療完全沒有差別'],'手冊以三層保障圖區別強制險的基本給付與另依過失責任判斷的任意責任保障。',14);
+ add('p10','保險制度','player','{{A}}與{{B}}互撞，{{A}}因已有保險給付而與{{B}}協商民事賠償。何者正確？',['符合條件的保險給付依法可計入已賠償金額','保險給付一定是法院罰金','同一筆費用可無限重複索賠','只要有保險就完全免除其他法定義務'],'強制險給付可依法計入被保險人應負的損害賠償金額。',22);
+ add('p16','投保義務','player','{{A}}與{{B}}兩車相撞，{{A}}以為只有汽車要保強制險、機車不用保。哪個說法正確？',['汽車及機車均有依法投保強制險的義務','只有超過2000cc汽車需要投保','機車只要戴安全帽即可免投保','只有職業司機需要投保'],'保險制度說明強制險適用汽車、機車及依法納管的微型電動二輪車等。',17);
+ add('p17','保險架構','player','{{A}}與{{B}}互撞，雙方均僅投保強制險。哪種風險仍有明顯保障缺口？',['事故引起的汽車修復及其他財物賠償責任','符合資格的傷害醫療基本給付','符合資格的死亡基本給付','符合資格的失能基本給付'],'強制險不賠財損，宜視需求補足任意責任與車體保障。',14);
+ add('p20','責任原則','player','{{A}}與{{B}}發生車禍後，兩人想把「強制險請求資格」與「侵權損害賠償責任」當成完全相同。哪個觀念正確？',['兩者屬不同法律判斷，強制險有無過失基本保障設計','所有強制險給付都需先確定對方刑事定罪','有強制險就不會有侵權責任','車損給付與傷害醫療完全沒有差別'],'法定制度以三層保障圖區別強制險的基本給付與另依過失責任判斷的任意責任保障。',14);
 
  // NPC題含「一般 NPC」「逃逸失聯」等；沒有被設定的事實不得逕當既成事實。
- add('n01','保障對象','npc','{{A}}與一輛 NPC 汽車碰撞，{{A}}受傷。關於請求強制險給付，何者較正確？',['可依法定被害人身分向適當保險人提出人身給付請求','只能請求{{A}}的手機維修','NPC是電腦角色所以必定完全沒有保險','一有事故就可由強制險賠{{A}}全車烤漆'],'NPC在遊戲中代表另一輛真實汽車，法律保障仍須看事故、投保及法定資格。',18);
  add('n02','保險架構','npc','{{A}}若對 NPC 汽車碰撞事故有應負的民事責任，NPC 車輛需要修車，最相關的任意保障為何？',['第三人責任險的財物損害保障','強制險醫療給付','{{A}}的竊盜險','NPC自己的死亡給付'],'對第三人的財物賠償，應看法律責任及任意第三人責任險財損條款。',14);
- add('n03','保險架構','npc','NPC 汽車追撞{{A}}，{{A}}受傷又車損。下列何者最正確？',['人身損害可能涉及強制險，車損另依責任或任意險處理','強制險可無上限賠全車損','只要NPC有投保竊盜險就會全額給付醫療','因NPC撞人，所有財損立即轉為人身傷害'],'手冊區分強制險人身保障與任意第三人責任險財損。',14);
- add('n04','保障對象','npc','{{A}}撞上NPC汽車，NPC汽車內乘客受傷。哪項描述符合強制險的保障重點？',['符合條件的乘客人身傷害可能屬給付對象','乘客一律不屬於被害人','只有NPC的車身才會受保障','乘客要先在遊戲投票勝出才能請求'],'手冊指出強制險保障包含車內乘客等人身受害者。',18);
- add('n05','特殊補償','npc','假設本次撞上{{A}}的NPC汽車其實「未投保強制險」，{{A}}因此受傷且符合法定條件，應評估哪個制度？',['汽車交通事故特別補償基金','車廠新車保固','自行車停車收費基金','車體烤漆保險'],'手冊列未保險汽車為特別補償基金可依法申請之情形之一。',25);
- add('n06','特殊補償','npc','假設撞上{{A}}的NPC汽車是失竊車，且未經被保險人同意使用，符合其他法定條件時可評估何者？',['向特別補償基金請求人身補償','要求車商保固全額支付財損','不管任何資格自動領取車價','只能申請汽車烤漆優惠'],'手冊將未經被保險人同意使用或管理的事故車輛列為特別補償法定情形。',25);
- add('n07','特殊補償','npc','假設{{A}}遭到農用動力車輛撞傷，而該事故車依法無須訂立強制車險契約。若符合法定要件，可考慮何種保障？',['特別補償基金的人身補償','強制險車體烤漆給付','車輛免費更換零件','道路照明費補貼'],'手冊列事故汽車依法無須訂立強制險契約的情形為特別補償基金適用類型之一。',25);
- add('n08','追償例外','npc','假設NPC駕駛酒精濃度超過法定標準，撞傷{{A}}。若符合強制險給付要件，保險人後續可能如何處理？',['先依法給付受害人，再依法向應負責的被保險人追償','因酒駕就必定不讓受害人有任何基本保障','將所有車損直接當作傷害醫療','讓學生代替法院決定刑事判決'],'手冊列酒駕屬特定情形下保險給付後得依法追償的原因。',24);
- add('n09','追償例外','npc','假設NPC駕駛無照駕車撞傷{{A}}，手冊指出強制險可能出現哪種處理？',['符合條件時仍對受害人給付，之後保險人可依法追償','一律改由車商維修費充當人身給付','NPC沒駕照就代表受害人沒有權利','僅要求NPC補辦駕照就能消除所有責任'],'手冊將無照駕駛列為保險人給付後得依法行使追償的事由之一。',24);
- add('n10','追償例外','npc','假設NPC駕駛吸食毒品後撞傷{{A}}。何者符合手冊所述的強制險例外機制？',['符合給付條件時先保障受害人，保險人再依法處理追償','吸毒就能讓車損全部變成醫療給付','受害人須先與加害人喝酒和解','受害人一律不能申請任何給付'],'手冊列吸食毒品等情形屬保險人可能追償的原因。',24);
- add('n11','追償例外','npc','假設NPC駕駛故意駕車衝撞{{A}}，符合強制險請求條件時，手冊描述哪種可能結果？',['受害人可先獲依法給付，保險人再依法追償','故意行為可免除對受害人的任何保護','事故車輛因此由強制險全額修復','只須向車行索取免費導航'],'手冊將故意行為列為保險人可能依法追償的例外。',24);
- add('n12','追償例外','npc','假設NPC駕駛為逃避拘捕而駕車肇事，造成{{A}}受傷。下列何者符合手冊？',['符合要件時保險人可先給付受害人，再依法追償','逃避拘捕就能免除所有民事責任','受害人只能申請車損','特別補償基金會無條件幫忙買新車'],'手冊列犯罪行為或逃避拘捕等特定事由，保險人可能於給付後依法追償。',24);
- add('n13','追償例外','npc','NPC駕駛一般違規闖紅燈撞上{{A}}，未有酒駕、無照等特定事實。哪個說法較正確？',['不能只憑闖紅燈就直接認定屬手冊列舉的五大保險人追償事由','一般闖紅燈必然等於毒駕','違規闖紅燈等同失竊車輛','只要闖紅燈，車損就由強制險給付'],'手冊特列酒駕、毒駕、故意、犯罪或逃避拘捕、無照等追償情形；一般違規與特定追償事由應區分。',24);
+ add('n05','特殊補償','npc','假設本次撞上{{A}}的NPC汽車其實「未投保強制險」，{{A}}因此受傷且符合法定條件，應評估哪個制度？',['汽車交通事故特別補償基金','車廠新車保固','自行車停車收費基金','車體烤漆保險'],'相關規定列未保險汽車為特別補償基金可依法申請之情形之一。',25);
+ add('n08','追償例外','npc','假設本次NPC駕駛酒精濃度超過法定標準，撞傷{{A}}。若符合強制險給付要件，保險人後續可能如何處理？',['先依法給付受害人，再依法向應負責的被保險人追償','因酒駕就必定不讓受害人有任何基本保障','將所有車損直接當作傷害醫療','讓學生代替法院決定刑事判決'],'相關規定列酒駕屬特定情形下保險給付後得依法追償的原因。',24);
+ add('n09','追償例外','npc','假設NPC駕駛無照駕車撞傷{{A}}，強制險可能出現哪種處理？',['符合條件時仍對受害人給付，之後保險人可依法追償','一律改由車商維修費充當人身給付','NPC沒駕照就代表受害人沒有權利','僅要求NPC補辦駕照就能消除所有責任'],'相關規定將無照駕駛列為保險人給付後得依法行使追償的事由之一。',24);
+ add('n13','追償例外','npc','假設本次NPC駕駛違規闖紅燈撞上{{A}}，未有酒駕、無照等特定事實。哪個說法較正確？',['不能只憑闖紅燈就直接認定屬相關規定列舉的五大保險人追償事由','一般闖紅燈必然等於毒駕','違規闖紅燈等同失竊車輛','只要闖紅燈，車損就由強制險給付'],'相關規定特列酒駕、毒駕、故意、犯罪或逃避拘捕、無照等追償情形；一般違規與特定追償事由應區分。',24);
  add('n14','保障對象','npc','NPC車輛與{{A}}相撞，NPC駕駛自己也受傷。下列何者較正確？',['兩車事故應分別依各人身分、各車保險及法定資格判斷','NPC的車一定可用強制險修好','只有{{A}}的車漆屬於人身損害','NPC只要是電腦角色就不需考慮法律保障'],'兩車事故中不同駕駛、乘客請求資格不可混為一談。',18);
- add('n15','保險架構','npc','若{{A}}碰撞NPC汽車後，NPC駕駛受傷，且{{A}}負有依法賠償責任，哪項任意保險保障最貼近不足部分？',['任意第三人責任險的體傷保障','{{A}}的車體竊盜險','車窗隔熱紙保固','強制險的車體維修'],'手冊指出第三人責任險體傷可依責任及額度補強強制險不足。',14);
- add('n16','投保義務','npc','假設NPC汽車沒保強制險便上路與{{A}}相撞，哪項原則正確？',['車主依法有投保義務，未投保可能受行政處罰','只要車身顏色是白色即可免保','只要發生事故便追認過去所有保單','只有乘客而沒有駕駛人需要買強制險'],'手冊列汽機車強制投保及未投保處罰規定。',17);
- add('n17','特殊補償','npc','如果{{A}}因本次NPC事故受傷，且由特別補償基金依法補償後，基金是否可能向應負責者求償？',['可能，基金依法補償後仍可能向加害人求償','不可能，任何人都永久免責','基金一定負擔NPC的所有車損','基金會自動免除所有交通罰單'],'手冊指出特別補償基金補償後，仍可能依法向加害人求償。',25);
- add('n18','事故處置','npc','NPC汽車追撞{{A}}後，NPC駕駛仍留在現場。{{A}}應如何協助後續理賠？',['報警、保存現場與對方資料，並通知保險公司','不要確認人有沒有受傷，立即離去','只將事故畫面截圖作為唯一必要文件','先在網路公布對方地址而不報警'],'手冊強調現場處置五步驟及後續通知保險公司。',11);
- add('n19','風險管理','npc','{{A}}發現NPC汽車突然逼近，提前放慢速度並觀察後方。這是哪種觀念？',['防禦駕駛與風險降低','只靠運氣規避所有責任','必須先撞擊確認風險','有投保就必須維持最高速度'],'手冊鼓勵防禦駕駛，預防其他車輛疏失造成事故。',6);
- add('n20','保險架構','npc','假設{{A}}對NPC事故有賠償責任，NPC的醫療、財損合計超過任意第三人責任險額度。何種保險可依約補強？',['超額責任險','只補自己車身的竊盜險','強制險車身維修','手機碎屏保險'],'手冊將超額責任險作為第三層責任保障。',23);
- add('n21','二輪車法規','npc','假設本次與{{A}}碰撞的NPC改為「微型電動二輪車」，車主依法上路前應完成哪組事項？',['投保強制險、登記領牌及懸掛牌照','只有把車噴成黃色','購買車體竊盜險即可免領牌','只帶耳機就可以直接上路'],'手冊介紹微型電動二輪車投保、領牌後方得依法上路的制度。',20);
- add('n22','二輪車法規','npc','假設本次與{{A}}碰撞的NPC騎的是微型電動二輪車，依手冊所列速限，行駛速率不得超過？',['25 km/h','50 km/h','80 km/h','120 km/h'],'手冊列微型電動二輪車速限25 km/h。',20);
- add('n23','二輪車法規','npc','假設本次與{{A}}碰撞的NPC改騎微型電動二輪車，駕駛人年滿幾歲始可依法騎乘？',['14歲','10歲','12歲','18歲'],'手冊列微型電動二輪車騎乘年齡為14歲以上。',20);
- add('n24','二輪車法規','npc','假設本次與{{A}}碰撞的NPC改騎微型電動二輪車，哪項行為符合手冊所述規定？',['佩戴安全帽且不載人','在後座搭載另一名乘客','擅自解除限速器','不戴安全帽便可高速騎乘'],'手冊指出微型電動二輪車須戴安全帽、不得載人及不得擅改控制裝置。',20);
- add('n25','二輪車法規','npc','假設本次與{{A}}碰撞的NPC是電動輔助自行車而非微型電動二輪車，依手冊判別的重要差異為何？',['電動輔助自行車有人力腳踏輔助，微型電動二輪車以電力直接輸出','兩者都一律要發汽車駕照','兩者都必定是電動輪椅','微型電動二輪車一定沒有動力'],'手冊區分電動輔助自行車與微型電動二輪車的構造與管理要求。',20);
- add('n26','二輪車法規','npc','假設本次與{{A}}碰撞的是NPC微型電動二輪車且造成傷者，對「車種與強制險」何者正確？',['微型電動二輪車依規定也須投保強制險','微型電動二輪車一律沒有強制險制度','必須先改裝成汽車才能合法納保','只要沒有車損就一律免投保'],'手冊將微型電動二輪車列為須依法投保強制險的車種。',19);
+ add('n17','特殊補償','npc','如果{{A}}因本次NPC事故受傷，且由特別補償基金依法補償後，基金是否可能向應負責者求償？',['可能，基金依法補償後仍可能向加害人求償','不可能，任何人都永久免責','基金一定負擔NPC的所有車損','基金會自動免除所有交通罰單'],'特別補償基金補償後，仍可能依法向加害人求償。',25);
+ add('n21','二輪車法規','npc','假設本次與{{A}}碰撞的NPC改為「微型電動二輪車」，車主依法上路前應完成哪組事項？',['投保強制險、登記領牌及懸掛牌照','只有把車噴成黃色','購買車體竊盜險即可免領牌','只帶耳機就可以直接上路'],'微型電動二輪車投保、領牌後方得依法上路的制度。',20);
 
  // 僅真正肇逃且「事後仍無法查明事故車輛」可選的專題，避免把逃逸與無法查究劃等號。
- add('h01','特殊補償','hitRun','撞上{{A}}的NPC汽車逃逸，事後仍無法查明肇事車。{{A}}因此受傷，符合條件時應向哪個機制評估補償？',['汽車交通事故特別補償基金','汽車烤漆保固','路燈維修基金','觀光旅遊補助'],'手冊列事故汽車無法查究為可依規定向特別補償基金請求補償之情形。',25);
- add('h02','特殊補償','hitRun','{{A}}遭不明NPC汽車撞傷，事後查無車籍。對特別補償基金，哪個說法正確？',['符合條件時可就法定人身損害申請補償','一定補償{{A}}全部車輛維修','只要無法查究就不可能獲基本保障','基金只提供免費汽車保養'],'特別補償基金著重受害人的基本人身保障，不是純粹財損保險。',25);
- add('h03','事故處置','hitRun','NPC撞上{{A}}後逃逸，{{A}}最應先保存哪種資訊以協助查明？',['事故現場照片、行車紀錄影像及目擊者線索','只保留遊戲積分','完全不報警、不留資料','刪除所有路口攝影紀錄'],'手冊事故現場五步驟含報警、蒐證與目擊者聯絡資訊。',11);
- add('h04','特殊補償','hitRun','{{A}}遭撞傷，NPC駕駛逃逸但隔天已查明車籍及有效強制險。哪項判斷最合理？',['不能再僅以「肇車無法查究」為由認定適用該特補情形，應確認保險理賠途徑','只要曾逃逸就必定永遠查無肇事車','一律由基金賠全部車損','不能向任何保險公司提出請求'],'手冊以事故汽車無法查究為基金法定事由；已查明車輛時應重新判斷保險途徑。',25);
- add('h05','特殊補償','hitRun','本次NPC肇逃且無法查明車輛，{{A}}既有醫療支出又有車損。特別補償基金主要承接何種保障？',['法定人身傷害等基本補償','汽車全額修理費','手機保固延長','違規罰鍰代繳'],'特別補償基金的補償範圍依強制險法定人身給付規定，而非車體財損。',25);
- add('h06','特殊補償','hitRun','{{A}}遭查無車籍的NPC汽車撞傷。向特別補償基金請求時，是否必須先取得加害人書面同意？',['不必先取得無法查究的加害人同意，仍依法律程序檢附資料','必須取得逃逸者全家簽名','必須先付高額代辦保證金','必須先支付車輛改裝費'],'手冊指出可依法向保險人或特補基金直接請求，無須先取得加害人同意。',24);
- add('h07','特殊補償','hitRun','本案NPC逃逸且無法查明，{{A}}向特別補償基金提出申請。誰是主要需被保障的對象？',['符合法定條件的汽車交通事故人身受害者','逃逸車輛的保養廠','事故後要換車的人一律全額補貼','僅是車體烤漆店'],'基金制度目的在使特定無法由保險人給付的事故受害人獲基本人身保障。',25);
- add('h08','特殊補償','hitRun','{{A}}遭不明NPC車輛撞傷後，保險人暫時無法確認該車有無投保。哪個做法合理？',['報警並蒐集資料，釐清車輛及可請求的保險或基金管道','直接把對方沒投保當成已證實','只要對方跑掉就可要求所有車損現金','不必保存事故發生時間地點'],'手冊區分事故汽車無法查究與未保險等特補事由，應先查明證據。',25);
+ add('h01','特殊補償','hitRun','撞上{{A}}的NPC汽車逃逸，事後仍無法查明肇事車。{{A}}因此受傷，符合條件時應向哪個機制評估補償？',['汽車交通事故特別補償基金','汽車烤漆保固','路燈維修基金','觀光旅遊補助'],'相關規定列事故汽車無法查究為可依規定向特別補償基金請求補償之情形。',25);
+ add('h03','事故處置','hitRun','NPC撞上{{A}}後逃逸，{{A}}最應先保存哪種資訊以協助查明？',['事故現場照片、行車紀錄影像及目擊者線索','只保留遊戲積分','完全不報警、不留資料','刪除所有路口攝影紀錄'],'事故現場處理應包含報警、保存影像與目擊者資訊。',11);
+ add('h04','特殊補償','hitRun','{{A}}遭撞傷，假設NPC駕駛逃逸後隔天已查明車籍及有效強制險。哪項判斷最合理？',['不能再僅以「肇車無法查究」為由認定適用該特補情形，應確認保險理賠途徑','只要曾逃逸就必定永遠查無肇事車','一律由基金賠全部車損','不能向任何保險公司提出請求'],'事故汽車無法查究屬特別補償基金法定事由之一；已查明車輛時應重新判斷保險途徑。',25);
 
  const kind=caseInfo.kind==='player'?'player':'npc';
  return bank.filter(q=>q.scope==='all'||q.scope===kind||(q.scope==='hitRun'&&kind==='npc'&&!!caseInfo.meta?.hitRun));
@@ -664,7 +655,7 @@ function fallbackQuestion(caseInfo){
  return {id:'dynamic_'+seq,category:'動態理賠計算',scope:caseInfo.kind,
   prompt:`延伸${caseInfo.kind==='player'?'同學互撞':'NPC交通事故'}案例：假設有資格請求強制險的受害人，合於傷害醫療給付規定的費用為 ${fmt(med)} 元、車損為 ${fmt(repair)} 元，且尚未達醫療給付限額。下列哪一金額可能列入強制險傷害醫療給付？`,
   options:[`${fmt(med)} 元`,`${fmt(med+repair)} 元`,`${fmt(repair)} 元`,'0元，因為同時有車損'],correctIndex:0,
-  explanation:'傷害醫療與車損應分開；題目已假設醫療費合規、被害人資格成立且未達限額。金額是教學示例，須以實際審認為準。',pdfPage:19};
+  explanation:'傷害醫療與車損應分開；題目已假設醫療費合規、被害人資格成立且未達限額。金額是教學示例，須以實際審認為準。',};
 }
 function questionContext(caseInfo){
  const a=caseInfo.victims?.[0]?.name||'事故當事人';
@@ -672,7 +663,7 @@ function questionContext(caseInfo){
  return {A:a,B:b};
 }
 function fillCaseText(value,ctx){return String(value).replaceAll('{{A}}',ctx.A).replaceAll('{{B}}',ctx.B)}
-const QUIZ_HISTORY_KEY='cityInsuranceQuestionHistory_v734';
+const QUIZ_HISTORY_KEY='cityInsuranceQuestionHistory_v735';
 let questionCategoryCounts={},lastQuestionCategory='',timedQuestionSerial=0;
 function pastQuestionHistory(){try{return JSON.parse(localStorage.getItem(QUIZ_HISTORY_KEY)||'[]')}catch(e){return []}}
 function buildQuestion(caseInfo){
@@ -697,9 +688,9 @@ function buildQuestion(caseInfo){
  let opts=chosen.options.map((txt,i)=>({text:fillCaseText(txt,ctx),correct:i===chosen.correctIndex}));
  for(let i=opts.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[opts[i],opts[j]]=[opts[j],opts[i]]}
  return {id:'q_'+Date.now()+'_'+questionSerial,templateId:chosen.id,category:chosen.category,
-  pdfPage:chosen.pdfPage,accidentSummary:accidentSummaryFor(caseInfo),
+  accidentSummary:accidentSummaryFor(caseInfo),
   prompt:fillCaseText(chosen.prompt,ctx),options:opts.map(x=>x.text),correctIndex:opts.findIndex(x=>x.correct),
-  explanation:fillCaseText(chosen.explanation,ctx)+`（教師手冊PDF第${chosen.pdfPage}頁）`,
+  explanation:fillCaseText(chosen.explanation,ctx),
   revealed:false,closed:false,answers:{},createdAt:Date.now()};
 }
 
@@ -740,7 +731,7 @@ function renderMemberList(){
   $('memberList').innerHTML=arr.length?arr.map((p,i)=>`<div class="memberRow"><div class="memberNo">${i+1}</div><div><b>${safeText(p.name||'未命名')}</b><small>${p.connected===false?'連線中斷':'已加入房間'}</small></div><div class="memberState ${p.ready?'ready':''}">${p.ready?'READY':'準備中'}</div></div>`).join(''):'<div style="padding:24px;text-align:center;font-weight:900;color:#789">目前尚無學生加入</div>';
 }
 function studentInviteUrl(){
-  return new URL(`student.html?v=734&room=${encodeURIComponent(room)}`, window.location.href).href;
+  return new URL(`student.html?v=735&room=${encodeURIComponent(room)}`, window.location.href).href;
 }
 function showInvite(){
   if(!room) return;
@@ -769,7 +760,7 @@ function showFinalPodium(){
     let [,p]=item;
     return `<div class="pod ${cls}"><div class="medal">${medal}</div><div class="place">${place}</div><div class="winnerName">${safeText(p.name||'玩家')}</div><div class="winnerScore">${Number(p.score||0)} 分</div></div>`
   }).join('');
-  let awardDefs=[['🧭 任務達人','visitCount','最多拜訪站數'],['🔥 連擊達人','bestStreak','最長連續達標次數'],['🧠 保險知識王','quizCorrect','最多保險題答對']];
+  let awardDefs=[['🧭 任務達人','visitCount','最多拜訪站數'],['🧠 保險知識王','quizCorrect','最多保險題答對']];
  $('specialAwards').innerHTML=awardDefs.map(([title,key,subtitle])=>{
  let winner=Object.values(players).filter(p=>p.ready).sort((a,b)=>Number(b[key]||0)-Number(a[key]||0))[0];
  return `<div class="specialAward">${title}<strong>${safeText(winner?.name||'—')}</strong><small>${subtitle} ${Number(winner?.[key]||0)}</small></div>`
@@ -847,7 +838,7 @@ $('revealBtn').onclick=async()=>{
 $('continueBtn').onclick=async()=>{let updates={status:'running','globalQuestion/closed':true},node=collisionNode;for(const id of collisionIds){if(id==='__NPC__')continue;let a=sim[id];if(!a)continue;a.forcePos=null;a.status='driving';a.t=Math.min(.94,Math.max(.08,a.t));updates[`players/${id}/status`]='driving';updates[`players/${id}/currentEvent`]='🚗 事故處理完成，重新上路'}if(collisionAmbientId){let a=ambient.find(x=>x.id===collisionAmbientId);if(a){a.forcePos=null;a.status='driving';a.t=Math.min(.92,Math.max(.12,a.t))}}await roomRef.update(updates);setTimeout(()=>roomRef.child('globalQuestion').remove(),500);paused=false;lastMissionAward=Date.now();startEnvironmentCycle();startAccidentCycle();startQuestionClock();log('事故題結束，下一題將於行車30秒後出現','good')};
 async function tick(ts){
  if(!running)return;
- let dt=Math.min(90,Math.max(0,ts-(lastTs||ts)));lastTs=ts;renderSignals();renderQuestionCountdown();
+ let dt=Math.min(90,Math.max(0,ts-(lastTs||ts)));lastTs=ts;renderSignals();
  if(!paused){
   resumeOverspeedDrivers();
   checkOverspeedDrivers();
